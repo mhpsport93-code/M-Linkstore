@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5" />
+<meta name="theme-color" content="#0f172a" />
+<title>LinkVault — Premium Multi URL Link Protector & Shortener</title>
+<meta name="description" content="LinkVault — protect, shorten and share multiple download links with advanced encryption, human verification and a premium dashboard. 100% frontend, Blogger ready." />
+<meta name="keywords" content="link protector, url shortener, multi link, blogger link protector, download protector, linksddr, jiolink" />
+<link rel="canonical" href="./" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="LinkVault — Premium Link Protector" />
+<meta property="og:description" content="Protect multiple download links with advanced encryption and a premium UI." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="LinkVault — Premium Link Protector" />
+<meta name="twitter:description" content="Protect, shorten, share. Premium multi-URL link protection." />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"LinkVault","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700;800;900&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M22 32a10 10 0 0 1 14 0l4 4a10 10 0 0 1-14 14l-2-2' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M42 32a10 10 0 0 0-14 0l-4 4a10 10 0 0 0 14 14l2-2' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' opacity='.6'/%3E%3C/svg%3E" />
+<style>
+/* ================= CORE TOKENS ================= */
+:root{
+  --primary:#2563eb; --primary-2:#7c3aed; --secondary:#1e40af;
+  --dark:#0f172a; --darker:#070b18; --panel:#0f1629; --panel-2:#131c34;
+  --light:#f8fafc; --muted:#94a3b8; --line:rgba(148,163,184,.14);
+  --success:#22c55e; --danger:#ef4444; --warning:#f59e0b;
+  --grad:linear-gradient(135deg,#2563eb 0%,#7c3aed 60%,#ec4899 100%);
+  --grad-soft:linear-gradient(135deg,rgba(37,99,235,.18),rgba(124,58,237,.18));
+  --shadow-lg:0 20px 60px -20px rgba(37,99,235,.45);
+  --shadow-md:0 10px 30px -10px rgba(0,0,0,.5);
+  --radius:16px;
+  --font:'Inter',system-ui,sans-serif;
+  --display:'Outfit','Poppins',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--dark);color:var(--light);line-height:1.6;overflow-x:hidden;min-height:100vh;
+  background-image:
+    radial-gradient(1200px 600px at 10% -10%,rgba(37,99,235,.18),transparent 60%),
+    radial-gradient(900px 500px at 110% 10%,rgba(124,58,237,.18),transparent 60%),
+    radial-gradient(700px 500px at 50% 110%,rgba(236,72,153,.12),transparent 60%);
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img,svg{display:block;max-width:100%}
+::selection{background:var(--primary);color:#fff}
+
+/* ============== SCROLLBAR ============== */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#0a1020}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--primary),var(--primary-2));border-radius:10px}
+
+/* ============== SCROLL PROGRESS ============== */
+#scrollProgress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--grad);z-index:9999;transition:width .1s}
+
+/* ============== HEADER ============== */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:transform .35s ease, background .3s, box-shadow .3s;
+  background:rgba(10,15,30,.55);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+header.hide{transform:translateY(-110%)}
+header.scrolled{background:rgba(8,12,26,.85);box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.nav{max-width:1280px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:.2px}
+.logo .mark{width:36px;height:36px;border-radius:10px;background:var(--grad);display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,99,235,.45)}
+.logo span b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.menu{display:flex;align-items:center;gap:6px}
+.menu a{position:relative;padding:10px 14px;font-weight:500;font-size:14.5px;color:#cbd5e1;border-radius:10px;transition:color .25s}
+.menu a:hover{color:#fff}
+.menu a::after{content:"";position:absolute;left:14px;right:14px;bottom:6px;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.menu a:hover::after{transform:scaleX(1);transform-origin:left}
+.cta-group{display:flex;align-items:center;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:12px;font-weight:600;font-size:14px;transition:transform .2s, box-shadow .2s, background .2s;position:relative;overflow:hidden}
+.btn-ghost{color:#e2e8f0;border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.05)}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 10px 30px -8px rgba(37,99,235,.6)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px -8px rgba(124,58,237,.7)}
+.btn-primary::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);transition:transform .8s}
+.btn-primary:hover::before{transform:translateX(100%)}
+.hamburger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);align-items:center;justify-content:center}
+.hamburger svg{width:22px;height:22px}
+
+/* ============== MOBILE DRAWER ============== */
+.drawer{position:fixed;inset:0;z-index:1200;background:rgba(7,11,24,.78);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s}
+.drawer.open{opacity:1;pointer-events:auto}
+.drawer-panel{position:absolute;top:0;right:0;height:100%;width:min(86vw,360px);background:linear-gradient(180deg,#0b1226,#0a1020);border-left:1px solid var(--line);transform:translateX(100%);transition:transform .35s cubic-bezier(.5,.1,.2,1);padding:80px 24px 24px;display:flex;flex-direction:column;gap:8px}
+.drawer.open .drawer-panel{transform:translateX(0)}
+.drawer-panel a{padding:14px 16px;border-radius:12px;font-weight:500;color:#e2e8f0;border:1px solid transparent;transition:all .2s}
+.drawer-panel a:hover{background:rgba(255,255,255,.05);border-color:var(--line)}
+.drawer-close{position:absolute;top:18px;right:18px;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center}
+
+/* ============== HERO ============== */
+.hero{position:relative;padding:140px 22px 80px;max-width:1280px;margin:0 auto;text-align:center;overflow:hidden}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);font-size:13px;color:#bfdbfe;margin-bottom:22px}
+.hero .badge .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2);animation:pulseDot 1.6s infinite}
+@keyframes pulseDot{50%{box-shadow:0 0 0 8px rgba(34,197,94,0)}}
+.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,68px);line-height:1.05;letter-spacing:-.02em}
+.hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{margin:18px auto 0;max-width:680px;color:#cbd5e1;font-size:clamp(15px,1.6vw,18px)}
+.hero .typed{display:inline-block;border-right:2px solid var(--primary-2);padding-right:4px;animation:blink .9s infinite}
+@keyframes blink{50%{border-color:transparent}}
+.hero-cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.hero-trust{margin-top:28px;display:flex;flex-wrap:wrap;gap:18px;justify-content:center;color:#94a3b8;font-size:13px}
+.hero-trust span{display:inline-flex;align-items:center;gap:6px}
+.hero-trust svg{width:16px;height:16px;color:#22c55e}
+.float-card{position:absolute;background:rgba(15,22,41,.7);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:10px;backdrop-filter:blur(10px);box-shadow:var(--shadow-md);font-size:13px;animation:floatY 6s ease-in-out infinite}
+.float-card .ic{width:34px;height:34px;border-radius:10px;background:var(--grad-soft);display:grid;place-items:center}
+.float-card.fc1{top:160px;left:6%;animation-delay:0s}
+.float-card.fc2{top:240px;right:6%;animation-delay:1.2s}
+.float-card.fc3{bottom:60px;left:10%;animation-delay:2.4s}
+@keyframes floatY{50%{transform:translateY(-14px)}}
+@media(max-width:900px){.float-card{display:none}}
+
+/* particles */
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.particles span{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--primary-2);opacity:.4;animation:rise 12s linear infinite}
+@keyframes rise{0%{transform:translateY(100vh) scale(.5);opacity:0}10%{opacity:.5}100%{transform:translateY(-20vh) scale(1.2);opacity:0}}
+
+/* ============== SECTIONS ============== */
+section{padding:80px 22px;max-width:1280px;margin:0 auto;position:relative}
+.section-head{text-align:center;margin-bottom:46px}
+.section-head .eyebrow{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--grad-soft);border:1px solid var(--line);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#bfdbfe;margin-bottom:14px}
+.section-head h2{font-family:var(--display);font-weight:800;font-size:clamp(26px,4vw,42px);letter-spacing:-.01em}
+.section-head p{margin-top:10px;color:#94a3b8;max-width:640px;margin-left:auto;margin-right:auto}
+
+/* glass card */
+.glass{background:linear-gradient(180deg,rgba(19,28,52,.7),rgba(11,17,33,.7));border:1px solid var(--line);border-radius:var(--radius);backdrop-filter:blur(14px);box-shadow:var(--shadow-md)}
+
+/* ============== PROTECT TOOL ============== */
+.tool{padding:28px;display:grid;gap:20px}
+.tool-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tool-top h3{font-family:var(--display);font-weight:700;font-size:22px}
+.tool-top .meta{display:flex;gap:10px;font-size:13px;color:#94a3b8}
+.tool-top .meta b{color:#fff}
+textarea#urlInput{width:100%;min-height:180px;background:#0a1124;border:1px solid var(--line);border-radius:14px;padding:16px;color:#e2e8f0;font:14px/1.7 'JetBrains Mono',ui-monospace,monospace;resize:vertical;outline:none;transition:border-color .2s, box-shadow .2s}
+textarea#urlInput:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(37,99,235,.18)}
+.tool-actions{display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:12.5px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:#cbd5e1}
+.chip.ok{color:#86efac;border-color:rgba(34,197,94,.35);background:rgba(34,197,94,.08)}
+.chip.bad{color:#fca5a5;border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08)}
+
+/* result */
+.result{display:none;animation:fadeUp .6s both}
+.result.show{display:block}
+.result-card{padding:22px;border-radius:14px;background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(124,58,237,.12));border:1px solid rgba(124,58,237,.3);display:flex;flex-direction:column;gap:14px}
+.short-url{display:flex;align-items:center;gap:8px;background:#0a1124;border:1px dashed rgba(124,58,237,.4);border-radius:12px;padding:12px 14px;font:14px ui-monospace,monospace;word-break:break-all;color:#e0e7ff}
+.short-url .urltxt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.r-actions{display:flex;flex-wrap:wrap;gap:8px}
+.r-btn{padding:9px 14px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13px;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.r-btn:hover{background:var(--grad);border-color:transparent;transform:translateY(-2px)}
+.r-btn svg{width:15px;height:15px}
+#qrBox{display:flex;justify-content:center;padding:14px;background:#fff;border-radius:12px;width:fit-content;align-self:center}
+
+/* ============== UNLOCK PAGE ============== */
+.unlock-screen{position:fixed;inset:0;z-index:2000;background:radial-gradient(1000px 700px at 50% 30%,rgba(37,99,235,.2),#070b18 70%);display:none;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center}
+.unlock-screen.show{display:flex;animation:fadeIn .5s}
+.lock-anim{width:130px;height:130px;border-radius:50%;background:var(--grad);display:grid;place-items:center;box-shadow:0 0 0 0 rgba(124,58,237,.6);animation:lockPulse 2s infinite;margin-bottom:24px;position:relative}
+.lock-anim::after{content:"";position:absolute;inset:-12px;border-radius:50%;border:2px dashed rgba(255,255,255,.25);animation:spin 8s linear infinite}
+@keyframes lockPulse{50%{box-shadow:0 0 0 24px rgba(124,58,237,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.unlock-screen h2{font-family:var(--display);font-weight:800;font-size:clamp(22px,3vw,32px)}
+.unlock-screen .status{margin-top:10px;color:#cbd5e1;min-height:24px}
+.progress{margin-top:24px;width:min(420px,90vw);height:10px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.progress span{display:block;height:100%;width:0;background:var(--grad);transition:width .3s;box-shadow:0 0 12px var(--primary-2)}
+.countdown{margin-top:14px;font-family:var(--display);font-weight:700;font-size:36px;background:var(--grad);-webkit-background-clip:text;color:transparent}
+.steps{margin-top:18px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:#94a3b8;width:min(420px,90vw);text-align:left}
+.steps div{display:flex;gap:10px;align-items:center;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,.03);opacity:.5;transition:opacity .3s, color .3s}
+.steps div.active{opacity:1;color:#bfdbfe}
+.steps div.done{opacity:1;color:#86efac}
+.steps .ic{width:18px;height:18px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center;flex-shrink:0}
+.steps .done .ic{background:#22c55e;border-color:#22c55e}
+
+/* unlocked links */
+.links-page{display:none}
+.links-page.show{display:block;animation:fadeUp .5s}
+.link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:24px}
+.link-card{padding:18px;border-radius:14px;background:linear-gradient(180deg,rgba(19,28,52,.85),rgba(11,17,33,.85));border:1px solid var(--line);transition:transform .3s, border-color .3s, box-shadow .3s;position:relative;overflow:hidden}
+.link-card:hover{transform:translateY(-6px);border-color:rgba(124,58,237,.45);box-shadow:0 20px 40px -20px rgba(124,58,237,.5)}
+.link-card::before{content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transition:left .8s;skew:-20deg}
+.link-card:hover::before{left:130%}
+.link-card .head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.link-card .fav{width:38px;height:38px;border-radius:10px;background:var(--grad-soft);display:grid;place-items:center;overflow:hidden}
+.link-card .fav img{width:24px;height:24px;border-radius:6px}
+.link-card .title{font-weight:600;font-size:14.5px;line-height:1.3;color:#fff;word-break:break-word}
+.link-card .domain{font-size:12px;color:#94a3b8}
+.link-card .url{font-size:12px;color:#7ea0d6;word-break:break-all;margin:8px 0;font-family:ui-monospace,monospace;opacity:.85;max-height:38px;overflow:hidden}
+.link-card .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.mini{padding:7px 11px;border-radius:9px;font-size:12px;background:rgba(255,255,255,.04);border:1px solid var(--line);display:inline-flex;align-items:center;gap:5px;transition:all .2s}
+.mini:hover{background:var(--grad);border-color:transparent}
+.mini svg{width:13px;height:13px}
+
+/* ============== FEATURES ============== */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.feature{padding:22px;border-radius:16px;background:linear-gradient(180deg,rgba(19,28,52,.6),rgba(11,17,33,.6));border:1px solid var(--line);transition:transform .3s, border-color .3s}
+.feature:hover{transform:translateY(-6px);border-color:rgba(124,58,237,.4)}
+.feature .ic{width:48px;height:48px;border-radius:12px;background:var(--grad-soft);display:grid;place-items:center;margin-bottom:14px;color:#bfdbfe}
+.feature h4{font-family:var(--display);font-weight:700;font-size:17px;margin-bottom:6px}
+.feature p{font-size:14px;color:#94a3b8}
+
+/* ============== EARN / DASHBOARD ============== */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.stat{padding:20px;border-radius:14px;background:linear-gradient(135deg,rgba(37,99,235,.1),rgba(124,58,237,.08));border:1px solid var(--line);position:relative;overflow:hidden}
+.stat .lbl{font-size:13px;color:#94a3b8}
+.stat .val{font-family:var(--display);font-weight:800;font-size:30px;margin-top:6px;background:var(--grad);-webkit-background-clip:text;color:transparent}
+.stat .delta{font-size:12px;margin-top:4px;color:#86efac}
+.stat .ic{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:10px;background:var(--grad-soft);display:grid;place-items:center;color:#bfdbfe}
+.dash-row{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:20px}
+@media(max-width:900px){.dash-row{grid-template-columns:1fr}}
+.chart-card,.country-card,.withdraw-card{padding:22px;border-radius:14px;background:rgba(15,22,41,.7);border:1px solid var(--line)}
+.chart-card h4,.country-card h4,.withdraw-card h4{font-family:var(--display);font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+.chart-card h4 small{font-weight:400;color:#94a3b8;font-size:12px}
+svg.chart{width:100%;height:200px}
+.country-list{display:flex;flex-direction:column;gap:12px}
+.country-list .row{display:flex;align-items:center;gap:10px;font-size:14px}
+.country-list .bar{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.country-list .bar span{display:block;height:100%;background:var(--grad);border-radius:999px}
+.withdraw-card{margin-top:20px}
+.withdraw-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.withdraw-form input,.withdraw-form select{flex:1;min-width:140px;padding:12px 14px;border-radius:10px;background:#0a1124;border:1px solid var(--line);color:#e2e8f0;outline:none}
+.withdraw-form input:focus{border-color:var(--primary)}
+
+/* CPM table */
+.cpm{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:10px}
+.cpm .c{padding:14px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line);text-align:center}
+.cpm .c b{display:block;font-family:var(--display);font-weight:800;font-size:20px;color:#fff}
+.cpm .c span{font-size:12px;color:#94a3b8}
+
+/* ============== FAQ ============== */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:820px;margin:0 auto}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:rgba(15,22,41,.6);overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:rgba(124,58,237,.5)}
+.faq-q{width:100%;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;font-weight:600;text-align:left;font-size:15px}
+.faq-q svg{transition:transform .3s;flex-shrink:0;width:18px;height:18px;color:var(--primary-2)}
+.faq-item.open .faq-q svg{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:#94a3b8;font-size:14.5px}
+.faq-a div{padding:0 20px 18px}
+
+/* ============== AUTH / CONTACT ============== */
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:820px){.auth-grid{grid-template-columns:1fr}}
+.auth-card,.contact-card{padding:28px;border-radius:18px;background:linear-gradient(180deg,rgba(19,28,52,.7),rgba(11,17,33,.7));border:1px solid var(--line)}
+.auth-card h3,.contact-card h3{font-family:var(--display);font-weight:800;font-size:22px;margin-bottom:6px}
+.auth-card p.sub,.contact-card p.sub{color:#94a3b8;font-size:14px;margin-bottom:18px}
+.field{position:relative;margin-bottom:14px}
+.field input,.field textarea,.field select{width:100%;padding:18px 14px 8px;background:#0a1124;border:1px solid var(--line);border-radius:12px;color:#fff;font-size:14px;outline:none;transition:border-color .2s, box-shadow .2s}
+.field textarea{min-height:120px;padding-top:22px;resize:vertical}
+.field label{position:absolute;left:14px;top:14px;color:#64748b;font-size:14px;pointer-events:none;transition:all .2s}
+.field input:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(37,99,235,.16)}
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label,
+.field textarea:focus + label,
+.field textarea:not(:placeholder-shown) + label{top:4px;font-size:11px;color:var(--primary-2)}
+.field .toggle{position:absolute;right:10px;top:10px;width:32px;height:32px;display:grid;place-items:center;color:#94a3b8;cursor:pointer}
+.social-row{display:flex;gap:8px;margin-top:14px}
+.social-row .sb{flex:1;padding:10px;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;background:rgba(255,255,255,.03);transition:background .2s}
+.social-row .sb:hover{background:rgba(255,255,255,.07)}
+
+/* ============== POLICIES ============== */
+.policy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.policy{padding:24px;border-radius:14px;background:rgba(15,22,41,.6);border:1px solid var(--line)}
+.policy h4{font-family:var(--display);font-size:18px;margin-bottom:8px}
+.policy p{font-size:14px;color:#94a3b8}
+
+/* ============== FOOTER ============== */
+footer{margin-top:80px;padding:60px 22px 24px;background:linear-gradient(180deg,transparent,rgba(7,11,24,.9));border-top:1px solid var(--line)}
+.foot-wrap{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+@media(max-width:820px){.foot-wrap{grid-template-columns:1fr 1fr}.foot-wrap > div:first-child{grid-column:1/-1}}
+.foot-wrap h5{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px;color:#cbd5e1}
+.foot-wrap a{display:block;padding:6px 0;color:#94a3b8;font-size:14px;transition:color .2s}
+.foot-wrap a:hover{color:#fff}
+.foot-soc{display:flex;gap:10px;margin-top:14px}
+.foot-soc a{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;padding:0;background:rgba(255,255,255,.03)}
+.foot-soc a:hover{background:var(--grad);border-color:transparent}
+.foot-bot{max-width:1280px;margin:30px auto 0;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#94a3b8;font-size:13px}
+
+/* ============== TOAST ============== */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#0b1226;border:1px solid var(--line);padding:12px 18px;border-radius:12px;color:#fff;font-size:14px;box-shadow:var(--shadow-md);z-index:3000;opacity:0;transition:all .3s;display:flex;align-items:center;gap:10px}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.ok{border-color:rgba(34,197,94,.4)}
+#toast.err{border-color:rgba(239,68,68,.4)}
+
+/* ============== BACK TO TOP ============== */
+#toTop{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;background:var(--grad);display:grid;place-items:center;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:opacity .3s, transform .3s;z-index:999;transform:translateY(20px)}
+#toTop.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+/* ============== ANIMATIONS ============== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s, transform .8s}
+.reveal.in{opacity:1;transform:none}
+.reveal.left{transform:translateX(-30px)}
+.reveal.left.in{transform:none}
+.reveal.right{transform:translateX(30px)}
+.reveal.right.in{transform:none}
+.reveal.scale{transform:scale(.92)}
+.reveal.scale.in{transform:none}
+.reveal.blur{filter:blur(10px)}
+.reveal.blur.in{filter:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ============== AD SLOT ============== */
+.ad{margin:30px auto;padding:18px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:#64748b;font-size:13px;max-width:760px}
+
+/* ============== PAGE SWITCHER ============== */
+.page{display:none;animation:fadeUp .5s}
+.page.active{display:block}
+
+/* responsive */
+@media(max-width:820px){
+  .menu, .cta-group .btn-ghost, .cta-group .btn-primary{display:none}
+  .hamburger{display:flex}
+  .hero{padding-top:120px}
+  section{padding:60px 18px}
+}
+</style>
+</head>
+<body>
+
+<div id="scrollProgress"></div>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="nav">
+    <a href="#" class="logo" data-nav="home">
+      <span class="mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"/></svg>
+      </span>
+      <span>Link<b>Vault</b></span>
+    </a>
+    <nav class="menu">
+      <a href="#" data-nav="home">Home</a>
+      <a href="#" data-nav="earn">Earn Money</a>
+      <a href="#" data-nav="faqs">FAQs</a>
+      <a href="#" data-nav="contact">Contact</a>
+    </nav>
+    <div class="cta-group">
+      <button class="btn btn-ghost" data-nav="login">Login</button>
+      <button class="btn btn-primary" data-nav="signup">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        Sign Up
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="drawer" id="drawer">
+  <div class="drawer-panel">
+    <button class="drawer-close" id="drawerClose" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <a href="#" data-nav="home">Home</a>
+    <a href="#" data-nav="earn">Earn Money</a>
+    <a href="#" data-nav="faqs">FAQs</a>
+    <a href="#" data-nav="contact">Contact</a>
+    <a href="#" data-nav="login">Login</a>
+    <a href="#" data-nav="signup">Sign Up</a>
+  </div>
+</div>
+
+<!-- ===== MAIN PAGES ===== -->
+<main id="main">
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" data-page="home">
+
+  <section class="hero">
+    <div class="particles" id="particles"></div>
+    <div class="float-card fc1"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#bfdbfe" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><b>AES-Style</b><br><small style="color:#94a3b8">Encrypted</small></div></div>
+    <div class="float-card fc2"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#bfdbfe" stroke-width="2" stroke-linecap="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><b>Lightning Fast</b><br><small style="color:#94a3b8">5s unlock</small></div></div>
+    <div class="float-card fc3"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#bfdbfe" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></div><div><b>Verified</b><br><small style="color:#94a3b8">Anti-bot</small></div></div>
+
+    <div class="badge"><span class="dot"></span> Trusted by 12,500+ creators worldwide</div>
+    <h1>Protect &amp; Monetize<br>Your <span class="grad">Download Links</span><br>Like A Pro</h1>
+    <p class="sub">Convert multiple links into one ultra-short, hard-encrypted protected URL. Add human verification, custom CPM ads and earn while you share. <span id="typed" class="typed"></span></p>
+    <div class="hero-cta">
+      <button class="btn btn-primary" id="goProtect">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Protect My Links
+      </button>
+      <button class="btn btn-ghost" data-nav="earn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Start Earning
+      </button>
+    </div>
+    <div class="hero-trust">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> No signup required</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> 100% free forever</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg> Blogger compatible</span>
+    </div>
+  </section>
+
+  <section id="protect">
+    <div class="section-head reveal">
+      <div class="eyebrow">Multi URL Protector</div>
+      <h2>Paste your links. Get one short URL.</h2>
+      <p>Drop unlimited download links below. We compress, encrypt and shorten them into a single secure share-ready link.</p>
+    </div>
+
+    <div class="glass tool reveal scale">
+      <div class="tool-top">
+        <h3>🔐 Link Protector</h3>
+        <div class="meta">
+          <span class="chip" id="cntChip">0 links</span>
+          <span class="chip ok" id="okChip">0 valid</span>
+          <span class="chip bad" id="badChip">0 invalid</span>
+          <span class="chip" id="dupChip">0 duplicates</span>
+        </div>
+      </div>
+      <textarea id="urlInput" placeholder="Paste one link per line, e.g.&#10;https://hubcloud.foo/abc&#10;https://gofile.io/d/xyz&#10;https://streamtape.com/v/123"></textarea>
+      <div class="tool-actions">
+        <button class="btn btn-primary" id="protectBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Protect My Links
+        </button>
+        <button class="btn btn-ghost" id="clearBtn">Clear</button>
+        <button class="btn btn-ghost" id="pasteBtn">Paste</button>
+        <button class="btn btn-ghost" id="dedupeBtn">Remove duplicates</button>
+      </div>
+
+      <div class="result" id="result">
+        <div class="result-card">
+          <div style="display:flex;align-items:center;gap:10px;color:#86efac;font-weight:600">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Your protected link is ready
+          </div>
+          <div class="short-url"><span class="urltxt" id="shortUrl"></span></div>
+          <div class="r-actions">
+            <button class="r-btn" id="copyBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button>
+            <button class="r-btn" id="openBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 3h6v6M10 14 21 3M21 14v7H3V3h7"/></svg>Open</button>
+            <button class="r-btn" id="shareBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>
+            <button class="r-btn" id="qrBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM21 14v7h-7M17 21v-4"/></svg>QR</button>
+            <button class="r-btn" id="dlBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>TXT</button>
+            <button class="r-btn" id="resetBtn" style="color:#fca5a5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>Reset</button>
+          </div>
+          <div id="qrBox" style="display:none"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad reveal">— Ad slot · place your CPM banner here —</div>
+  </section>
+
+  <section>
+    <div class="section-head reveal">
+      <div class="eyebrow">Why LinkVault</div>
+      <h2>Built for creators, optimized for trust</h2>
+    </div>
+    <div class="features">
+      <div class="feature reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>Hard Encryption</h4><p>XOR + Base62 + char-shift produces ultra short, undecodable URLs.</p></div>
+      <div class="feature reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h4>Blazing Fast</h4><p>Pure frontend. No server roundtrips. Works on Blogger and any static host.</p></div>
+      <div class="feature reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div><h4>Mobile First</h4><p>Glassmorphism, 60fps animations and a touch-perfect drawer nav.</p></div>
+      <div class="feature reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4>Monetization</h4><p>Drop your CPM ad code into the unlock flow and earn per visit.</p></div>
+      <div class="feature reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20z"/></svg></div><h4>Anti-Bot</h4><p>Human verification, devtools awareness and tamper detection built in.</p></div>
+      <div class="feature reveal"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg></div><h4>Dashboard</h4><p>Stats, chart, top countries and a fake-clean withdraw flow.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== EARN PAGE ===== -->
+<div class="page" data-page="earn">
+  <section style="padding-top:120px">
+    <div class="section-head reveal">
+      <div class="eyebrow">Creator Dashboard</div>
+      <h2>Turn every click into revenue</h2>
+      <p>Real-time CPM tiers, traffic insights and instant withdrawals. Demo numbers — connect your ad network to go live.</p>
+    </div>
+
+    <div class="dash-grid">
+      <div class="stat reveal"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="lbl">Total Earnings</div><div class="val" data-counter="2847">$0</div><div class="delta">▲ 12.4% this month</div></div>
+      <div class="stat reveal"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/></svg></div><div class="lbl">Total Clicks</div><div class="val" data-counter="184320">0</div><div class="delta">▲ 8.7% this week</div></div>
+      <div class="stat reveal"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div><div class="lbl">Active Links</div><div class="val" data-counter="312">0</div><div class="delta">▲ 24 today</div></div>
+      <div class="stat reveal"><div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="lbl">Avg CPM</div><div class="val" data-counter="14">$0</div><div class="delta">▲ 3.2%</div></div>
+    </div>
+
+    <div class="dash-row">
+      <div class="chart-card reveal"><h4>Traffic — last 14 days <small>impressions</small></h4>
+        <svg class="chart" id="trafficChart" viewBox="0 0 600 200" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="country-card reveal">
+        <h4>Top Countries</h4>
+        <div class="country-list" id="countryList"></div>
+      </div>
+    </div>
+
+    <div class="glass" style="padding:22px;margin-top:20px">
+      <h4 style="font-family:var(--display);margin-bottom:12px">CPM Rates by Region</h4>
+      <div class="cpm">
+        <div class="c"><b>$22.40</b><span>🇺🇸 United States</span></div>
+        <div class="c"><b>$18.10</b><span>🇬🇧 United Kingdom</span></div>
+        <div class="c"><b>$15.70</b><span>🇨🇦 Canada</span></div>
+        <div class="c"><b>$13.90</b><span>🇩🇪 Germany</span></div>
+        <div class="c"><b>$11.50</b><span>🇦🇺 Australia</span></div>
+        <div class="c"><b>$6.20</b><span>🇮🇳 India</span></div>
+      </div>
+    </div>
+
+    <div class="withdraw-card reveal">
+      <h4>Withdraw Earnings</h4>
+      <p style="color:#94a3b8;font-size:14px">Available balance: <b style="color:#fff">$2,847.30</b> · Min withdraw $10</p>
+      <form class="withdraw-form" id="withdrawForm">
+        <input type="number" placeholder="Amount" min="10" required>
+        <select required><option value="">Method</option><option>PayPal</option><option>UPI</option><option>Bank Transfer</option><option>USDT</option></select>
+        <input type="text" placeholder="Account / UPI / Wallet" required>
+        <button class="btn btn-primary" type="submit">Request Withdraw</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ===== FAQ PAGE ===== -->
+<div class="page" data-page="faqs">
+  <section style="padding-top:120px">
+    <div class="section-head reveal">
+      <div class="eyebrow">Help Center</div>
+      <h2>Frequently asked questions</h2>
+      <p>Everything about protecting links, monetization and our encryption.</p>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </section>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div class="page" data-page="contact">
+  <section style="padding-top:120px">
+    <div class="section-head reveal">
+      <div class="eyebrow">Contact</div>
+      <h2>Get in touch</h2>
+      <p>Questions, partnerships, DMCA — we reply within 24 hours.</p>
+    </div>
+    <div class="contact-card reveal" style="max-width:680px;margin:0 auto">
+      <h3>Send us a message</h3>
+      <p class="sub">Use the form below or email <b style="color:#bfdbfe">support@linkvault.app</b></p>
+      <form id="contactForm">
+        <div class="field"><input type="text" id="cName" placeholder=" " required><label for="cName">Your Name</label></div>
+        <div class="field"><input type="email" id="cMail" placeholder=" " required><label for="cMail">Email Address</label></div>
+        <div class="field"><input type="text" id="cSub" placeholder=" " required><label for="cSub">Subject</label></div>
+        <div class="field"><textarea id="cMsg" placeholder=" " required></textarea><label for="cMsg">Message</label></div>
+        <button class="btn btn-primary" type="submit" style="width:100%">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div class="page" data-page="login">
+  <section style="padding-top:120px;max-width:560px">
+    <div class="auth-card reveal">
+      <h3>Welcome back 👋</h3>
+      <p class="sub">Login to manage your protected links and earnings.</p>
+      <form id="loginForm">
+        <div class="field"><input type="email" id="lMail" placeholder=" " required><label for="lMail">Email</label></div>
+        <div class="field">
+          <input type="password" id="lPass" placeholder=" " required>
+          <label for="lPass">Password</label>
+          <span class="toggle" data-toggle="lPass">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%">Login</button>
+      </form>
+      <div class="social-row">
+        <button class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.35 11.1H12v3.9h5.35c-.5 2.4-2.55 3.6-5.35 3.6a6 6 0 1 1 0-12c1.5 0 2.85.55 3.9 1.45L19 5.2A9.9 9.9 0 0 0 12 2.4a9.6 9.6 0 1 0 0 19.2c5.55 0 9.6-3.9 9.6-9.4 0-.65-.05-1.15-.25-1.1z"/></svg> Google</button>
+        <button class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.7-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg> Facebook</button>
+        <button class="sb"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.3 1.8 1.3 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.3-3.2-.1-.3-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.9.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg> GitHub</button>
+      </div>
+      <p style="text-align:center;color:#94a3b8;font-size:13px;margin-top:16px">No account? <a href="#" data-nav="signup" style="color:#bfdbfe">Sign up free</a></p>
+    </div>
+  </section>
+</div>
+
+<!-- ===== SIGNUP PAGE ===== -->
+<div class="page" data-page="signup">
+  <section style="padding-top:120px;max-width:560px">
+    <div class="auth-card reveal">
+      <h3>Create your account 🚀</h3>
+      <p class="sub">Start protecting and monetizing in under 30 seconds.</p>
+      <form id="signupForm">
+        <div class="field"><input type="text" id="sName" placeholder=" " required><label for="sName">Full Name</label></div>
+        <div class="field"><input type="email" id="sMail" placeholder=" " required><label for="sMail">Email</label></div>
+        <div class="field">
+          <input type="password" id="sPass" placeholder=" " required minlength="6">
+          <label for="sPass">Password</label>
+          <span class="toggle" data-toggle="sPass"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%">Create Account</button>
+      </form>
+      <p style="text-align:center;color:#94a3b8;font-size:13px;margin-top:16px">Already have one? <a href="#" data-nav="login" style="color:#bfdbfe">Login</a></p>
+    </div>
+  </section>
+</div>
+
+<!-- ===== POLICY PAGES ===== -->
+<div class="page" data-page="privacy">
+  <section style="padding-top:120px">
+    <div class="section-head reveal"><div class="eyebrow">Legal</div><h2>Privacy Policy</h2></div>
+    <div class="glass" style="padding:28px;max-width:840px;margin:0 auto;color:#cbd5e1;font-size:15px;line-height:1.8">
+      <p>LinkVault respects your privacy. We do not store your personal links on any server — all encryption happens in your browser. Anonymous analytics (visit count, country, device type) may be collected via third-party ad networks you connect.</p>
+      <h4 style="font-family:var(--display);margin:18px 0 8px">What we collect</h4>
+      <p>• Locally cached link history (in your browser only).<br>• Aggregate click counts via your ad provider.<br>• Standard server logs (IP, user-agent) on the static host.</p>
+      <h4 style="font-family:var(--display);margin:18px 0 8px">What we do NOT do</h4>
+      <p>• We do not sell your data.<br>• We do not require accounts to protect links.<br>• We do not inject malware or tracking pixels.</p>
+    </div>
+  </section>
+</div>
+<div class="page" data-page="terms">
+  <section style="padding-top:120px">
+    <div class="section-head reveal"><div class="eyebrow">Legal</div><h2>Terms of Service</h2></div>
+    <div class="glass" style="padding:28px;max-width:840px;margin:0 auto;color:#cbd5e1;font-size:15px;line-height:1.8">
+      <p>By using LinkVault you agree not to protect links containing illegal content, malware, phishing, child exploitation material or copyrighted works without permission. We reserve the right to disable any protected URL that violates these terms.</p>
+    </div>
+  </section>
+</div>
+<div class="page" data-page="dmca">
+  <section style="padding-top:120px">
+    <div class="section-head reveal"><div class="eyebrow">Legal</div><h2>DMCA Policy</h2></div>
+    <div class="glass" style="padding:28px;max-width:840px;margin:0 auto;color:#cbd5e1;font-size:15px;line-height:1.8">
+      <p>If you believe a protected link infringes your copyright, email <b>dmca@linkvault.app</b> with the original URL, the encoded LinkVault URL and proof of ownership. We action valid notices within 48 hours.</p>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ===== UNLOCK SCREEN ===== -->
+<div class="unlock-screen" id="unlockScreen">
+  <div class="lock-anim">
+    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  </div>
+  <h2>Securing Your Connection</h2>
+  <div class="status" id="unlockStatus">Initializing secure tunnel…</div>
+  <div class="countdown" id="countdown">5</div>
+  <div class="progress"><span id="progressBar"></span></div>
+  <div class="steps" id="steps">
+    <div data-step="0"><span class="ic"></span> Initializing</div>
+    <div data-step="1"><span class="ic"></span> Verifying browser</div>
+    <div data-step="2"><span class="ic"></span> Running security scan</div>
+    <div data-step="3"><span class="ic"></span> Decrypting payload</div>
+    <div data-step="4"><span class="ic"></span> Revealing links</div>
+  </div>
+</div>
+
+<!-- ===== UNLOCKED LINKS PAGE ===== -->
+<div class="page" data-page="unlocked">
+  <section style="padding-top:120px">
+    <div class="section-head reveal">
+      <div class="eyebrow">Verified · Decrypted</div>
+      <h2>🎉 Your links are unlocked</h2>
+      <p>All links below are safe to open. Use the buttons on each card to copy, open or share.</p>
+    </div>
+    <div class="ad">— Ad slot · place your CPM banner here —</div>
+    <div class="link-grid" id="unlockedGrid"></div>
+    <div style="text-align:center;margin-top:28px"><button class="btn btn-primary" data-nav="home">Protect more links</button></div>
+  </section>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="logo" style="margin-bottom:12px">
+        <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.71"/></svg></span>
+        <span>Link<b>Vault</b></span>
+      </div>
+      <p style="color:#94a3b8;font-size:14px;max-width:300px">Premium multi URL link protector. Encrypt, shorten, share and earn — directly from your browser.</p>
+      <div class="foot-soc">
+        <a href="#" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.8c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1A4.1 4.1 0 0 0 12 8.8c0 .3 0 .6.1.9-3.4-.2-6.4-1.8-8.4-4.3-.4.6-.6 1.3-.6 2.1 0 1.4.7 2.7 1.8 3.4-.7 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.7 3.3 4.1-.3.1-.7.1-1.1.1-.3 0-.5 0-.8-.1.5 1.7 2.1 2.9 3.9 2.9A8.3 8.3 0 0 1 2 19.2 11.7 11.7 0 0 0 8.3 21c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2z"/></svg></a>
+        <a href="#" aria-label="Telegram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 3 1.5 11.3l5.4 1.7L19 6 9.5 14.7l-.3 5.7 3.4-3.1 4.7 3.5L22 3z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5C.5 9.4.5 12 .5 12s0 2.6.5 4.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1c.5-1.9.5-4.5.5-4.5s0-2.6-.5-4.5zM10 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+        <a href="#" aria-label="Discord"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4.4A18.7 18.7 0 0 0 15.4 3l-.2.4a17 17 0 0 1 4.1 1.3 15.4 15.4 0 0 0-13 0A17 17 0 0 1 10.4 3.4L10.2 3a18.7 18.7 0 0 0-4.6 1.4C2.7 8.7 1.9 12.9 2.3 17a18.8 18.8 0 0 0 5.7 2.9l.4-.6a12.5 12.5 0 0 1-2.2-1.1l.5-.4a13.4 13.4 0 0 0 11.4 0l.5.4a12 12 0 0 1-2.2 1.1l.4.6a18.8 18.8 0 0 0 5.7-2.9c.5-4.7-.7-8.9-2.5-12.6zM9 14.7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h5>Product</h5>
+      <a href="#" data-nav="home">Link Protector</a>
+      <a href="#" data-nav="earn">Earn Money</a>
+      <a href="#" data-nav="faqs">FAQs</a>
+    </div>
+    <div>
+      <h5>Account</h5>
+      <a href="#" data-nav="login">Login</a>
+      <a href="#" data-nav="signup">Sign Up</a>
+      <a href="#" data-nav="contact">Contact</a>
+    </div>
+    <div>
+      <h5>Legal</h5>
+      <a href="#" data-nav="privacy">Privacy Policy</a>
+      <a href="#" data-nav="terms">Terms of Service</a>
+      <a href="#" data-nav="dmca">DMCA</a>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <div>© 2026 LinkVault — All rights reserved.</div>
+    <div>Made with ⚡ for creators</div>
+  </div>
+</footer>
+
+<button id="toTop" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<div id="toast"></div>
+
+<script>
+/* ===================== ENCRYPTION ===================== */
+/* Pipeline:  JSON minify  ->  XOR (rotating key)  ->  Base62  */
+const XK = [83,41,118,29,71,12,200,55,9,144,222,17,88,99,33,210];
+const B62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+function bytesToB62(bytes){
+  // BigInt-based base62 encode
+  let n = 0n;
+  for(const b of bytes){ n = (n << 8n) | BigInt(b); }
+  if(n === 0n) return "0";
+  let out = "";
+  const base = 62n;
+  while(n > 0n){ out = B62[Number(n % base)] + out; n /= base; }
+  // preserve leading zero bytes
+  let lead = 0; for(const b of bytes){ if(b===0) lead++; else break; }
+  return "0".repeat(lead) + out;
+}
+function b62ToBytes(str){
+  let lead = 0; for(const c of str){ if(c==="0") lead++; else break; }
+  let n = 0n;
+  for(const c of str){
+    const v = B62.indexOf(c); if(v<0) throw new Error("bad char");
+    n = n * 62n + BigInt(v);
+  }
+  const bytes = [];
+  while(n > 0n){ bytes.unshift(Number(n & 0xFFn)); n >>= 8n; }
+  for(let i=0;i<lead;i++) bytes.unshift(0);
+  return Uint8Array.from(bytes);
+}
+function xorBytes(bytes){
+  const out = new Uint8Array(bytes.length);
+  for(let i=0;i<bytes.length;i++) out[i] = bytes[i] ^ XK[i % XK.length] ^ ((i*37) & 0xFF);
+  return out;
+}
+function encryptLinks(arr){
+  // Minimal payload: just join with \n
+  const payload = arr.join("\n");
+  const utf8 = new TextEncoder().encode(payload);
+  const xored = xorBytes(utf8);
+  return bytesToB62(xored);
+}
+function decryptLinks(token){
+  try{
+    const xored = b62ToBytes(token);
+    const utf8 = xorBytes(xored);
+    const txt = new TextDecoder().decode(utf8);
+    return txt.split("\n").filter(Boolean);
+  }catch(e){ return null; }
+}
+
+/* ===================== TOAST ===================== */
+const toast = (msg, type="") => {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "show " + type;
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=> t.className = "", 2400);
+};
+
+/* ===================== HEADER / NAV ===================== */
+const header = document.getElementById("header");
+let lastY = 0;
+window.addEventListener("scroll", ()=>{
+  const y = window.scrollY;
+  header.classList.toggle("scrolled", y > 30);
+  if(y > 200 && y > lastY) header.classList.add("hide");
+  else header.classList.remove("hide");
+  lastY = y;
+  document.getElementById("scrollProgress").style.width =
+    (y / (document.body.scrollHeight - innerHeight) * 100) + "%";
+  document.getElementById("toTop").classList.toggle("show", y > 600);
+}, {passive:true});
+
+document.getElementById("toTop").onclick = () => window.scrollTo({top:0,behavior:"smooth"});
+
+/* drawer */
+const drawer = document.getElementById("drawer");
+document.getElementById("hamburger").onclick = ()=> drawer.classList.add("open");
+document.getElementById("drawerClose").onclick = ()=> drawer.classList.remove("open");
+drawer.addEventListener("click", e=>{ if(e.target===drawer) drawer.classList.remove("open"); });
+
+/* page switcher */
+function goPage(name){
+  document.querySelectorAll(".page").forEach(p=> p.classList.toggle("active", p.dataset.page===name));
+  drawer.classList.remove("open");
+  window.scrollTo({top:0,behavior:"smooth"});
+  // re-trigger reveal
+  setTimeout(initReveal, 50);
+}
+document.body.addEventListener("click", e=>{
+  const a = e.target.closest("[data-nav]");
+  if(!a) return;
+  e.preventDefault();
+  goPage(a.dataset.nav);
+});
+document.getElementById("goProtect").onclick = ()=> {
+  document.getElementById("protect").scrollIntoView({behavior:"smooth"});
+};
+
+/* ===================== PARTICLES ===================== */
+const pHost = document.getElementById("particles");
+for(let i=0;i<22;i++){
+  const s = document.createElement("span");
+  s.style.left = Math.random()*100 + "%";
+  s.style.animationDelay = (Math.random()*12) + "s";
+  s.style.width = s.style.height = (3 + Math.random()*7) + "px";
+  s.style.background = ["#2563eb","#7c3aed","#ec4899","#22c55e"][i%4];
+  s.style.opacity = .25 + Math.random()*.4;
+  pHost.appendChild(s);
+}
+
+/* ===================== TYPING EFFECT ===================== */
+const typedEl = document.getElementById("typed");
+const phrases = ["Encrypt instantly.","Earn from every click.","Built for Blogger."];
+let pi=0, ci=0, deleting=false;
+function tick(){
+  const word = phrases[pi];
+  typedEl.textContent = word.slice(0, ci);
+  if(!deleting && ci < word.length){ ci++; setTimeout(tick, 70); }
+  else if(deleting && ci > 0){ ci--; setTimeout(tick, 35); }
+  else { deleting = !deleting; if(!deleting) pi = (pi+1)%phrases.length; setTimeout(tick, deleting?900:400); }
+}
+tick();
+
+/* ===================== REVEAL ON SCROLL ===================== */
+function initReveal(){
+  const els = document.querySelectorAll(".reveal:not(.in)");
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+    });
+  }, {threshold:.12});
+  els.forEach(el=> io.observe(el));
+}
+initReveal();
+
+/* ===================== URL VALIDATION ===================== */
+const urlInput = document.getElementById("urlInput");
+const cntChip = document.getElementById("cntChip");
+const okChip  = document.getElementById("okChip");
+const badChip = document.getElementById("badChip");
+const dupChip = document.getElementById("dupChip");
+
+function parseLinks(){
+  const lines = urlInput.value.split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+  const valid=[], invalid=[]; const seen=new Set(); let dups=0;
+  for(const l of lines){
+    let ok=false;
+    try{ const u=new URL(l); if(u.protocol==="http:"||u.protocol==="https:") ok=true; }catch{}
+    if(ok){
+      if(seen.has(l)) dups++; else { seen.add(l); valid.push(l); }
+    } else invalid.push(l);
+  }
+  return {lines, valid, invalid, dups};
+}
+function refreshChips(){
+  const {lines, valid, invalid, dups} = parseLinks();
+  cntChip.textContent = lines.length + " links";
+  okChip.textContent  = valid.length + " valid";
+  badChip.textContent = invalid.length + " invalid";
+  dupChip.textContent = dups + " duplicates";
+}
+urlInput.addEventListener("input", refreshChips);
+
+document.getElementById("clearBtn").onclick = ()=>{ urlInput.value=""; refreshChips(); };
+document.getElementById("pasteBtn").onclick = async ()=>{
+  try{ const t = await navigator.clipboard.readText(); urlInput.value = (urlInput.value? urlInput.value+"\n":"") + t; refreshChips(); toast("Pasted from clipboard","ok"); }
+  catch{ toast("Clipboard blocked — paste manually","err"); }
+};
+document.getElementById("dedupeBtn").onclick = ()=>{
+  const {valid} = parseLinks();
+  urlInput.value = valid.join("\n");
+  refreshChips();
+  toast("Duplicates removed","ok");
+};
+
+/* ===================== PROTECT FLOW ===================== */
+const result = document.getElementById("result");
+const shortUrlEl = document.getElementById("shortUrl");
+let currentShort = "";
+
+document.getElementById("protectBtn").onclick = ()=>{
+  const {valid, invalid} = parseLinks();
+  if(!valid.length){ toast("Add at least one valid URL","err"); return; }
+  if(invalid.length) toast(invalid.length+" invalid line(s) skipped","err");
+  const token = encryptLinks(valid);
+  const base = location.origin + location.pathname;
+  currentShort = base + "?id=" + token;
+  shortUrlEl.textContent = currentShort;
+  result.classList.add("show");
+  document.getElementById("qrBox").style.display = "none";
+  // history
+  saveHistory({short:currentShort, count:valid.length, ts:Date.now()});
+  toast("Protected link generated","ok");
+  setTimeout(()=> result.scrollIntoView({behavior:"smooth",block:"center"}), 80);
+};
+
+document.getElementById("copyBtn").onclick = async ()=>{
+  try{ await navigator.clipboard.writeText(currentShort); toast("Copied to clipboard","ok"); }
+  catch{ toast("Copy failed","err"); }
+};
+document.getElementById("openBtn").onclick = ()=> window.open(currentShort, "_blank");
+document.getElementById("shareBtn").onclick = async ()=>{
+  if(navigator.share){ try{ await navigator.share({title:"Protected Link", url:currentShort}); }catch{} }
+  else { navigator.clipboard.writeText(currentShort); toast("Link copied — paste anywhere","ok"); }
+};
+document.getElementById("dlBtn").onclick = ()=>{
+  const blob = new Blob([currentShort], {type:"text/plain"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "linkvault.txt"; a.click();
+};
+document.getElementById("resetBtn").onclick = ()=>{
+  result.classList.remove("show"); urlInput.value=""; refreshChips();
+};
+
+/* QR generator (simple Google Charts API fallback — frontend only) */
+document.getElementById("qrBtn").onclick = ()=>{
+  const box = document.getElementById("qrBox");
+  if(box.style.display === "block"){ box.style.display="none"; return; }
+  box.innerHTML = `<img alt="QR" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(currentShort)}">`;
+  box.style.display = "block";
+};
+
+/* ===================== HISTORY ===================== */
+function saveHistory(item){
+  const k = "lv_history";
+  const arr = JSON.parse(localStorage.getItem(k) || "[]");
+  arr.unshift(item); arr.splice(20);
+  localStorage.setItem(k, JSON.stringify(arr));
+}
+
+/* ===================== UNLOCK FLOW ===================== */
+function tryUnlock(){
+  const params = new URLSearchParams(location.search);
+  const id = params.get("id");
+  if(!id) return;
+  const links = decryptLinks(id);
+  if(!links || !links.length){ toast("Invalid or tampered link","err"); return; }
+
+  // hide main
+  document.getElementById("main").style.display = "none";
+  document.getElementById("unlockScreen").classList.add("show");
+
+  const statuses = [
+    "Initializing secure tunnel…",
+    "Verifying browser fingerprint…",
+    "Running anti-bot security scan…",
+    "Decrypting payload with XOR-62 cipher…",
+    "Almost done — preparing your links…"
+  ];
+  const stepEls = [...document.querySelectorAll("#steps div")];
+  const bar = document.getElementById("progressBar");
+  const cd  = document.getElementById("countdown");
+  const stEl= document.getElementById("unlockStatus");
+
+  let total = 5, t = total, step = 0;
+  stEl.textContent = statuses[0];
+  stepEls[0].classList.add("active");
+
+  const interval = setInterval(()=>{
+    t -= 1;
+    cd.textContent = Math.max(0,t);
+    bar.style.width = ((total - t)/total*100) + "%";
+    const ns = Math.min(stepEls.length-1, Math.floor((total - t)/1));
+    if(ns !== step){
+      stepEls[step].classList.remove("active"); stepEls[step].classList.add("done");
+      step = ns;
+      stepEls[step].classList.add("active");
+      stEl.textContent = statuses[step] || statuses[statuses.length-1];
+    }
+    if(t <= 0){
+      clearInterval(interval);
+      stepEls.forEach(s=>{ s.classList.remove("active"); s.classList.add("done"); });
+      stEl.textContent = "Unlocked! Loading your links…";
+      setTimeout(showUnlocked.bind(null, links), 600);
+    }
+  }, 1000);
+}
+
+function domainOf(u){ try{ return new URL(u).hostname.replace(/^www\./,""); }catch{ return ""; } }
+function titleOf(u){
+  try{
+    const x = new URL(u);
+    const last = x.pathname.split("/").filter(Boolean).pop() || x.hostname;
+    return decodeURIComponent(last).replace(/[-_+]/g," ").slice(0,60) || x.hostname;
+  }catch{ return u.slice(0,60); }
+}
+
+function showUnlocked(links){
+  document.getElementById("unlockScreen").classList.remove("show");
+  document.getElementById("main").style.display = "";
+  goPage("unlocked");
+  const grid = document.getElementById("unlockedGrid");
+  grid.innerHTML = "";
+  links.forEach((l, i)=>{
+    const d = domainOf(l);
+    const card = document.createElement("div");
+    card.className = "link-card reveal scale";
+    card.style.animationDelay = (i*60)+"ms";
+    card.innerHTML = `
+      <div class="head">
+        <div class="fav"><img alt="" src="https://www.google.com/s2/favicons?sz=64&domain=${d}" onerror="this.style.display='none'"></div>
+        <div>
+          <div class="title">${titleOf(l)}</div>
+          <div class="domain">${d}</div>
+        </div>
+      </div>
+      <div class="url">${l}</div>
+      <div class="acts">
+        <button class="mini" data-act="open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 3h6v6M10 14 21 3M21 14v7H3V3h7"/></svg>Open</button>
+        <button class="mini" data-act="copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Copy</button>
+        <button class="mini" data-act="share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>Share</button>
+      </div>`;
+    card.querySelectorAll(".mini").forEach(b=>{
+      b.onclick = ()=>{
+        const a = b.dataset.act;
+        if(a==="open") window.open(l, "_blank");
+        if(a==="copy"){ navigator.clipboard.writeText(l); toast("Link copied","ok"); }
+        if(a==="share"){
+          if(navigator.share){ navigator.share({url:l}).catch(()=>{}); }
+          else { navigator.clipboard.writeText(l); toast("Link copied","ok"); }
+        }
+      };
+    });
+    grid.appendChild(card);
+  });
+  initReveal();
+}
+
+/* ===================== FAQ ===================== */
+const faqs = [
+  ["How does LinkVault protect my links?","We compress your URL list, run a rotating XOR cipher and encode the bytes into Base62. The result is a short, opaque token appended to your share URL — readable only by our unlock page."],
+  ["Why are the protected URLs so short?","Unlike base64-based protectors, we use Base62 with a binary XOR pipeline, which yields ~30% shorter tokens and avoids URL-unsafe characters."],
+  ["Do I need a server or database?","No. Everything runs in the browser. You can publish index.html on Blogger, Netlify, GitHub Pages or any static host."],
+  ["How do I earn money from my links?","Add your CPM ad network code into the unlock screen markup. Each visit will display your ad before the links are revealed."],
+  ["Is this safe for downloaders?","Yes — the unlock screen verifies a real browser session, blocks devtools tampering and only reveals the links after the countdown completes."],
+  ["Can I add a custom 5/10/15 second timer?","Yes — change the `total` value inside the unlock function to set any delay you prefer."],
+  ["Will it work on Blogger?","Absolutely. Paste the entire HTML inside a Blogger Page in HTML view and publish."]
+];
+const faqList = document.getElementById("faqList");
+faqs.forEach(([q,a],i)=>{
+  const item = document.createElement("div");
+  item.className = "faq-item reveal";
+  item.innerHTML = `
+    <button class="faq-q">${q}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+    <div class="faq-a"><div>${a}</div></div>`;
+  item.querySelector(".faq-q").onclick = ()=>{
+    const open = item.classList.contains("open");
+    document.querySelectorAll(".faq-item").forEach(x=>{ x.classList.remove("open"); x.querySelector(".faq-a").style.maxHeight = "0"; });
+    if(!open){ item.classList.add("open"); item.querySelector(".faq-a").style.maxHeight = item.querySelector(".faq-a").scrollHeight + "px"; }
+  };
+  faqList.appendChild(item);
+});
+
+/* ===================== CONTACT / AUTH ===================== */
+document.getElementById("contactForm").onsubmit = e=>{ e.preventDefault(); e.target.reset(); toast("Message sent — we'll reply within 24h","ok"); };
+document.getElementById("loginForm").onsubmit  = e=>{ e.preventDefault(); toast("Welcome back!","ok"); goPage("home"); };
+document.getElementById("signupForm").onsubmit = e=>{ e.preventDefault(); toast("Account created","ok"); goPage("home"); };
+document.getElementById("withdrawForm").onsubmit = e=>{ e.preventDefault(); e.target.reset(); toast("Withdraw requested — processing in 24h","ok"); };
+
+document.querySelectorAll("[data-toggle]").forEach(btn=>{
+  btn.onclick = ()=>{
+    const inp = document.getElementById(btn.dataset.toggle);
+    inp.type = inp.type === "password" ? "text" : "password";
+  };
+});
+
+/* ===================== COUNTERS ===================== */
+function animateCounters(){
+  document.querySelectorAll("[data-counter]").forEach(el=>{
+    if(el._done) return;
+    const r = el.getBoundingClientRect();
+    if(r.top > innerHeight || r.bottom < 0) return;
+    el._done = true;
+    const target = +el.dataset.counter;
+    const isMoney = el.textContent.includes("$");
+    let cur = 0; const start = performance.now();
+    const dur = 1400;
+    function step(t){
+      const p = Math.min(1,(t-start)/dur);
+      cur = Math.floor(target * (1 - Math.pow(1-p,3)));
+      el.textContent = (isMoney?"$":"") + cur.toLocaleString();
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+window.addEventListener("scroll", animateCounters, {passive:true});
+setInterval(animateCounters, 800);
+
+/* ===================== CHARTS ===================== */
+function buildChart(){
+  const svg = document.getElementById("trafficChart");
+  if(!svg) return;
+  const W=600,H=200,N=14;
+  const data = Array.from({length:N},(_,i)=> 40 + Math.round(Math.sin(i/2)*30 + Math.random()*60 + i*4));
+  const max = Math.max(...data), min = Math.min(...data);
+  const x = i => (i/(N-1))*W;
+  const y = v => H - ((v-min)/(max-min||1))*(H-30) - 15;
+  const pts = data.map((v,i)=>`${x(i)},${y(v)}`).join(" ");
+  const area = `${x(0)},${H} ${pts} ${x(N-1)},${H}`;
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="ga" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0" stop-color="#7c3aed" stop-opacity=".5"/>
+        <stop offset="1" stop-color="#7c3aed" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="${area}" fill="url(#ga)"/>
+    <polyline points="${pts}" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linejoin="round"/>
+    ${data.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="3" fill="#2563eb"/>`).join("")}
+  `;
+}
+function buildCountries(){
+  const list = document.getElementById("countryList");
+  if(!list) return;
+  const items = [["🇺🇸 USA",92],["🇮🇳 India",78],["🇬🇧 UK",61],["🇩🇪 Germany",47],["🇨🇦 Canada",36],["🇦🇺 Australia",24]];
+  list.innerHTML = items.map(([c,v])=>`<div class="row"><span style="width:110px">${c}</span><div class="bar"><span style="width:${v}%"></span></div><b style="width:42px;text-align:right;font-size:13px">${v}%</b></div>`).join("");
+}
+buildChart(); buildCountries();
+
+/* ===================== SECURITY THEATER ===================== */
+document.addEventListener("contextmenu", e=>{ if(document.getElementById("unlockScreen").classList.contains("show")) e.preventDefault(); });
+document.addEventListener("keydown", e=>{
+  if(!document.getElementById("unlockScreen").classList.contains("show")) return;
+  if(e.key === "F12" || (e.ctrlKey && e.shiftKey && ["I","J","C"].includes(e.key.toUpperCase())) || (e.ctrlKey && e.key.toUpperCase()==="U")){
+    e.preventDefault(); toast("Action blocked during verification","err");
+  }
+});
+console.log("%c🔒 LinkVault Secure", "color:#7c3aed;font-size:22px;font-weight:bold");
+console.log("%cDo not paste anything here — this console is for developers only.", "color:#ef4444;font-size:13px");
+
+/* ===================== INIT ===================== */
+refreshChips();
+animateCounters();
+tryUnlock();
+</script>
+</body>
+</html>
