@@ -1,689 +1,755 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-<meta name="theme-color" content="#2d7dd2" />
-<meta name="description" content="Link Protector — Protect, shorten and unlock multiple URLs with a secure encrypted gateway. Blogger compatible single-file tool." />
-<meta name="keywords" content="link protector, url shortener, multi link, blogger link shortener, secure links" />
-<meta property="og:title" content="Link Protector — Multi URL Shortener & Protector" />
-<meta property="og:description" content="Encrypt and protect multiple links with one secure URL. Blogger ready." />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary_large_image" />
-<title>Link Protector — Multi URL Shortener & Protector</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232d7dd2'/%3E%3Cpath d='M22 30v-4a10 10 0 0 1 20 0v4h2a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4V34a4 4 0 0 1 4-4zm4 0h12v-4a6 6 0 0 0-12 0z' fill='%23fff'/%3E%3C/svg%3E" />
-<link rel="manifest" href='data:application/manifest+json,{"name":"Link Protector","short_name":"LinkProtect","start_url":".","display":"standalone","background_color":"%23111827","theme_color":"%232d7dd2","icons":[{"src":"data:image/svg+xml,%253Csvg xmlns=%2522http://www.w3.org/2000/svg%2522 viewBox=%25220 0 64 64%2522%253E%253Crect width=%252264%2522 height=%252264%2522 rx=%252214%2522 fill=%2522%25232d7dd2%2522/%253E%253C/svg%253E","sizes":"192x192","type":"image/svg+xml"}]}' />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="description" content="LinkSafe - Free multi URL protector and shortener. Protect, encrypt and share multiple links with one secure unlock URL.">
+<meta name="keywords" content="url protector, link shortener, multi link, protect links, link locker, safe links">
+<meta name="author" content="LinkSafe">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LinkSafe - Multi URL Protector & Shortener">
+<meta property="og:description" content="Protect multiple URLs into one single safe unlock link. Free, fast, no signup required.">
+<meta property="og:site_name" content="LinkSafe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LinkSafe - Multi URL Protector">
+<meta name="twitter:description" content="Protect multiple URLs into one safe unlock link.">
+<title>LinkSafe - Multi URL Protector & Shortener</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ============ THEME ============ */
-:root{
-  --primary:#2d7dd2;
-  --primary-dark:#1f5fa3;
-  --dark:#111827;
-  --dark-2:#1f2937;
-  --light:#f3f4f6;
-  --muted:#6b7280;
-  --success:#22c55e;
-  --danger:#ef4444;
-  --card:#ffffff;
-  --border:#e5e7eb;
-  --shadow:0 10px 30px rgba(17,24,39,.08);
-  --radius:14px;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
-  background:var(--light);
-  color:var(--dark);
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:var(--primary);text-decoration:none}
-img{max-width:100%;display:block}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{font-family:'Open Sans',Arial,Helvetica,sans-serif;background:#ececec;color:#333;font-size:14px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+a{color:#0a78c2;text-decoration:none}
+a:hover{text-decoration:underline}
+button,input,textarea{font-family:inherit;font-size:14px;outline:none}
+img,svg{max-width:100%;display:block}
+.container{width:100%;max-width:980px;margin:0 auto;padding:0 15px}
 
-/* ============ NAVBAR ============ */
-.nav{
-  position:sticky;top:0;z-index:50;
-  background:rgba(17,24,39,.92);
-  backdrop-filter:blur(10px);
-  color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.nav-inner{
-  max-width:1200px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;
-}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:.3px}
-.logo .dot{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),#6ea8e0);display:grid;place-items:center;font-size:16px}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-links a{
-  color:#e5e7eb;padding:8px 14px;border-radius:8px;font-size:.92rem;font-weight:500;
-  transition:all .2s;
-}
-.nav-links a:hover{background:rgba(255,255,255,.08);color:#fff;transform:translateY(-1px)}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:10px 18px;border-radius:10px;border:0;cursor:pointer;
-  font-weight:600;font-size:.92rem;transition:all .2s;
-  position:relative;overflow:hidden;
-}
-.btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(45,125,210,.35)}
-.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px)}
-.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2)}
-.btn-ghost:hover{background:rgba(255,255,255,.1)}
-.btn-success{background:var(--success);color:#fff}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-light{background:#fff;color:var(--dark);border:1px solid var(--border)}
-.btn-light:hover{background:var(--light)}
-.btn:active{transform:scale(.97)}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:ripple .6s linear;pointer-events:none}
-@keyframes ripple{to{transform:scale(4);opacity:0}}
+/* ===== HEADER ===== */
+.site-header{background:rgba(28,32,38,.96);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);color:#fff;border-bottom:3px solid #0a78c2;position:sticky;top:0;z-index:50}
+.header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 0}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;color:#fff;letter-spacing:.5px}
+.brand:hover{text-decoration:none}
+.brand-logo{width:30px;height:30px;background:#0a78c2;display:inline-flex;align-items:center;justify-content:center;border-radius:5px}
+.brand-logo svg{width:18px;height:18px;fill:#fff}
+.nav{display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.nav a{color:#dfe3e8;padding:8px 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;border-radius:3px;transition:.2s}
+.nav a:hover{background:#0a78c2;color:#fff;text-decoration:none}
+.nav .auth{margin-left:6px;background:#0a78c2;color:#fff}
+.nav .auth.outline{background:transparent;border:1px solid #0a78c2}
+.nav .auth:hover{background:#095e99}
+.nav-toggle{display:none;background:transparent;border:1px solid #444;color:#fff;padding:6px 9px;border-radius:4px;cursor:pointer}
+.nav-toggle svg{width:18px;height:18px;fill:#fff}
 
-.menu-toggle{display:none;background:transparent;color:#fff;border:0;font-size:1.6rem;cursor:pointer}
+/* ===== HERO ===== */
+.hero{background:linear-gradient(180deg,#f08a1c 0%,#e57411 100%);color:#fff;padding:34px 0 38px;border-bottom:3px solid #c66208}
+.hero h1{font-size:28px;font-weight:800;margin-bottom:8px;text-shadow:0 1px 0 rgba(0,0,0,.15)}
+.hero p{font-size:15px;opacity:.96;max-width:760px}
 
-@media(max-width:820px){
-  .menu-toggle{display:block}
-  .nav-links{
-    position:absolute;top:60px;left:0;right:0;
-    background:#111827;flex-direction:column;align-items:stretch;
-    padding:14px;gap:8px;border-bottom:1px solid rgba(255,255,255,.08);
-    transform:translateY(-12px);opacity:0;pointer-events:none;transition:.25s;
-  }
-  .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
-  .nav-links a,.nav-links .btn{width:100%;text-align:center}
-}
+/* ===== INFO CARDS ===== */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:-26px auto 18px;position:relative;z-index:2}
+.info-card{background:#fff;border:1px solid #d8dde2;border-radius:5px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;gap:11px;align-items:flex-start}
+.info-card .ic{width:36px;height:36px;background:#0a78c2;border-radius:5px;flex:none;display:flex;align-items:center;justify-content:center}
+.info-card .ic svg{width:20px;height:20px;fill:#fff}
+.info-card h3{font-size:14px;font-weight:700;color:#222;margin-bottom:3px}
+.info-card p{font-size:12.5px;color:#5e6770;line-height:1.5}
 
-/* ============ HERO ============ */
-.hero{
-  background:
-    radial-gradient(1200px 500px at 80% -10%,rgba(45,125,210,.35),transparent 60%),
-    radial-gradient(900px 400px at 0% 0%,rgba(110,168,224,.25),transparent 60%),
-    linear-gradient(135deg,#0f172a,#1e3a8a 80%,#2d7dd2);
-  color:#fff;padding:70px 20px 60px;text-align:center;
-}
-.hero h1{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;letter-spacing:-.5px;margin-bottom:14px}
-.hero p{max-width:680px;margin:0 auto 26px;color:#cbd5e1;font-size:1.05rem}
-.hero .badge{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:6px 14px;border-radius:999px;font-size:.8rem;margin-bottom:18px;letter-spacing:.5px;text-transform:uppercase}
+/* ===== MAIN CARD ===== */
+main{flex:1 0 auto;padding:6px 0 30px}
+.card{background:#fff;border:1px solid #d8dde2;border-radius:5px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:18px;overflow:hidden}
+.card-header{background:#f6f7f9;border-bottom:1px solid #e2e6ea;padding:11px 15px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.card-header h2{font-size:15px;font-weight:700;color:#222;display:flex;align-items:center;gap:7px}
+.card-header h2 svg{width:16px;height:16px;fill:#0a78c2}
+.card-body{padding:16px}
 
-/* ============ MAIN PANEL ============ */
-.container{max-width:1100px;margin:0 auto;padding:0 20px}
-.panel{
-  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
-  padding:26px;margin:-40px auto 40px;max-width:820px;position:relative;z-index:5;
-  border:1px solid var(--border);
-}
-.panel h2{font-size:1.25rem;margin-bottom:6px}
-.panel .sub{color:var(--muted);font-size:.92rem;margin-bottom:16px}
-textarea{
-  width:100%;min-height:160px;padding:14px;
-  border:1.5px solid var(--border);border-radius:12px;
-  font-family:inherit;font-size:.95rem;resize:vertical;
-  transition:border-color .2s,box-shadow .2s;
-  background:#fafafa;
-}
-textarea:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 4px rgba(45,125,210,.15);background:#fff}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-.hint{font-size:.82rem;color:var(--muted);margin-top:8px}
+/* ===== TABS ===== */
+.tabs{display:flex;border-bottom:1px solid #e2e6ea;background:#fafbfc;flex-wrap:wrap}
+.tab{padding:11px 16px;font-size:13px;font-weight:600;color:#5e6770;cursor:pointer;border-right:1px solid #e2e6ea;display:flex;align-items:center;gap:6px;background:transparent;border-top:none;border-bottom:none;border-left:none;transition:.18s}
+.tab svg{width:14px;height:14px;fill:currentColor}
+.tab:hover{background:#f0f2f5;color:#222}
+.tab.active{background:#fff;color:#0a78c2;box-shadow:inset 0 -2px 0 #0a78c2}
+.tab-panel{display:none;padding:16px}
+.tab-panel.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
-/* ============ RESULT ============ */
-.result{display:none;margin-top:18px;padding:18px;border-radius:12px;background:linear-gradient(135deg,#ecfdf5,#fff);border:1px solid #bbf7d0;animation:fade .4s}
-.result.show{display:block}
-.result h3{color:#065f46;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.result-link{
-  display:flex;align-items:center;gap:8px;
-  background:#fff;border:1px dashed #86efac;padding:10px 12px;border-radius:10px;
-  word-break:break-all;font-size:.88rem;color:#065f46;font-family:'SF Mono',Menlo,monospace;
-}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* ===== FORM ===== */
+.lbl{display:block;font-size:12.5px;font-weight:700;color:#444;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.textarea,.input{width:100%;border:1px solid #c9cfd5;border-radius:4px;padding:11px 12px;background:#fff;color:#222;font-size:13.5px;transition:.18s;resize:vertical}
+.textarea{min-height:170px;font-family:'Courier New',Courier,monospace;line-height:1.55}
+.textarea:focus,.input:focus{border-color:#0a78c2;box-shadow:0 0 0 3px rgba(10,120,194,.15)}
+.dropzone{border:2px dashed #c9cfd5;border-radius:5px;padding:28px 16px;text-align:center;background:#fafbfc;cursor:pointer;transition:.2s}
+.dropzone:hover,.dropzone.drag{border-color:#0a78c2;background:#eff7fd}
+.dropzone svg{width:36px;height:36px;fill:#0a78c2;margin:0 auto 8px}
+.dropzone h4{font-size:14px;font-weight:700;color:#222;margin-bottom:4px}
+.dropzone p{font-size:12.5px;color:#666}
 
-/* ============ SECTIONS ============ */
-section.block{padding:60px 20px}
-section.block h2.title{text-align:center;font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:10px}
-section.block p.subtitle{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 34px}
+.form-actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.counter{font-size:12.5px;color:#5e6770;background:#f0f2f5;border:1px solid #e2e6ea;padding:5px 10px;border-radius:20px;font-weight:600}
+.counter b{color:#0a78c2}
 
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:1100px;margin:0 auto}
-.feature{
-  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
-  padding:22px;transition:all .25s;box-shadow:0 2px 6px rgba(0,0,0,.03);
-}
-.feature:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--primary)}
-.feature .icon{
-  width:46px;height:46px;border-radius:12px;
-  background:linear-gradient(135deg,var(--primary),#6ea8e0);
-  display:grid;place-items:center;color:#fff;font-size:1.3rem;margin-bottom:12px;
-}
-.feature h4{margin-bottom:6px;font-size:1.05rem}
-.feature p{color:var(--muted);font-size:.92rem}
+/* ===== BUTTONS ===== */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#0a78c2;color:#fff;border:1px solid #0a78c2;border-radius:4px;padding:10px 18px;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;cursor:pointer;transition:.18s;text-decoration:none}
+.btn:hover{background:#095e99;border-color:#095e99;color:#fff;text-decoration:none;transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn svg{width:14px;height:14px;fill:currentColor}
+.btn.lg{padding:13px 22px;font-size:14px}
+.btn.full{width:100%}
+.btn.green{background:#28a745;border-color:#28a745}
+.btn.green:hover{background:#1f8838;border-color:#1f8838}
+.btn.grey{background:#6c757d;border-color:#6c757d}
+.btn.grey:hover{background:#565d63;border-color:#565d63}
+.btn.red{background:#dc3545;border-color:#dc3545}
+.btn.red:hover{background:#bd2c3a;border-color:#bd2c3a}
+.btn.ghost{background:#fff;color:#0a78c2}
+.btn.ghost:hover{background:#eff7fd;color:#095e99}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none!important}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:rip .55s linear;pointer-events:none}
+@keyframes rip{to{transform:scale(4);opacity:0}}
 
-/* FAQ */
-.faq{max-width:780px;margin:0 auto}
-.faq-item{background:#fff;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
-.faq-q{padding:16px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600}
-.faq-q:hover{background:var(--light)}
-.faq-a{padding:0 18px;max-height:0;overflow:hidden;transition:.3s;color:var(--muted);font-size:.93rem}
-.faq-item.open .faq-a{padding:0 18px 16px;max-height:300px}
-.faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
-.faq-q span:last-child{transition:.3s;font-size:1.4rem;color:var(--primary)}
+/* ===== ALERT ===== */
+.alert{padding:12px 14px;border-radius:4px;font-size:13.5px;margin-bottom:14px;display:flex;align-items:center;gap:9px;border:1px solid transparent;animation:fade .3s ease}
+.alert svg{width:18px;height:18px;flex:none}
+.alert.success{background:#dff5e1;color:#1c6b2a;border-color:#bfe6c5}
+.alert.success svg{fill:#1c8a32}
+.alert.error{background:#fde2e4;color:#9b1d28;border-color:#f5c2c7}
+.alert.error svg{fill:#c0212f}
+.alert.info{background:#e3f1fb;color:#0a4a7a;border-color:#b6d7ee}
+.alert.info svg{fill:#0a78c2}
 
-/* Earn / monetization */
-.ad-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));max-width:1100px;margin:0 auto}
-.ad-card{
-  background:linear-gradient(135deg,#fff,#f9fafb);border:1px dashed #cbd5e1;
-  border-radius:var(--radius);padding:30px;text-align:center;color:var(--muted);
-}
-.ad-card strong{display:block;color:var(--primary);font-size:1.4rem;margin-bottom:6px}
+/* ===== RESULT BOX ===== */
+.result-box{background:#f6fbff;border:1px solid #b6d7ee;border-radius:5px;padding:14px;margin-top:8px}
+.result-box .lbl{color:#0a4a7a}
+.result-row{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
+.result-row .input{flex:1 1 240px;min-width:0;background:#fff;font-family:'Courier New',Courier,monospace;font-size:13px;color:#0a4a7a}
+.result-meta{margin-top:10px;font-size:12.5px;color:#5e6770;display:flex;flex-wrap:wrap;gap:10px}
+.result-meta b{color:#222}
 
-/* Security info */
-.security-band{
-  background:linear-gradient(135deg,#0f172a,#1e293b);color:#cbd5e1;
-  padding:50px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.05);
-}
-.security-band h2{color:#fff;margin-bottom:8px}
-.security-band .grid{margin-top:30px}
-.security-band .feature{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08);color:#cbd5e1}
-.security-band .feature h4{color:#fff}
-.security-band .feature p{color:#94a3b8}
+/* ===== LINK LIST ===== */
+.link-item{background:#fff;border:1px solid #e2e6ea;border-radius:5px;padding:12px 14px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;transition:.2s;animation:fade .35s ease}
+.link-item:hover{border-color:#0a78c2;box-shadow:0 1px 3px rgba(10,120,194,.12)}
+.link-num{width:28px;height:28px;flex:none;background:#0a78c2;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px}
+.link-url{flex:1 1 240px;min-width:0;font-family:'Courier New',Courier,monospace;font-size:13px;color:#222;word-break:break-all;overflow-wrap:anywhere}
+.link-actions{display:flex;gap:6px;flex-wrap:wrap}
+.link-actions .btn{padding:7px 11px;font-size:12px;text-transform:none;letter-spacing:0}
+.empty{text-align:center;padding:30px 14px;color:#888;font-size:13.5px}
+.empty svg{width:46px;height:46px;fill:#cfd5db;margin:0 auto 8px}
 
-/* ============ FOOTER ============ */
-footer{background:#000;color:#9ca3af;padding:40px 20px 24px;text-align:center}
-footer .flinks{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-bottom:14px}
-footer .flinks a{color:#cbd5e1;font-size:.9rem}
-footer .flinks a:hover{color:#fff}
-footer .copy{font-size:.82rem;color:#6b7280}
+/* ===== UNLOCK ===== */
+.unlock-wrap{text-align:center;padding:30px 18px}
+.unlock-icon{width:74px;height:74px;border-radius:50%;background:linear-gradient(180deg,#0a78c2,#095e99);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 6px 18px rgba(10,120,194,.35);animation:pulse 2s infinite}
+.unlock-icon svg{width:38px;height:38px;fill:#fff}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.unlock-wrap h2{font-size:22px;font-weight:800;color:#222;margin-bottom:6px}
+.unlock-wrap p{font-size:14px;color:#5e6770;max-width:520px;margin:0 auto 16px}
+.countdown{display:inline-block;background:#f0f2f5;border:1px solid #e2e6ea;color:#444;padding:5px 12px;border-radius:20px;font-size:12.5px;font-weight:700;margin-bottom:14px}
+.countdown b{color:#0a78c2}
 
-/* ============ UNLOCK PAGE ============ */
-.unlock-wrap{
-  min-height:calc(100vh - 60px);
-  display:grid;place-items:center;padding:30px 20px;
-  background:radial-gradient(800px 400px at 50% -20%,rgba(45,125,210,.18),transparent 60%),var(--light);
-}
-.unlock-card{
-  background:#fff;border-radius:18px;box-shadow:var(--shadow);
-  padding:36px 28px;max-width:560px;width:100%;text-align:center;border:1px solid var(--border);
-}
-.lock-icon{
-  width:80px;height:80px;border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),#6ea8e0);color:#fff;
-  display:grid;place-items:center;font-size:36px;margin:0 auto 18px;
-  box-shadow:0 10px 30px rgba(45,125,210,.4);animation:pulse 2s infinite;
-}
-@keyframes pulse{0%,100%{transform:scale(1);box-shadow:0 10px 30px rgba(45,125,210,.4)}50%{transform:scale(1.06);box-shadow:0 14px 40px rgba(45,125,210,.55)}}
-.unlock-card h2{margin-bottom:6px}
-.unlock-card p.desc{color:var(--muted);margin-bottom:22px;font-size:.95rem}
-.progress{
-  height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:18px 0 8px;display:none;
-}
-.progress.show{display:block}
-.progress > div{height:100%;width:0;background:linear-gradient(90deg,var(--primary),#6ea8e0);transition:width .25s}
-.countdown{font-weight:700;color:var(--primary);font-size:1.05rem;display:none}
-.countdown.show{display:block}
-.verify-step{font-size:.86rem;color:var(--muted);margin-top:6px;display:none}
-.verify-step.show{display:block}
+/* ===== HISTORY ===== */
+.history-item{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:9px 12px;border-bottom:1px solid #eef0f3;font-size:13px}
+.history-item:last-child{border-bottom:none}
+.history-item .meta{color:#777;font-size:12px}
+.history-item a{font-family:'Courier New',Courier,monospace;color:#0a78c2;word-break:break-all;flex:1 1 200px;min-width:0}
+.history-item .acts{display:flex;gap:5px}
+.history-item .acts button{background:transparent;border:1px solid #d8dde2;color:#5e6770;padding:4px 8px;border-radius:3px;cursor:pointer;font-size:11.5px}
+.history-item .acts button:hover{background:#0a78c2;color:#fff;border-color:#0a78c2}
 
-.links-list{display:none;margin-top:22px;text-align:left}
-.links-list.show{display:block;animation:fade .4s}
-.success-box{
-  background:linear-gradient(135deg,#dcfce7,#fff);border:1px solid #86efac;color:#065f46;
-  padding:14px;border-radius:12px;margin-bottom:16px;text-align:center;font-weight:600;
-}
-.link-card{
-  display:flex;align-items:center;gap:12px;
-  padding:12px;background:#fafafa;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;
-  transition:.2s;
-}
-.link-card:hover{border-color:var(--primary);background:#fff;transform:translateX(2px)}
-.link-card .fav{width:36px;height:36px;border-radius:8px;background:#fff;border:1px solid var(--border);display:grid;place-items:center;flex-shrink:0;overflow:hidden}
-.link-card .fav img{width:22px;height:22px}
-.link-meta{flex:1;min-width:0}
-.link-meta .name{font-weight:600;font-size:.92rem;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.link-meta .domain{font-size:.78rem;color:var(--muted)}
-.link-actions{display:flex;gap:6px;flex-shrink:0}
-.icon-btn{
-  width:36px;height:36px;border-radius:8px;border:1px solid var(--border);
-  background:#fff;cursor:pointer;display:grid;place-items:center;color:var(--dark);
-  transition:.2s;
-}
-.icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+/* ===== TERMS ===== */
+.terms{font-size:12px;color:#777;text-align:center;margin-top:10px}
+.terms a{color:#0a78c2}
 
-/* Toast */
-.toast{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
-  background:#111827;color:#fff;padding:12px 20px;border-radius:10px;
-  font-size:.9rem;opacity:0;pointer-events:none;transition:.3s;z-index:200;
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.success{background:var(--success)}
-.toast.error{background:var(--danger)}
+/* ===== FOOTER ===== */
+.site-footer{background:#1c2026;color:#aab1b9;padding:22px 0 14px;margin-top:auto;border-top:3px solid #0a78c2}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:14px}
+.footer-grid h4{color:#fff;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.footer-grid a{display:block;color:#aab1b9;font-size:13px;padding:3px 0}
+.footer-grid a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #2c333c;padding-top:12px;text-align:center;font-size:12px;color:#7d858f}
+.footer-bottom b{color:#fff}
 
-/* History */
-.history{max-width:820px;margin:0 auto 40px}
-.history h3{margin-bottom:10px;font-size:1rem;color:var(--muted)}
-.hist-item{
-  display:flex;justify-content:space-between;gap:10px;align-items:center;
-  background:#fff;border:1px solid var(--border);padding:10px 12px;border-radius:10px;margin-bottom:8px;font-size:.85rem;
-}
-.hist-item a{word-break:break-all;color:var(--primary)}
+/* ===== TOAST ===== */
+#toasts{position:fixed;top:14px;right:14px;z-index:9999;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 28px)}
+.toast{background:#1c2026;color:#fff;border-left:4px solid #0a78c2;padding:11px 14px;border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,.25);font-size:13px;display:flex;align-items:center;gap:9px;animation:slideIn .3s ease;min-width:240px}
+.toast.success{border-left-color:#28a745}
+.toast.error{border-left-color:#dc3545}
+.toast.info{border-left-color:#0a78c2}
+.toast svg{width:16px;height:16px;flex:none;fill:#fff}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
 
-/* hidden helper */
-.hidden{display:none!important}
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#ececec}
+::-webkit-scrollbar-thumb{background:#b8c0c8;border-radius:5px}
+::-webkit-scrollbar-thumb:hover{background:#0a78c2}
+
+/* ===== LOADING ===== */
+.spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== PAGE FADE ===== */
+.page{display:none}
+.page.active{display:block;animation:fade .35s ease}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:820px){
+.info-grid{grid-template-columns:1fr;margin-top:-18px}
+.footer-grid{grid-template-columns:repeat(2,1fr)}
+.hero h1{font-size:23px}
+.hero p{font-size:13.5px}
+}
+@media (max-width:640px){
+.nav-toggle{display:inline-flex;align-items:center}
+.nav{display:none;width:100%;flex-direction:column;align-items:stretch;background:#23272e;border-radius:5px;padding:6px;margin-top:6px}
+.nav.open{display:flex}
+.nav a,.nav .auth{width:100%;text-align:center;border-radius:4px;margin:2px 0}
+.brand{font-size:18px}
+.tab{flex:1 1 33%;justify-content:center;padding:10px 6px;font-size:12px}
+.tab span{display:none}
+.footer-grid{grid-template-columns:1fr;text-align:center}
+.hero{padding:26px 0 30px}
+.hero h1{font-size:20px}
+.card-body{padding:13px}
+.btn.lg{padding:11px 16px;font-size:13px}
+.unlock-wrap h2{font-size:19px}
+.link-actions{width:100%;justify-content:flex-end}
+}
+@media (max-width:380px){
+.brand{font-size:16px}
+.brand-logo{width:26px;height:26px}
+.tab{font-size:11.5px;padding:9px 4px}
+}
 </style>
 </head>
 <body>
 
-<!-- ============ NAVBAR ============ -->
-<header class="nav">
-  <div class="nav-inner">
-    <div class="logo">
-      <span class="dot">🔒</span>
-      <span>LinkProtect</span>
-    </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
-    <nav class="nav-links" id="navLinks">
-      <a href="#home">HOME</a>
-      <a href="#earn">EARN MONEY</a>
-      <a href="#faq">FAQS</a>
-      <a href="#contact">CONTACT US</a>
-      <button class="btn btn-ghost" onclick="toast('Sign Up coming soon')">Sign Up</button>
-      <button class="btn btn-primary" onclick="toast('Login coming soon')">Login</button>
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#/" class="brand" aria-label="LinkSafe Home">
+      <span class="brand-logo"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg></span>
+      LinkSafe
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg></button>
+    <nav class="nav" id="nav">
+      <a href="#/">Home</a>
+      <a href="#/earn">Earn Money</a>
+      <a href="#/faqs">FAQs</a>
+      <a href="#/contact">Contact Us</a>
+      <a href="#/signup" class="auth outline">Sign Up</a>
+      <a href="#/login" class="auth">Log In</a>
     </nav>
   </div>
 </header>
 
-<!-- ============ HOME VIEW ============ -->
-<main id="homeView">
-  <section class="hero" id="home">
-    <span class="badge">🚀 Secure • Fast • Blogger Ready</span>
-    <h1>Protect & Shorten Multiple Links Instantly</h1>
-    <p>Combine multiple URLs into one secure encrypted link. Perfect for Blogger, file-sharing pages, and download portals.</p>
-  </section>
-
+<!-- ===================== HOME ===================== -->
+<section class="page" id="page-home">
+<div class="hero">
   <div class="container">
-    <div class="panel">
-      <h2>🔗 Paste your links</h2>
-      <p class="sub">Add one link per line. We'll encrypt and combine them into a single protected URL.</p>
-      <textarea id="urlInput" placeholder="https://example.com/file1&#10;https://example.com/file2&#10;https://example.com/file3"></textarea>
-      <div class="actions">
-        <button class="btn btn-primary" id="protectBtn">🔒 Protect My Links</button>
-        <button class="btn btn-light" id="clearBtn">Clear</button>
-        <button class="btn btn-light" id="sampleBtn">Load Sample</button>
-      </div>
-      <p class="hint">🛡️ Links are encoded using JSON + URI + Base64 + XOR obfuscation. Nothing is sent to a server.</p>
-
-      <div class="result" id="result">
-        <h3>✅ Your protected link is ready</h3>
-        <div class="result-link" id="resultLink"></div>
-        <div class="actions">
-          <button class="btn btn-primary" id="copyBtn">📋 Copy</button>
-          <button class="btn btn-success" id="shareBtn">📤 Share</button>
-          <button class="btn btn-light" id="openBtn">🔓 Test Unlock</button>
-          <button class="btn btn-danger" id="removeBtn">🗑 Remove</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="history" id="historyWrap" style="display:none">
-      <h3>📜 Recent protected links</h3>
-      <div id="historyList"></div>
-    </div>
+    <h1>Protect &amp; Shorten Multiple URLs Into One Safe Link</h1>
+    <p>Paste your links, encrypt them with a single click and share one secure unlock URL. Free, fast, no signup required, works on any device.</p>
   </div>
+</div>
 
-  <!-- Features -->
-  <section class="block">
-    <h2 class="title">Why choose LinkProtect?</h2>
-    <p class="subtitle">A premium link protection experience built for creators and Blogger users.</p>
-    <div class="grid">
-      <div class="feature"><div class="icon">🔒</div><h4>Encrypted Links</h4><p>Multi-layer encoding with Base64, URI and XOR obfuscation keeps your URLs safe.</p></div>
-      <div class="feature"><div class="icon">⚡</div><h4>Lightning Fast</h4><p>100% client-side. No server calls. Instant generation and unlocking.</p></div>
-      <div class="feature"><div class="icon">📱</div><h4>Mobile Ready</h4><p>Fully responsive design that looks great on every device.</p></div>
-      <div class="feature"><div class="icon">💸</div><h4>Monetize Traffic</h4><p>Add ad units to the unlock page and earn from every visitor.</p></div>
-      <div class="feature"><div class="icon">🧩</div><h4>Blogger Friendly</h4><p>Works as a single HTML file — paste it into any Blogger page.</p></div>
-      <div class="feature"><div class="icon">📦</div><h4>Multi URL Support</h4><p>Combine unlimited links into one shortened protected URL.</p></div>
+<div class="container">
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 14c-2.6-.5-5-2.7-6-5.4 1-1.6 3.6-2.6 6-2.6s5 1 6 2.6c-1 2.7-3.4 4.9-6 5.4Z"/></svg></div>
+      <div><h3>100% Secure</h3><p>Links are encoded and stored locally. Nothing leaves your browser.</p></div>
     </div>
-  </section>
-
-  <!-- About / Security -->
-  <section class="security-band" id="about">
-    <h2>🛡 How the protection works</h2>
-    <p>Your links are packed and obfuscated through multiple stages before being placed in the URL.</p>
-    <div class="grid">
-      <div class="feature"><div class="icon">1</div><h4>JSON Pack</h4><p>All your links are bundled into a single JSON payload.</p></div>
-      <div class="feature"><div class="icon">2</div><h4>XOR Obfuscate</h4><p>The payload is scrambled with a rotating XOR cipher.</p></div>
-      <div class="feature"><div class="icon">3</div><h4>Encode</h4><p>The result is URI + Base64 encoded for safe URL transport.</p></div>
+    <div class="info-card">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2Zm0 4h2v-2H3v2Zm0-8h2V7H3v2Zm4 4h14v-2H7v2Zm0 4h14v-2H7v2Zm0-10v2h14V7H7Z"/></svg></div>
+      <div><h3>Multi Links</h3><p>Add unlimited URLs and protect them inside a single shareable link.</p></div>
     </div>
-  </section>
-
-  <!-- Earn Money -->
-  <section class="block" id="earn">
-    <h2 class="title">💰 Earn Money With Your Links</h2>
-    <p class="subtitle">Place ad units on the unlock page and turn every click into revenue.</p>
-    <div class="ad-grid">
-      <div class="ad-card"><strong>$4.50 CPM</strong>Premium global tier — Tier 1 traffic earnings.</div>
-      <div class="ad-card"><strong>Banner Slot</strong>728×90 / 300×250 ad space placeholder.</div>
-      <div class="ad-card"><strong>Native Ads</strong>Blend ads into the unlock screen for higher CTR.</div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="block" id="faq" style="background:#fff">
-    <h2 class="title">Frequently Asked Questions</h2>
-    <p class="subtitle">Everything you need to know about LinkProtect.</p>
-    <div class="faq">
-      <div class="faq-item"><div class="faq-q">Is my data sent to a server? <span>+</span></div><div class="faq-a">No. Everything happens in your browser. Links are encoded locally and stored only inside the URL.</div></div>
-      <div class="faq-item"><div class="faq-q">Will it work on Blogger? <span>+</span></div><div class="faq-a">Yes. Just paste this single HTML file into a Blogger page and it works without any backend.</div></div>
-      <div class="faq-item"><div class="faq-q">Are there URL length limits? <span>+</span></div><div class="faq-a">Browsers support very long URLs (8KB+). For huge lists, use an external URL shortener after generating.</div></div>
-      <div class="faq-item"><div class="faq-q">Can I monetize the unlock page? <span>+</span></div><div class="faq-a">Yes. Add your ad code (AdSense, Adsterra, etc.) inside the placeholders on the unlock screen.</div></div>
-      <div class="faq-item"><div class="faq-q">Is the encryption unbreakable? <span>+</span></div><div class="faq-a">It's obfuscation, not military encryption. It prevents casual scraping and direct link extraction.</div></div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="block" id="contact" style="background:var(--light)">
-    <h2 class="title">📬 Contact Us</h2>
-    <p class="subtitle">Have a question or feedback? Drop us a message.</p>
-    <div style="max-width:560px;margin:0 auto;background:#fff;padding:24px;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow)">
-      <input id="cName" placeholder="Your name" style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:10px;margin-bottom:10px;font-family:inherit"/>
-      <input id="cEmail" placeholder="Your email" type="email" style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:10px;margin-bottom:10px;font-family:inherit"/>
-      <textarea id="cMsg" placeholder="Your message" style="min-height:110px"></textarea>
-      <button class="btn btn-primary" style="margin-top:12px;width:100%" onclick="toast('Message sent! We will reply soon.','success')">Send Message</button>
-    </div>
-  </section>
-</main>
-
-<!-- ============ UNLOCK VIEW ============ -->
-<div id="unlockView" class="hidden">
-  <div class="unlock-wrap">
-    <div class="unlock-card">
-      <div id="lockStage">
-        <div class="lock-icon">🔒</div>
-        <h2>Your links are protected</h2>
-        <p class="desc">Click the button below to verify and unlock your links safely.</p>
-        <button class="btn btn-primary" id="unlockBtn" style="width:100%;padding:14px">🔓 Unlock Links</button>
-        <div class="verify-step" id="verifyStep">🛡 Performing human verification…</div>
-        <div class="progress" id="progress"><div></div></div>
-        <div class="countdown" id="countdown"></div>
-      </div>
-
-      <div class="links-list" id="linksList">
-        <div class="success-box">✅ Links Unlocked Successfully</div>
-        <div id="linksContainer"></div>
-        <div class="actions" style="margin-top:14px">
-          <button class="btn btn-light" id="copyAllBtn">📋 Copy All</button>
-          <button class="btn btn-light" id="downloadBtn">⬇ Download .txt</button>
-          <button class="btn btn-primary" onclick="goHome()">🏠 Home</button>
-        </div>
-      </div>
+    <div class="info-card">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+      <div><h3>Lightning Fast</h3><p>Pure client-side. No server, no API, instant generation everywhere.</p></div>
     </div>
   </div>
 </div>
 
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="flinks">
-    <a href="#home">Home</a>
-    <a href="#faq">FAQs</a>
-    <a href="#" onclick="toast('Privacy Policy')">Privacy Policy</a>
-    <a href="#" onclick="toast('Terms of Service')">Terms</a>
-    <a href="#" onclick="toast('DMCA')">DMCA</a>
-    <a href="#contact">Contact</a>
+<main>
+<div class="container">
+  <div id="alertSlot"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2><svg viewBox="0 0 24 24"><path d="M3.9 12a4.1 4.1 0 0 1 4.1-4.1h3v-2H8a6.1 6.1 0 0 0 0 12.2h3v-2H8A4.1 4.1 0 0 1 3.9 12Zm4.6 1h7v-2h-7v2Zm7.5-7.1h-3v2h3a4.1 4.1 0 1 1 0 8.2h-3v2h3a6.1 6.1 0 0 0 0-12.2Z"/></svg> Protect Your Links</h2>
+      <span class="counter">Total: <b id="urlCount">0</b></span>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-tab="paste"><svg viewBox="0 0 24 24"><path d="M19 2h-4.2a3 3 0 0 0-5.6 0H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm7 18H5V4h2v3h10V4h2v16Z"/></svg><span>Paste Links</span></button>
+      <button class="tab" data-tab="file"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm4 18H6V4h7v5h5v11Z"/></svg><span>File Upload</span></button>
+      <button class="tab" data-tab="remote"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 9h-3a15.5 15.5 0 0 0-1.2-5.2A8 8 0 0 1 18.9 11ZM12 4c.9 0 2.3 2.1 2.8 7H9.2C9.7 6.1 11.1 4 12 4ZM4 12c0-.7.1-1.4.3-2H7c-.1 1.3-.1 2.7 0 4H4.3A8 8 0 0 1 4 12Zm1.1 4h2.6c.3 1.4.7 2.7 1.2 3.7A8 8 0 0 1 5.1 16ZM12 20c-.9 0-2.3-2.1-2.8-7h5.6c-.5 4.9-1.9 7-2.8 7Zm2.7-.3c.5-1 .9-2.3 1.2-3.7h2.6a8 8 0 0 1-3.8 3.7ZM17 14c.1-1.3.1-2.7 0-4h2.7a8 8 0 0 1 0 4H17ZM9.3 5.8C8.9 6.8 8.5 8.1 8.2 9.5H5.6A8 8 0 0 1 9.3 5.8Z"/></svg><span>Remote Upload</span></button>
+    </div>
+
+    <div class="tab-panel active" data-panel="paste">
+      <label class="lbl" for="urlsInput">Paste one URL per line</label>
+      <textarea id="urlsInput" class="textarea" placeholder="https://example.com/page-one&#10;https://example.com/page-two&#10;https://example.com/page-three" spellcheck="false"></textarea>
+      <div class="form-actions">
+        <span class="counter">Detected: <b id="detectCount">0</b> URLs</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn grey" id="clearBtn" type="button"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12ZM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z"/></svg>Clear</button>
+          <button class="btn lg" id="protectBtn" type="button"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg>Protect My Links</button>
+        </div>
+      </div>
+      <div id="resultSlot"></div>
+    </div>
+
+    <div class="tab-panel" data-panel="file">
+      <label class="lbl">Upload a .txt file containing your URLs</label>
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload file">
+        <svg viewBox="0 0 24 24"><path d="M19.4 10A8 8 0 0 0 4 12a6 6 0 0 0 2 11h13a5 5 0 0 0 .4-13ZM13 13v4h-2v-4H8l4-4 4 4h-3Z"/></svg>
+        <h4>Click or drop a .txt file here</h4>
+        <p>One URL per line. Max 1MB.</p>
+        <input type="file" id="fileInput" accept=".txt,text/plain" hidden>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="remote">
+      <label class="lbl" for="remoteInput">Remote .txt file URL</label>
+      <input id="remoteInput" class="input" type="url" placeholder="https://example.com/links.txt" spellcheck="false">
+      <div class="form-actions">
+        <span class="counter">Fetched: <b id="remoteCount">0</b></span>
+        <button class="btn" id="remoteBtn" type="button"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2Zm7-18-7 7h4v6h6v-6h4l-7-7Z"/></svg>Fetch URLs</button>
+      </div>
+    </div>
   </div>
-  <div class="copy">© LINK PROTECTOR 2026 — All rights reserved.</div>
+
+  <div class="card">
+    <div class="card-header"><h2><svg viewBox="0 0 24 24"><path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z"/></svg> Recent Protected Links</h2>
+      <button class="btn grey" id="clearHistoryBtn" type="button" style="padding:6px 11px;font-size:12px">Clear History</button>
+    </div>
+    <div class="card-body" style="padding:0" id="historySlot"></div>
+  </div>
+
+  <p class="terms">By using LinkSafe you agree to our <a href="#/terms">Terms of Service</a> &amp; <a href="#/privacy">Privacy Policy</a>. Links are stored locally in your browser only.</p>
+</div>
+</main>
+</section>
+
+<!-- ===================== VIEW PROTECTED ===================== -->
+<section class="page" id="page-view">
+<main>
+<div class="container" style="padding-top:22px">
+  <div class="card" id="unlockCard">
+    <div class="card-header"><h2><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg> Protected Links</h2>
+      <span class="counter"><b id="protectedCount">0</b> Links Locked</span>
+    </div>
+    <div class="card-body">
+      <div class="unlock-wrap">
+        <div class="unlock-icon"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg></div>
+        <h2>Click Unlock To Reveal Links</h2>
+        <p>The owner has protected these links with LinkSafe. Press the unlock button below to reveal all destinations safely.</p>
+        <div class="countdown" id="countdown" style="display:none">Please wait <b id="countNum">5</b>s</div>
+        <div><button class="btn green lg" id="unlockBtn" type="button"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5h2a3 3 0 1 1 6 0v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Z"/></svg>Unlock Links</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="unlockedSlot"></div>
+</div>
+</main>
+</section>
+
+<!-- ===================== EARN ===================== -->
+<section class="page" id="page-earn">
+<div class="hero"><div class="container"><h1>Earn Money With LinkSafe</h1><p>Share your protected links anywhere and start monetising your audience with our future creator program.</p></div></div>
+<main><div class="container" style="padding-top:18px">
+  <div class="card"><div class="card-body">
+    <h3 style="font-size:16px;margin-bottom:8px;color:#222">How it works</h3>
+    <p style="margin-bottom:10px">Sign up, protect your links, share them anywhere. When visitors unlock your links, you earn revenue per verified view.</p>
+    <ul style="padding-left:20px;line-height:1.9">
+      <li>High CPM rates worldwide</li>
+      <li>Weekly automatic payouts</li>
+      <li>Detailed real-time statistics</li>
+      <li>Referral 10% lifetime bonus</li>
+    </ul>
+    <div style="margin-top:14px"><a href="#/signup" class="btn">Join The Program</a></div>
+  </div></div>
+</div></main>
+</section>
+
+<!-- ===================== FAQS ===================== -->
+<section class="page" id="page-faqs">
+<div class="hero"><div class="container"><h1>Frequently Asked Questions</h1><p>Everything you need to know about LinkSafe.</p></div></div>
+<main><div class="container" style="padding-top:18px">
+  <div class="card"><div class="card-body" id="faqList"></div></div>
+</div></main>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="page" id="page-contact">
+<div class="hero"><div class="container"><h1>Contact Us</h1><p>Reach out anytime. We typically reply within 24 hours.</p></div></div>
+<main><div class="container" style="padding-top:18px">
+  <div class="card"><div class="card-body">
+    <form id="contactForm" autocomplete="off">
+      <label class="lbl" for="cName">Your Name</label>
+      <input id="cName" class="input" type="text" required style="margin-bottom:12px">
+      <label class="lbl" for="cMail">Email Address</label>
+      <input id="cMail" class="input" type="email" required style="margin-bottom:12px">
+      <label class="lbl" for="cMsg">Message</label>
+      <textarea id="cMsg" class="textarea" required style="min-height:130px;font-family:inherit"></textarea>
+      <div style="margin-top:12px"><button class="btn" type="submit"><svg viewBox="0 0 24 24"><path d="M2 21 23 12 2 3v7l15 2-15 2v7Z"/></svg>Send Message</button></div>
+    </form>
+  </div></div>
+</div></main>
+</section>
+
+<!-- ===================== AUTH PAGES ===================== -->
+<section class="page" id="page-login">
+<div class="hero"><div class="container"><h1>Log In</h1><p>Welcome back. Access your protected links and dashboard.</p></div></div>
+<main><div class="container" style="padding-top:18px;max-width:520px">
+  <div class="card"><div class="card-body">
+    <form id="loginForm" autocomplete="off">
+      <label class="lbl">Email</label><input class="input" type="email" required style="margin-bottom:12px">
+      <label class="lbl">Password</label><input class="input" type="password" required style="margin-bottom:12px">
+      <button class="btn full" type="submit">Log In</button>
+    </form>
+    <p style="text-align:center;margin-top:12px;font-size:13px">No account? <a href="#/signup">Sign up</a></p>
+  </div></div>
+</div></main>
+</section>
+
+<section class="page" id="page-signup">
+<div class="hero"><div class="container"><h1>Sign Up</h1><p>Create your free LinkSafe account in seconds.</p></div></div>
+<main><div class="container" style="padding-top:18px;max-width:520px">
+  <div class="card"><div class="card-body">
+    <form id="signupForm" autocomplete="off">
+      <label class="lbl">Username</label><input class="input" type="text" required style="margin-bottom:12px">
+      <label class="lbl">Email</label><input class="input" type="email" required style="margin-bottom:12px">
+      <label class="lbl">Password</label><input class="input" type="password" minlength="6" required style="margin-bottom:12px">
+      <button class="btn green full" type="submit">Create Account</button>
+    </form>
+    <p style="text-align:center;margin-top:12px;font-size:13px">Already a member? <a href="#/login">Log in</a></p>
+  </div></div>
+</div></main>
+</section>
+
+<!-- ===================== TERMS / PRIVACY ===================== -->
+<section class="page" id="page-terms">
+<div class="hero"><div class="container"><h1>Terms of Service</h1></div></div>
+<main><div class="container" style="padding-top:18px"><div class="card"><div class="card-body" style="line-height:1.8">
+  <p>By using LinkSafe you agree not to protect or distribute illegal, harmful, copyrighted or malicious content. Service is provided as-is without warranty. We reserve the right to update these terms at any time.</p>
+</div></div></div></main>
+</section>
+<section class="page" id="page-privacy">
+<div class="hero"><div class="container"><h1>Privacy Policy</h1></div></div>
+<main><div class="container" style="padding-top:18px"><div class="card"><div class="card-body" style="line-height:1.8">
+  <p>LinkSafe runs entirely in your browser. We do not collect, transmit or store any of your data on remote servers. Protected links and history are saved in your local browser storage only.</p>
+</div></div></div></main>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div><h4>LinkSafe</h4>
+        <a href="#/">Home</a><a href="#/earn">Earn Money</a><a href="#/faqs">FAQs</a><a href="#/contact">Contact</a>
+      </div>
+      <div><h4>Account</h4>
+        <a href="#/login">Log In</a><a href="#/signup">Sign Up</a>
+      </div>
+      <div><h4>Legal</h4>
+        <a href="#/terms">Terms of Service</a><a href="#/privacy">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="yr"></span> <b>LinkSafe</b> — Protect, Shorten &amp; Share Your Links Safely.</div>
+  </div>
 </footer>
 
-<div class="toast" id="toast"></div>
+<div id="toasts" aria-live="polite" aria-atomic="true"></div>
 
 <script>
-/* ============================================================
-   LINK PROTECTOR — single-file logic
-   Encoding: JSON -> XOR -> URI encode -> Base64 (URL-safe)
-============================================================ */
-const XOR_KEY = "lp_2026_secure_key";
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var STORE_HIST="linksafe_history_v1";
 
-/* ----- Encoding helpers ----- */
-function xor(str, key){
-  let out = "";
-  for(let i=0;i<str.length;i++){
-    out += String.fromCharCode(str.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-  }
-  return out;
-}
-function b64urlEncode(s){
-  return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
-}
-function b64urlDecode(s){
-  s = s.replace(/-/g,"+").replace(/_/g,"/");
-  while(s.length % 4) s += "=";
-  return atob(s);
-}
-function encodeLinks(links){
-  const json = JSON.stringify({v:1,t:Date.now(),l:links});
-  const xored = xor(json, XOR_KEY);
-  return b64urlEncode(encodeURIComponent(xored));
+/* ============ ENCODING ============ */
+function obfuscate(s){var o="";for(var i=0;i<s.length;i++){o+=String.fromCharCode(s.charCodeAt(i)^((i%7)+3))}return o}
+function deobfuscate(s){return obfuscate(s)}
+function b64e(s){return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+function b64d(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return decodeURIComponent(escape(atob(s)))}
+function encodeLinks(arr){
+  try{var json=JSON.stringify({v:1,t:Date.now(),links:arr});return b64e(obfuscate(json))}catch(e){return ""}
 }
 function decodeLinks(token){
-  try{
-    const xored = decodeURIComponent(b64urlDecode(token));
-    const json = xor(xored, XOR_KEY);
-    const obj = JSON.parse(json);
-    return obj.l || [];
-  }catch(e){ console.error("decode failed",e); return null; }
+  try{var json=deobfuscate(b64d(token));var d=JSON.parse(json);if(d&&Array.isArray(d.links))return d.links;return null}catch(e){return null}
 }
 
-/* ----- Toast ----- */
-const toastEl = document.getElementById("toast");
-let toastTimer;
-function toast(msg, type=""){
-  toastEl.textContent = msg;
-  toastEl.className = "toast show " + type;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>toastEl.classList.remove("show"),2200);
+/* ============ VALIDATION ============ */
+function isURL(s){
+  if(!s||s.length>2048)return false;
+  try{var u=new URL(s);return u.protocol==="http:"||u.protocol==="https:"}catch(e){return false}
+}
+function parseList(text){
+  var lines=(text||"").split(/\r?\n|,|\s+/);
+  var seen={},out=[];
+  for(var i=0;i<lines.length;i++){
+    var l=lines[i].trim();if(!l)continue;
+    if(!/^https?:\/\//i.test(l))l="https://"+l;
+    if(isURL(l)&&!seen[l]){seen[l]=1;out.push(l)}
+  }
+  return out
 }
 
-/* ----- Ripple ----- */
-document.addEventListener("click", e=>{
-  const btn = e.target.closest(".btn");
-  if(!btn) return;
-  const r = document.createElement("span");
-  const d = Math.max(btn.clientWidth, btn.clientHeight);
-  const rect = btn.getBoundingClientRect();
-  r.className = "ripple";
-  r.style.width = r.style.height = d + "px";
-  r.style.left = (e.clientX - rect.left - d/2) + "px";
-  r.style.top  = (e.clientY - rect.top  - d/2) + "px";
-  btn.appendChild(r);
-  setTimeout(()=>r.remove(),600);
+/* ============ TOAST ============ */
+function toast(msg,type){
+  var t=document.createElement("div");
+  t.className="toast "+(type||"info");
+  var ico='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7Z"/></svg>';
+  if(type==="error")ico='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>';
+  t.innerHTML=ico+"<span></span>";
+  t.lastChild.textContent=msg;
+  $("#toasts").appendChild(t);
+  setTimeout(function(){t.style.opacity="0";t.style.transform="translateX(20px)";t.style.transition=".3s";setTimeout(function(){t.remove()},320)},2800)
+}
+
+/* ============ RIPPLE ============ */
+document.addEventListener("click",function(e){
+  var b=e.target.closest(".btn");if(!b||b.disabled)return;
+  var r=b.getBoundingClientRect();
+  var s=Math.max(r.width,r.height);
+  var sp=document.createElement("span");
+  sp.className="ripple";
+  sp.style.width=sp.style.height=s+"px";
+  sp.style.left=(e.clientX-r.left-s/2)+"px";
+  sp.style.top=(e.clientY-r.top-s/2)+"px";
+  b.appendChild(sp);
+  setTimeout(function(){sp.remove()},560)
 });
 
-/* ----- Mobile nav ----- */
-document.getElementById("menuToggle").onclick = ()=>{
-  document.getElementById("navLinks").classList.toggle("open");
-};
-document.querySelectorAll("#navLinks a").forEach(a=>a.addEventListener("click",()=>{
-  document.getElementById("navLinks").classList.remove("open");
-}));
+/* ============ ROUTER ============ */
+var routes={"":"home","/":"home","/earn":"earn","/faqs":"faqs","/contact":"contact","/login":"login","/signup":"signup","/terms":"terms","/privacy":"privacy"};
+function showPage(id){
+  $$(".page").forEach(function(p){p.classList.remove("active")});
+  var el=$("#page-"+id);if(el)el.classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+  $("#nav").classList.remove("open")
+}
+function handleRoute(){
+  var h=location.hash.replace(/^#/,"");
+  if(h.indexOf("/view/")===0){
+    var token=h.substring(6);
+    showPage("view");
+    initView(token);
+    return
+  }
+  var page=routes[h];
+  if(!page){showPage("home");return}
+  showPage(page)
+}
+window.addEventListener("hashchange",handleRoute);
 
-/* ----- FAQ ----- */
-document.querySelectorAll(".faq-item").forEach(item=>{
-  item.querySelector(".faq-q").onclick = ()=>item.classList.toggle("open");
+/* ============ NAV TOGGLE ============ */
+$("#navToggle").addEventListener("click",function(){$("#nav").classList.toggle("open")});
+
+/* ============ HOME LOGIC ============ */
+var urlsInput=$("#urlsInput"),detectCount=$("#detectCount"),urlCount=$("#urlCount");
+function refreshDetect(){
+  var arr=parseList(urlsInput.value);
+  detectCount.textContent=arr.length;
+  urlCount.textContent=arr.length
+}
+urlsInput.addEventListener("input",refreshDetect);
+
+/* tabs */
+$$(".tab").forEach(function(tab){
+  tab.addEventListener("click",function(){
+    $$(".tab").forEach(function(t){t.classList.remove("active")});
+    $$(".tab-panel").forEach(function(p){p.classList.remove("active")});
+    tab.classList.add("active");
+    var p=$('.tab-panel[data-panel="'+tab.dataset.tab+'"]');
+    if(p)p.classList.add("active")
+  })
 });
 
-/* ----- Home: protect logic ----- */
-const urlInput = document.getElementById("urlInput");
-const result = document.getElementById("result");
-const resultLink = document.getElementById("resultLink");
-let lastProtectedUrl = "";
+/* clear */
+$("#clearBtn").addEventListener("click",function(){
+  urlsInput.value="";refreshDetect();
+  $("#resultSlot").innerHTML="";
+  $("#alertSlot").innerHTML="";
+  toast("Cleared","info")
+});
 
-document.getElementById("sampleBtn").onclick = ()=>{
-  urlInput.value = "https://hubcloud.foo/drive/abc\nhttps://gofile.io/d/xyz\nhttps://streamtape.com/v/123";
-};
-document.getElementById("clearBtn").onclick = ()=>{
-  urlInput.value = ""; result.classList.remove("show");
-};
-
-document.getElementById("protectBtn").onclick = ()=>{
-  const raw = urlInput.value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
-  const valid = raw.filter(u=>/^https?:\/\//i.test(u));
-  if(!valid.length){ toast("Please enter at least one valid URL","error"); return; }
-  const token = encodeLinks(valid);
-  const base = location.origin + location.pathname;
-  lastProtectedUrl = base + "?id=" + token;
-  resultLink.textContent = lastProtectedUrl;
-  result.classList.add("show");
-  result.scrollIntoView({behavior:"smooth",block:"center"});
-  saveHistory(lastProtectedUrl, valid.length);
-  toast("Protected link generated","success");
-};
-
-document.getElementById("copyBtn").onclick = ()=>copyText(lastProtectedUrl);
-document.getElementById("shareBtn").onclick = async ()=>{
-  if(navigator.share){
-    try{ await navigator.share({title:"Protected Link",url:lastProtectedUrl}); }catch{}
-  } else copyText(lastProtectedUrl);
-};
-document.getElementById("openBtn").onclick = ()=>{ window.location.href = lastProtectedUrl; };
-document.getElementById("removeBtn").onclick = ()=>{ result.classList.remove("show"); urlInput.value=""; };
-
-function copyText(text){
-  navigator.clipboard.writeText(text).then(
-    ()=>toast("Copied to clipboard","success"),
-    ()=>{
-      const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);
-      ta.select();document.execCommand("copy");ta.remove();toast("Copied","success");
-    }
-  );
-}
-
-/* ----- History (localStorage) ----- */
-function saveHistory(url, count){
-  try{
-    const list = JSON.parse(localStorage.getItem("lp_history") || "[]");
-    list.unshift({url, count, t:Date.now()});
-    localStorage.setItem("lp_history", JSON.stringify(list.slice(0,5)));
+/* protect */
+$("#protectBtn").addEventListener("click",function(){
+  var btn=this;
+  $("#alertSlot").innerHTML="";$("#resultSlot").innerHTML="";
+  var arr=parseList(urlsInput.value);
+  if(arr.length===0){
+    $("#alertSlot").innerHTML='<div class="alert error"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>Please enter at least one valid URL.</div>';
+    toast("No valid URLs found","error");return
+  }
+  btn.disabled=true;
+  var orig=btn.innerHTML;
+  btn.innerHTML='<span class="spinner"></span>Protecting...';
+  setTimeout(function(){
+    var token=encodeLinks(arr);
+    var url=location.origin+location.pathname+"#/view/"+token;
+    var html=''
+      +'<div class="alert success"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7Z"/></svg>Success! '+arr.length+' link'+(arr.length>1?"s":"")+' protected.</div>'
+      +'<div class="result-box">'
+      +'<label class="lbl">Your Protected Link</label>'
+      +'<div class="result-row">'
+      +'<input class="input" id="resOut" readonly value="">'
+      +'<button class="btn ghost" id="copyRes" type="button"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>Copy</button>'
+      +'<button class="btn green" id="openRes" type="button"><svg viewBox="0 0 24 24"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7Zm5 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>Open</button>'
+      +'</div>'
+      +'<div class="result-meta"><span><b>'+arr.length+'</b> URL'+(arr.length>1?"s":"")+'</span><span>Encoded length: <b>'+token.length+'</b></span><span>Created: <b>'+new Date().toLocaleString()+'</b></span></div>'
+      +'</div>';
+    $("#resultSlot").innerHTML=html;
+    $("#resOut").value=url;
+    $("#copyRes").addEventListener("click",function(){copy(url);toast("Link copied","success")});
+    $("#openRes").addEventListener("click",function(){window.open(url,"_blank")});
+    saveHistory({url:url,count:arr.length,t:Date.now()});
     renderHistory();
-  }catch{}
+    btn.disabled=false;btn.innerHTML=orig;
+    $("#resultSlot").scrollIntoView({behavior:"smooth",block:"center"})
+  },550)
+});
+
+/* file upload */
+var dz=$("#dropzone"),fi=$("#fileInput");
+dz.addEventListener("click",function(){fi.click()});
+dz.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fi.click()}});
+["dragenter","dragover"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add("drag")})});
+["dragleave","drop"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove("drag")})});
+dz.addEventListener("drop",function(e){if(e.dataTransfer.files[0])readFile(e.dataTransfer.files[0])});
+fi.addEventListener("change",function(){if(fi.files[0])readFile(fi.files[0])});
+function readFile(f){
+  if(f.size>1048576){toast("File too large (max 1MB)","error");return}
+  var r=new FileReader();
+  r.onload=function(){
+    urlsInput.value=(urlsInput.value?urlsInput.value+"\n":"")+r.result;
+    refreshDetect();
+    $$(".tab")[0].click();
+    toast("File loaded","success")
+  };
+  r.readAsText(f)
+}
+
+/* remote (offline-safe simulation: parse if value looks like a list) */
+$("#remoteBtn").addEventListener("click",function(){
+  var v=$("#remoteInput").value.trim();
+  if(!isURL(v)){toast("Enter a valid URL","error");return}
+  var btn=this,orig=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Fetching...';
+  fetch(v).then(function(r){return r.text()}).then(function(txt){
+    var arr=parseList(txt);
+    $("#remoteCount").textContent=arr.length;
+    if(!arr.length){toast("No URLs found in remote file","error");return}
+    urlsInput.value=(urlsInput.value?urlsInput.value+"\n":"")+arr.join("\n");
+    refreshDetect();
+    $$(".tab")[0].click();
+    toast("Fetched "+arr.length+" URLs","success")
+  }).catch(function(){toast("Fetch failed (CORS or network)","error")})
+  .then(function(){btn.disabled=false;btn.innerHTML=orig})
+});
+
+/* history */
+function loadHistory(){try{return JSON.parse(localStorage.getItem(STORE_HIST)||"[]")}catch(e){return []}}
+function saveHistory(item){
+  var h=loadHistory();h.unshift(item);if(h.length>20)h=h.slice(0,20);
+  try{localStorage.setItem(STORE_HIST,JSON.stringify(h))}catch(e){}
 }
 function renderHistory(){
-  const wrap = document.getElementById("historyWrap");
-  const list = document.getElementById("historyList");
-  let items = [];
-  try{ items = JSON.parse(localStorage.getItem("lp_history") || "[]"); }catch{}
-  if(!items.length){ wrap.style.display="none"; return; }
-  wrap.style.display="block";
-  list.innerHTML = items.map(i=>`
-    <div class="hist-item">
-      <a href="${i.url}" target="_blank">${i.url.length>70?i.url.slice(0,70)+"…":i.url}</a>
-      <span style="color:var(--muted);font-size:.78rem">${i.count} link${i.count>1?"s":""}</span>
-    </div>
-  `).join("");
+  var h=loadHistory(),slot=$("#historySlot");
+  if(!h.length){slot.innerHTML='<div class="empty"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm0 16H5V5h14v14Zm-2-7H7v-2h10v2Z"/></svg>No protected links yet.</div>';return}
+  slot.innerHTML=h.map(function(it,i){
+    return '<div class="history-item"><a href="'+esc(it.url)+'">'+esc(it.url)+'</a><span class="meta">'+it.count+' link'+(it.count>1?"s":"")+' • '+new Date(it.t).toLocaleString()+'</span><div class="acts"><button data-c="'+i+'">Copy</button><button data-d="'+i+'">Delete</button></div></div>'
+  }).join("");
+  $$("#historySlot button[data-c]").forEach(function(b){b.addEventListener("click",function(){copy(h[+b.dataset.c].url);toast("Copied","success")})});
+  $$("#historySlot button[data-d]").forEach(function(b){b.addEventListener("click",function(){var n=loadHistory();n.splice(+b.dataset.d,1);localStorage.setItem(STORE_HIST,JSON.stringify(n));renderHistory();toast("Removed","info")})})
 }
+$("#clearHistoryBtn").addEventListener("click",function(){if(confirm("Clear all history?")){localStorage.removeItem(STORE_HIST);renderHistory();toast("History cleared","info")}});
+
+function copy(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).catch(function(){fallback(t)})}else{fallback(t)}
+  function fallback(t){var ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(e){}ta.remove()}
+}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+
+/* ============ VIEW PAGE ============ */
+function initView(token){
+  var links=decodeLinks(token);
+  var card=$("#unlockCard"),slot=$("#unlockedSlot");
+  slot.innerHTML="";
+  if(!links||!links.length){
+    card.querySelector(".card-body").innerHTML='<div class="alert error"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>Invalid or corrupted protected link.</div>';
+    $("#protectedCount").textContent="0";return
+  }
+  $("#protectedCount").textContent=links.length;
+  var unlockBtn=$("#unlockBtn"),cd=$("#countdown"),cn=$("#countNum");
+  unlockBtn.onclick=function(){
+    unlockBtn.disabled=true;
+    var n=3;cd.style.display="inline-block";cn.textContent=n;
+    var iv=setInterval(function(){
+      n--;cn.textContent=n;
+      if(n<=0){clearInterval(iv);reveal(links)}
+    },1000)
+  }
+}
+function reveal(links){
+  var card=$("#unlockCard");
+  card.style.transition=".3s";card.style.opacity="0";card.style.transform="translateY(-10px)";
+  setTimeout(function(){
+    card.style.display="none";
+    var html='<div class="alert success"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7Z"/></svg>Unlocked successfully! '+links.length+' link'+(links.length>1?"s":"")+' available below.</div>'
+      +'<div class="card"><div class="card-header"><h2><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.7 1.7 1.4 1.4L14.4 4.4a3 3 0 1 1 4.2 4.2l-3 3a3 3 0 0 1-4.2 0L10 13Zm4-2a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.7-1.7-1.4-1.4L9.6 19.6a3 3 0 1 1-4.2-4.2l3-3a3 3 0 0 1 4.2 0L14 11Z"/></svg> Available Links</h2><span class="counter"><b>'+links.length+'</b> link'+(links.length>1?"s":"")+'</span></div><div class="card-body" id="linksBody"></div></div>';
+    var slot=$("#unlockedSlot");slot.innerHTML=html;
+    var body=$("#linksBody");
+    links.forEach(function(u,i){
+      var row=document.createElement("div");row.className="link-item";row.style.animationDelay=(i*60)+"ms";
+      row.innerHTML='<div class="link-num">'+(i+1)+'</div><div class="link-url"></div>'
+        +'<div class="link-actions">'
+        +'<button class="btn ghost" data-act="copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>Copy</button>'
+        +'<button class="btn green" data-act="open"><svg viewBox="0 0 24 24"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7Zm5 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>Open</button>'
+        +'<button class="btn grey" data-act="save"><svg viewBox="0 0 24 24"><path d="M17 3H5a2 2 0 0 0-2 2v14l4-4h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm4 4h-2v9H6v2h13a2 2 0 0 0 2-2V7Z"/></svg>Save</button>'
+        +'<button class="btn red" data-act="remove"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12ZM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z"/></svg>Remove</button>'
+        +'</div>';
+      row.querySelector(".link-url").textContent=u;
+      row.querySelector('[data-act="copy"]').addEventListener("click",function(){copy(u);toast("Copied","success")});
+      row.querySelector('[data-act="open"]').addEventListener("click",function(){window.open(u,"_blank","noopener")});
+      row.querySelector('[data-act="save"]').addEventListener("click",function(){
+        var saved=JSON.parse(localStorage.getItem("linksafe_saved")||"[]");
+        if(saved.indexOf(u)===-1){saved.push(u);localStorage.setItem("linksafe_saved",JSON.stringify(saved));toast("Saved to bookmarks","success")}
+        else toast("Already saved","info")
+      });
+      row.querySelector('[data-act="remove"]').addEventListener("click",function(){
+        row.style.transition=".25s";row.style.opacity="0";row.style.transform="translateX(20px)";
+        setTimeout(function(){row.remove();toast("Link removed","info")},260)
+      });
+      body.appendChild(row)
+    })
+  },300)
+}
+
+/* ============ FAQ ============ */
+var FAQ=[
+  {q:"What is LinkSafe?",a:"LinkSafe is a free multi-URL protector that bundles many links into one secure unlock URL."},
+  {q:"Is it free?",a:"Yes. Forever free. No signup, no limits."},
+  {q:"Where are my links stored?",a:"Encoded inside the URL itself plus a local history in your browser. Nothing is sent to any server."},
+  {q:"Can I share protected links anywhere?",a:"Yes. The protected URL works on any browser, any device."},
+  {q:"How is the link encoded?",a:"Base64 with custom XOR obfuscation, decoded only inside the unlock page."},
+  {q:"Does it work on Blogger?",a:"Yes. The whole app is one HTML file so it drops into Blogger or any static host."}
+];
+$("#faqList").innerHTML=FAQ.map(function(f,i){
+  return '<details style="border-bottom:1px solid #eef0f3;padding:11px 4px"'+(i===0?' open':'')+'><summary style="cursor:pointer;font-weight:700;color:#222;font-size:14px">'+esc(f.q)+'</summary><p style="margin-top:6px;color:#5e6770;font-size:13.5px">'+esc(f.a)+'</p></details>'
+}).join("");
+
+/* contact + auth */
+$("#contactForm").addEventListener("submit",function(e){e.preventDefault();this.reset();toast("Message sent","success")});
+$("#loginForm").addEventListener("submit",function(e){e.preventDefault();toast("Demo login successful","success")});
+$("#signupForm").addEventListener("submit",function(e){e.preventDefault();toast("Account created","success")});
+
+/* init */
+$("#yr").textContent=new Date().getFullYear();
 renderHistory();
-
-/* ============================================================
-   UNLOCK FLOW
-============================================================ */
-function goHome(){
-  history.replaceState({},"",location.pathname);
-  showHome();
-}
-function showHome(){
-  document.getElementById("homeView").classList.remove("hidden");
-  document.getElementById("unlockView").classList.add("hidden");
-}
-function showUnlock(){
-  document.getElementById("homeView").classList.add("hidden");
-  document.getElementById("unlockView").classList.remove("hidden");
-}
-
-function getParam(name){
-  const m = new URLSearchParams(location.search).get(name);
-  return m;
-}
-
-let decodedLinks = [];
-function initUnlockIfNeeded(){
-  const token = getParam("id");
-  if(!token) return;
-  const links = decodeLinks(token);
-  if(!links){ toast("Invalid or corrupted link","error"); return; }
-  decodedLinks = links;
-  showUnlock();
-}
-
-document.getElementById("unlockBtn").addEventListener("click", startUnlock);
-
-function startUnlock(){
-  const btn = document.getElementById("unlockBtn");
-  btn.disabled = true; btn.textContent = "Verifying…";
-  document.getElementById("verifyStep").classList.add("show");
-  document.getElementById("progress").classList.add("show");
-  document.getElementById("countdown").classList.add("show");
-
-  const bar = document.querySelector("#progress > div");
-  const cd = document.getElementById("countdown");
-  let total = 5, elapsed = 0;
-  cd.textContent = `Unlocking in ${total}s…`;
-  const start = Date.now();
-  const tick = setInterval(()=>{
-    elapsed = (Date.now()-start)/1000;
-    const pct = Math.min(100, (elapsed/total)*100);
-    bar.style.width = pct + "%";
-    const remain = Math.max(0, Math.ceil(total-elapsed));
-    cd.textContent = remain>0 ? `Unlocking in ${remain}s…` : "Done!";
-    if(elapsed >= total){ clearInterval(tick); revealLinks(); }
-  }, 100);
-}
-
-function faviconFor(url){
-  try{
-    const u = new URL(url);
-    return `https://www.google.com/s2/favicons?domain=${u.hostname}&sz=64`;
-  }catch{ return ""; }
-}
-function fileNameFrom(url){
-  try{
-    const u = new URL(url);
-    const last = u.pathname.split("/").filter(Boolean).pop();
-    return last ? decodeURIComponent(last) : u.hostname;
-  }catch{ return url; }
-}
-function domainFrom(url){
-  try{ return new URL(url).hostname; }catch{ return ""; }
-}
-
-function revealLinks(){
-  document.getElementById("lockStage").style.display = "none";
-  const list = document.getElementById("linksList");
-  const cont = document.getElementById("linksContainer");
-  cont.innerHTML = decodedLinks.map(url=>`
-    <div class="link-card">
-      <div class="fav"><img src="${faviconFor(url)}" alt="" onerror="this.style.display='none'"/></div>
-      <div class="link-meta">
-        <div class="name">${fileNameFrom(url)}</div>
-        <div class="domain">${domainFrom(url)}</div>
-      </div>
-      <div class="link-actions">
-        <button class="icon-btn" title="Copy" onclick="copyText('${url.replace(/'/g,"\\'")}')">📋</button>
-        <a class="icon-btn" title="Open" href="${url}" target="_blank" rel="noopener">↗</a>
-      </div>
-    </div>
-  `).join("");
-  list.classList.add("show");
-  toast("Links unlocked","success");
-}
-
-document.getElementById("copyAllBtn").onclick = ()=>copyText(decodedLinks.join("\n"));
-document.getElementById("downloadBtn").onclick = ()=>{
-  const blob = new Blob([decodedLinks.join("\n")],{type:"text/plain"});
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = "unlocked-links.txt";
-  a.click();
-  URL.revokeObjectURL(a.href);
-};
-
-/* boot */
-initUnlockIfNeeded();
+refreshDetect();
+handleRoute();
+})();
 </script>
 </body>
 </html>
