@@ -3,222 +3,295 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="theme-color" content="#0a78c2">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="LinkSafe">
 <meta name="description" content="LinkSafe - Free multi URL protector and shortener. Protect, encrypt and share multiple links with one secure unlock URL.">
 <meta name="keywords" content="url protector, link shortener, multi link, protect links, link locker, safe links">
 <meta name="author" content="LinkSafe">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LinkSafe - Multi URL Protector & Shortener">
+<meta property="og:title" content="LinkSafe - Multi URL Protector &amp; Shortener">
 <meta property="og:description" content="Protect multiple URLs into one single safe unlock link. Free, fast, no signup required.">
 <meta property="og:site_name" content="LinkSafe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinkSafe - Multi URL Protector">
 <meta name="twitter:description" content="Protect multiple URLs into one safe unlock link.">
-<title>LinkSafe - Multi URL Protector & Shortener</title>
+<title>LinkSafe - Multi URL Protector &amp; Shortener</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{overflow-x:hidden;-webkit-text-size-adjust:100%}
-body{font-family:'Open Sans',Arial,Helvetica,sans-serif;background:#ececec;color:#333;font-size:14px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+body{font-family:'Open Sans',Arial,Helvetica,sans-serif;background:#e8eaed;color:#333;font-size:14px;line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
 a{color:#0a78c2;text-decoration:none}
 a:hover{text-decoration:underline}
 button,input,textarea{font-family:inherit;font-size:14px;outline:none}
 img,svg{max-width:100%;display:block}
 .container{width:100%;max-width:980px;margin:0 auto;padding:0 15px}
 
-/* ===== HEADER ===== */
-.site-header{background:rgba(28,32,38,.96);backdrop-filter:saturate(140%) blur(8px);-webkit-backdrop-filter:saturate(140%) blur(8px);color:#fff;border-bottom:3px solid #0a78c2;position:sticky;top:0;z-index:50}
+.site-header{background:rgba(20,24,30,.97);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);color:#fff;border-bottom:3px solid #0a78c2;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.35)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 0}
-.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;color:#fff;letter-spacing:.5px}
-.brand:hover{text-decoration:none}
-.brand-logo{width:30px;height:30px;background:#0a78c2;display:inline-flex;align-items:center;justify-content:center;border-radius:5px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;color:#fff;letter-spacing:.5px;transition:.2s}
+.brand:hover{text-decoration:none;opacity:.88}
+.brand-logo{width:32px;height:32px;background:linear-gradient(135deg,#0a78c2,#1a9de4);display:inline-flex;align-items:center;justify-content:center;border-radius:6px;box-shadow:0 2px 10px rgba(10,120,194,.45);flex:none}
 .brand-logo svg{width:18px;height:18px;fill:#fff}
 .nav{display:flex;align-items:center;flex-wrap:wrap;gap:2px}
-.nav a{color:#dfe3e8;padding:8px 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;border-radius:3px;transition:.2s}
-.nav a:hover{background:#0a78c2;color:#fff;text-decoration:none}
-.nav .auth{margin-left:6px;background:#0a78c2;color:#fff}
-.nav .auth.outline{background:transparent;border:1px solid #0a78c2}
-.nav .auth:hover{background:#095e99}
-.nav-toggle{display:none;background:transparent;border:1px solid #444;color:#fff;padding:6px 9px;border-radius:4px;cursor:pointer}
+.nav a{color:#c8d4e0;padding:8px 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;border-radius:5px;transition:.2s}
+.nav a:hover{background:rgba(10,120,194,.22);color:#fff;text-decoration:none}
+.nav-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 9px;border-radius:5px;cursor:pointer;transition:.2s;-webkit-tap-highlight-color:transparent}
+.nav-toggle:hover{background:rgba(255,255,255,.08)}
 .nav-toggle svg{width:18px;height:18px;fill:#fff}
 
-/* ===== HERO ===== */
-.hero{background:linear-gradient(180deg,#f08a1c 0%,#e57411 100%);color:#fff;padding:34px 0 38px;border-bottom:3px solid #c66208}
-.hero h1{font-size:28px;font-weight:800;margin-bottom:8px;text-shadow:0 1px 0 rgba(0,0,0,.15)}
-.hero p{font-size:15px;opacity:.96;max-width:760px}
+.hero{background:linear-gradient(135deg,#f08a1c 0%,#e05c00 100%);color:#fff;padding:36px 0 40px;border-bottom:3px solid rgba(0,0,0,.12);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.hero h1{font-size:28px;font-weight:800;margin-bottom:8px;text-shadow:0 2px 6px rgba(0,0,0,.18);position:relative}
+.hero p{font-size:15px;opacity:.95;max-width:760px;position:relative;line-height:1.65}
 
-/* ===== INFO CARDS ===== */
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:-26px auto 18px;position:relative;z-index:2}
-.info-card{background:#fff;border:1px solid #d8dde2;border-radius:5px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,.05);display:flex;gap:11px;align-items:flex-start}
-.info-card .ic{width:36px;height:36px;background:#0a78c2;border-radius:5px;flex:none;display:flex;align-items:center;justify-content:center}
-.info-card .ic svg{width:20px;height:20px;fill:#fff}
-.info-card h3{font-size:14px;font-weight:700;color:#222;margin-bottom:3px}
-.info-card p{font-size:12.5px;color:#5e6770;line-height:1.5}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:-28px auto 20px;position:relative;z-index:2}
+.info-card{background:#fff;border:1px solid #dde2e9;border-radius:8px;padding:16px;box-shadow:0 4px 14px rgba(0,0,0,.07);display:flex;gap:12px;align-items:flex-start;transition:.25s}
+.info-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1);border-color:#b6d0ea}
+.info-card .ic{width:40px;height:40px;background:linear-gradient(135deg,#0a78c2,#1a9de4);border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(10,120,194,.3)}
+.info-card .ic svg{width:21px;height:21px;fill:#fff}
+.info-card h3{font-size:14px;font-weight:700;color:#1a2232;margin-bottom:3px}
+.info-card p{font-size:12.5px;color:#5e6d7e;line-height:1.5}
 
-/* ===== MAIN CARD ===== */
-main{flex:1 0 auto;padding:6px 0 30px}
-.card{background:#fff;border:1px solid #d8dde2;border-radius:5px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:18px;overflow:hidden}
-.card-header{background:#f6f7f9;border-bottom:1px solid #e2e6ea;padding:11px 15px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-.card-header h2{font-size:15px;font-weight:700;color:#222;display:flex;align-items:center;gap:7px}
+main{flex:1 0 auto;padding:8px 0 32px}
+.card{background:#fff;border:1px solid #dde2e9;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden;transition:.22s}
+.card:hover{box-shadow:0 5px 18px rgba(0,0,0,.09)}
+.card-header{background:linear-gradient(to right,#f8f9fb,#f1f4f8);border-bottom:1px solid #e4e8ee;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.card-header h2{font-size:15px;font-weight:700;color:#1a2232;display:flex;align-items:center;gap:7px}
 .card-header h2 svg{width:16px;height:16px;fill:#0a78c2}
 .card-body{padding:16px}
 
-/* ===== TABS ===== */
-.tabs{display:flex;border-bottom:1px solid #e2e6ea;background:#fafbfc;flex-wrap:wrap}
-.tab{padding:11px 16px;font-size:13px;font-weight:600;color:#5e6770;cursor:pointer;border-right:1px solid #e2e6ea;display:flex;align-items:center;gap:6px;background:transparent;border-top:none;border-bottom:none;border-left:none;transition:.18s}
+.tabs{display:flex;border-bottom:1px solid #e4e8ee;background:#f8f9fb;flex-wrap:wrap}
+.tab{padding:11px 16px;font-size:13px;font-weight:600;color:#5e6d7e;cursor:pointer;border-right:1px solid #e4e8ee;display:flex;align-items:center;gap:6px;background:transparent;border-top:none;border-bottom:none;border-left:none;transition:.18s;-webkit-tap-highlight-color:transparent}
 .tab svg{width:14px;height:14px;fill:currentColor}
-.tab:hover{background:#f0f2f5;color:#222}
-.tab.active{background:#fff;color:#0a78c2;box-shadow:inset 0 -2px 0 #0a78c2}
-.tab-panel{display:none;padding:16px}
-.tab-panel.active{display:block;animation:fade .25s ease}
-@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.tab:hover{background:#eef2f7;color:#1a2232}
+.tab.active{background:#fff;color:#0a78c2;box-shadow:inset 0 -3px 0 #0a78c2}
+.tab-panel{display:none;padding:18px}
+.tab-panel.active{display:block;animation:fadeUp .25s ease}
 
-/* ===== FORM ===== */
-.lbl{display:block;font-size:12.5px;font-weight:700;color:#444;margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
-.textarea,.input{width:100%;border:1px solid #c9cfd5;border-radius:4px;padding:11px 12px;background:#fff;color:#222;font-size:13.5px;transition:.18s;resize:vertical}
-.textarea{min-height:170px;font-family:'Courier New',Courier,monospace;line-height:1.55}
-.textarea:focus,.input:focus{border-color:#0a78c2;box-shadow:0 0 0 3px rgba(10,120,194,.15)}
-.dropzone{border:2px dashed #c9cfd5;border-radius:5px;padding:28px 16px;text-align:center;background:#fafbfc;cursor:pointer;transition:.2s}
-.dropzone:hover,.dropzone.drag{border-color:#0a78c2;background:#eff7fd}
-.dropzone svg{width:36px;height:36px;fill:#0a78c2;margin:0 auto 8px}
-.dropzone h4{font-size:14px;font-weight:700;color:#222;margin-bottom:4px}
-.dropzone p{font-size:12.5px;color:#666}
+.lbl{display:block;font-size:12px;font-weight:700;color:#3d4a5c;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.textarea,.input{width:100%;border:1.5px solid #ccd3dc;border-radius:6px;padding:11px 13px;background:#fff;color:#1a2232;font-size:13.5px;transition:.2s;resize:vertical}
+.textarea{min-height:175px;font-family:'Courier New',Courier,monospace;line-height:1.6}
+.textarea:focus,.input:focus{border-color:#0a78c2;box-shadow:0 0 0 3px rgba(10,120,194,.12)}
+.input-wrap{position:relative}
+.input-wrap .input{padding-right:44px}
+.input-eye{position:absolute;right:13px;top:50%;transform:translateY(-50%);cursor:pointer;color:#8899aa;transition:.18s;background:none;border:none;padding:0;display:flex;align-items:center}
+.input-eye:hover{color:#0a78c2}
+.input-eye svg{width:17px;height:17px;fill:currentColor}
 
-.form-actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-.counter{font-size:12.5px;color:#5e6770;background:#f0f2f5;border:1px solid #e2e6ea;padding:5px 10px;border-radius:20px;font-weight:600}
+.toggle-row{display:flex;align-items:center;gap:10px;padding:12px 0 4px}
+.toggle-label{font-size:13px;font-weight:600;color:#3d4a5c;cursor:pointer;user-select:none}
+.toggle{position:relative;width:40px;height:22px;flex:none}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.toggle-track{position:absolute;inset:0;background:#c8d0da;border-radius:22px;transition:.25s;cursor:pointer}
+.toggle input:checked + .toggle-track{background:#0a78c2}
+.toggle-track::after{content:'';position:absolute;width:16px;height:16px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.25s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.toggle input:checked + .toggle-track::after{left:21px}
+.toggle-hint{font-size:12px;color:#8899aa;margin-top:3px}
+
+.pw-section{margin-top:10px;animation:fadeUp .25s ease}
+.pw-section .lbl{margin-top:8px}
+
+.form-actions{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.counter{font-size:12.5px;color:#5e6d7e;background:#f0f4f8;border:1px solid #dde2e9;padding:5px 11px;border-radius:20px;font-weight:600}
 .counter b{color:#0a78c2}
 
-/* ===== BUTTONS ===== */
-.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#0a78c2;color:#fff;border:1px solid #0a78c2;border-radius:4px;padding:10px 18px;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;cursor:pointer;transition:.18s;text-decoration:none}
-.btn:hover{background:#095e99;border-color:#095e99;color:#fff;text-decoration:none;transform:translateY(-1px)}
-.btn:active{transform:translateY(0)}
-.btn svg{width:14px;height:14px;fill:currentColor}
-.btn.lg{padding:13px 22px;font-size:14px}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#0a78c2;color:#fff;border:1.5px solid #0a78c2;border-radius:6px;padding:10px 18px;font-size:13.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;cursor:pointer;transition:.2s;text-decoration:none;-webkit-tap-highlight-color:transparent;white-space:nowrap;line-height:1}
+.btn:hover{background:#0868a8;border-color:#0868a8;color:#fff;text-decoration:none;transform:translateY(-1px);box-shadow:0 4px 14px rgba(10,120,194,.3)}
+.btn:active{transform:translateY(0);box-shadow:none}
+.btn svg{width:14px;height:14px;fill:currentColor;flex:none}
+.btn.lg{padding:13px 24px;font-size:14px}
+.btn.sm{padding:7px 12px;font-size:12.5px;letter-spacing:.2px;text-transform:none}
 .btn.full{width:100%}
-.btn.green{background:#28a745;border-color:#28a745}
-.btn.green:hover{background:#1f8838;border-color:#1f8838}
+.btn.green{background:#22a745;border-color:#22a745}
+.btn.green:hover{background:#1a8a38;border-color:#1a8a38;box-shadow:0 4px 14px rgba(34,167,69,.3)}
 .btn.grey{background:#6c757d;border-color:#6c757d}
 .btn.grey:hover{background:#565d63;border-color:#565d63}
-.btn.red{background:#dc3545;border-color:#dc3545}
-.btn.red:hover{background:#bd2c3a;border-color:#bd2c3a}
-.btn.ghost{background:#fff;color:#0a78c2}
-.btn.ghost:hover{background:#eff7fd;color:#095e99}
-.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none!important}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:rip .55s linear;pointer-events:none}
-@keyframes rip{to{transform:scale(4);opacity:0}}
+.btn.orange{background:#f08a1c;border-color:#f08a1c}
+.btn.orange:hover{background:#d97810;border-color:#d97810;box-shadow:0 4px 14px rgba(240,138,28,.3)}
+.btn.ghost{background:rgba(10,120,194,.07);color:#0a78c2;border-color:rgba(10,120,194,.4)}
+.btn.ghost:hover{background:#0a78c2;color:#fff}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.38);transform:scale(0);animation:rip .55s linear;pointer-events:none}
 
-/* ===== ALERT ===== */
-.alert{padding:12px 14px;border-radius:4px;font-size:13.5px;margin-bottom:14px;display:flex;align-items:center;gap:9px;border:1px solid transparent;animation:fade .3s ease}
+.alert{padding:12px 15px;border-radius:6px;font-size:13.5px;margin-bottom:14px;display:flex;align-items:center;gap:10px;border:1px solid transparent;animation:fadeUp .3s ease}
 .alert svg{width:18px;height:18px;flex:none}
-.alert.success{background:#dff5e1;color:#1c6b2a;border-color:#bfe6c5}
-.alert.success svg{fill:#1c8a32}
-.alert.error{background:#fde2e4;color:#9b1d28;border-color:#f5c2c7}
-.alert.error svg{fill:#c0212f}
-.alert.info{background:#e3f1fb;color:#0a4a7a;border-color:#b6d7ee}
+.alert.success{background:linear-gradient(135deg,#e0f7e4,#d2f0d8);color:#186827;border-color:#a8ddb0}
+.alert.success svg{fill:#22a745}
+.alert.error{background:linear-gradient(135deg,#fde4e6,#fbd4d7);color:#8b1a24;border-color:#f0b8bc}
+.alert.error svg{fill:#dc3545}
+.alert.info{background:linear-gradient(135deg,#e3f1fb,#d4eaf7);color:#0a4a7a;border-color:#a8d2ef}
 .alert.info svg{fill:#0a78c2}
 
-/* ===== RESULT BOX ===== */
-.result-box{background:#f6fbff;border:1px solid #b6d7ee;border-radius:5px;padding:14px;margin-top:8px}
+.result-box{background:linear-gradient(135deg,#f0f7ff,#e8f2fc);border:1.5px solid #a8d2ef;border-radius:8px;padding:16px;margin-top:12px;animation:fadeUp .3s ease}
 .result-box .lbl{color:#0a4a7a}
 .result-row{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
-.result-row .input{flex:1 1 240px;min-width:0;background:#fff;font-family:'Courier New',Courier,monospace;font-size:13px;color:#0a4a7a}
-.result-meta{margin-top:10px;font-size:12.5px;color:#5e6770;display:flex;flex-wrap:wrap;gap:10px}
-.result-meta b{color:#222}
+.result-row .input{flex:1 1 200px;min-width:0;background:#fff;font-family:'Courier New',Courier,monospace;font-size:12.5px;color:#0a4a7a;font-weight:600}
+.result-meta{margin-top:10px;font-size:12.5px;color:#5e6d7e;display:flex;flex-wrap:wrap;gap:12px}
+.result-meta b{color:#1a2232}
+.result-actions{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
 
-/* ===== LINK LIST ===== */
-.link-item{background:#fff;border:1px solid #e2e6ea;border-radius:5px;padding:12px 14px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;transition:.2s;animation:fade .35s ease}
-.link-item:hover{border-color:#0a78c2;box-shadow:0 1px 3px rgba(10,120,194,.12)}
-.link-num{width:28px;height:28px;flex:none;background:#0a78c2;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px}
-.link-url{flex:1 1 240px;min-width:0;font-family:'Courier New',Courier,monospace;font-size:13px;color:#222;word-break:break-all;overflow-wrap:anywhere}
+.link-item{background:#fff;border:1.5px solid #e4e8ee;border-radius:8px;padding:13px 15px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;transition:.2s;animation:fadeUp .35s ease both}
+.link-item:hover{border-color:#0a78c2;box-shadow:0 3px 14px rgba(10,120,194,.12);background:#fcfdff}
+.link-num{width:30px;height:30px;flex:none;background:linear-gradient(135deg,#0a78c2,#1a9de4);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;box-shadow:0 2px 7px rgba(10,120,194,.3)}
+.link-fav{width:24px;height:24px;flex:none;border-radius:4px;background:#f0f4f8;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.link-fav img{width:16px;height:16px;object-fit:contain}
+.link-fav svg{width:14px;height:14px;fill:#9aa5b2}
+.link-info{flex:1 1 180px;min-width:0}
+.link-domain{font-size:11.5px;font-weight:700;color:#8899aa;margin-bottom:2px;text-transform:uppercase;letter-spacing:.3px}
+.link-url{font-family:'Courier New',Courier,monospace;font-size:13px;color:#1a2232;word-break:break-all;overflow-wrap:anywhere}
 .link-actions{display:flex;gap:6px;flex-wrap:wrap}
-.link-actions .btn{padding:7px 11px;font-size:12px;text-transform:none;letter-spacing:0}
-.empty{text-align:center;padding:30px 14px;color:#888;font-size:13.5px}
-.empty svg{width:46px;height:46px;fill:#cfd5db;margin:0 auto 8px}
+.empty{text-align:center;padding:32px 14px;color:#8899aa;font-size:13.5px}
+.empty svg{width:48px;height:48px;fill:#cdd4dc;margin:0 auto 10px}
 
-/* ===== UNLOCK ===== */
-.unlock-wrap{text-align:center;padding:30px 18px}
-.unlock-icon{width:74px;height:74px;border-radius:50%;background:linear-gradient(180deg,#0a78c2,#095e99);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 6px 18px rgba(10,120,194,.35);animation:pulse 2s infinite}
-.unlock-icon svg{width:38px;height:38px;fill:#fff}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.unlock-wrap h2{font-size:22px;font-weight:800;color:#222;margin-bottom:6px}
-.unlock-wrap p{font-size:14px;color:#5e6770;max-width:520px;margin:0 auto 16px}
-.countdown{display:inline-block;background:#f0f2f5;border:1px solid #e2e6ea;color:#444;padding:5px 12px;border-radius:20px;font-size:12.5px;font-weight:700;margin-bottom:14px}
-.countdown b{color:#0a78c2}
-
-/* ===== HISTORY ===== */
-.history-item{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:9px 12px;border-bottom:1px solid #eef0f3;font-size:13px}
+.hist-search{padding:12px 14px;border-bottom:1px solid #eef0f5;background:#fafbfc}
+.hist-search .input{font-size:13px;padding:8px 12px;min-height:0;resize:none}
+.history-item{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px 14px;border-bottom:1px solid #eef0f5;transition:.18s;animation:fadeUp .25s ease}
+.history-item:hover{background:#f6f9fc}
 .history-item:last-child{border-bottom:none}
-.history-item .meta{color:#777;font-size:12px}
-.history-item a{font-family:'Courier New',Courier,monospace;color:#0a78c2;word-break:break-all;flex:1 1 200px;min-width:0}
-.history-item .acts{display:flex;gap:5px}
-.history-item .acts button{background:transparent;border:1px solid #d8dde2;color:#5e6770;padding:4px 8px;border-radius:3px;cursor:pointer;font-size:11.5px}
+.history-item .meta{color:#8899aa;font-size:12px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.history-item a{font-family:'Courier New',Courier,monospace;color:#0a78c2;word-break:break-all;flex:1 1 180px;min-width:0;font-size:12.5px}
+.history-item .acts{display:flex;gap:5px;flex:none}
+.history-item .acts button{background:transparent;border:1px solid #dde2e9;color:#5e6d7e;padding:5px 10px;border-radius:4px;cursor:pointer;font-size:12px;font-weight:600;transition:.18s;display:flex;align-items:center;gap:4px;-webkit-tap-highlight-color:transparent}
 .history-item .acts button:hover{background:#0a78c2;color:#fff;border-color:#0a78c2}
+.history-item .acts button svg{width:12px;height:12px;fill:currentColor}
+.hist-badge{display:inline-flex;align-items:center;gap:3px;background:#f0f4f8;border:1px solid #dde2e9;border-radius:20px;padding:1px 7px;font-size:11px;font-weight:700;color:#5e6d7e}
+.hist-badge.pw{background:#fff8e6;border-color:#f0d580;color:#7a5c00}
 
-/* ===== TERMS ===== */
-.terms{font-size:12px;color:#777;text-align:center;margin-top:10px}
+#page-view{background:linear-gradient(160deg,#0d1117 0%,#1a2a3a 55%,#0d1117 100%);min-height:100vh}
+#page-view main{padding:24px 0 44px}
+.unlock-wrap-outer{max-width:560px;margin:0 auto}
+.glass-card{background:rgba(255,255,255,.055);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);border:1px solid rgba(255,255,255,.11);border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.09);overflow:hidden}
+.glass-card .card-header{background:rgba(255,255,255,.045);border-bottom:1px solid rgba(255,255,255,.09)}
+.glass-card .card-header h2{color:#e8f0fa}
+.glass-card .card-header .counter{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.14);color:#a0b8d0}
+.glass-card .card-header .counter b{color:#4db8ff}
+.unlock-body{padding:32px 24px;text-align:center}
+.lock-ring-wrap{position:relative;width:92px;height:92px;margin:0 auto 22px;display:flex;align-items:center;justify-content:center}
+.lock-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(10,120,194,.3);animation:ringPulse 2.8s ease-in-out infinite}
+.lock-ring.r2{inset:-11px;border-color:rgba(10,120,194,.15);animation-delay:.4s}
+.lock-icon-circle{width:92px;height:92px;border-radius:50%;background:linear-gradient(135deg,#0a78c2 0%,#1a9de4 100%);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(10,120,194,.5);animation:lockPulse 2.8s ease-in-out infinite;position:relative;z-index:1}
+.lock-icon-circle svg{width:44px;height:44px;fill:#fff;filter:drop-shadow(0 2px 5px rgba(0,0,0,.25))}
+@keyframes ringPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:0;transform:scale(1.18)}}
+@keyframes lockPulse{0%,100%{transform:scale(1);box-shadow:0 8px 32px rgba(10,120,194,.5)}50%{transform:scale(1.04);box-shadow:0 12px 44px rgba(10,120,194,.65)}}
+.unlock-title{font-size:23px;font-weight:800;color:#e8f0fa;margin-bottom:8px;letter-spacing:-.3px}
+.unlock-desc{font-size:14px;color:#7a98b4;max-width:420px;margin:0 auto 20px;line-height:1.7}
+.unlock-progress{height:4px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;margin:0 auto 20px;max-width:260px;display:none}
+.unlock-progress-bar{height:100%;background:linear-gradient(90deg,#0a78c2,#4db8ff);border-radius:4px;width:0%;transition:width .08s linear}
+.pw-unlock-wrap{position:relative;display:inline-block;width:100%;max-width:310px;margin:0 auto 14px}
+.pw-unlock-input{display:block;width:100%;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);border-radius:8px;padding:11px 44px 11px 14px;color:#e8f0fa;font-size:13.5px;font-family:'Open Sans',sans-serif;transition:.2s}
+.pw-unlock-input::placeholder{color:rgba(255,255,255,.35)}
+.pw-unlock-input:focus{border-color:#0a78c2;box-shadow:0 0 0 3px rgba(10,120,194,.25);outline:none}
+.pw-unlock-input.shake{animation:shake .4s ease}
+.pw-eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,.4);transition:.18s;padding:0;display:flex;align-items:center}
+.pw-eye-btn:hover{color:#fff}
+.pw-eye-btn svg{width:17px;height:17px;fill:currentColor}
+.pw-error{font-size:13px;color:#ff7088;margin-bottom:12px;display:none;animation:fadeUp .25s ease}
+.unlock-stats{display:flex;justify-content:center;gap:14px;margin-top:20px;flex-wrap:wrap}
+.unlock-stat{text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:9px 18px;min-width:72px}
+.unlock-stat .sv{font-size:19px;font-weight:800;color:#4db8ff;line-height:1}
+.unlock-stat .sk{font-size:11px;color:#5e7a90;text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+
+.unlocked-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.unlocked-count{font-size:14px;font-weight:700;color:#c8d8e8}
+.unlocked-count b{color:#4db8ff}
+.unlocked-acts{display:flex;gap:8px;flex-wrap:wrap}
+.unlocked-card{background:rgba(255,255,255,.055);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:18px;margin-top:18px;animation:fadeUp .4s ease}
+.unlocked-link-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:13px 14px;margin-bottom:10px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;transition:.2s;animation:fadeUp .35s ease both}
+.unlocked-link-item:hover{background:rgba(255,255,255,.11);border-color:rgba(10,120,194,.5)}
+.unlocked-link-item:last-child{margin-bottom:0}
+.unlocked-link-item .link-num{box-shadow:0 2px 8px rgba(10,120,194,.4)}
+.unlocked-link-item .link-fav{background:rgba(255,255,255,.1)}
+.unlocked-link-item .link-domain{color:#6888a0}
+.unlocked-link-item .link-url{color:#c8d8e8}
+.unlocked-link-item .link-actions .btn{padding:7px 12px;font-size:12px;text-transform:none;letter-spacing:0}
+.unlocked-alert{padding:12px 15px;border-radius:8px;font-size:13.5px;margin-bottom:14px;display:flex;align-items:center;gap:10px;background:rgba(34,167,69,.15);color:#80e8a0;border:1px solid rgba(34,167,69,.25);animation:fadeUp .3s ease}
+.unlocked-alert svg{width:18px;height:18px;flex:none;fill:#22a745}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);z-index:999;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:.25s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:#fff;border-radius:14px;padding:28px 24px 22px;max-width:380px;width:100%;box-shadow:0 28px 70px rgba(0,0,0,.35);transform:scale(.92);transition:.28s;text-align:center;position:relative}
+.modal-overlay.open .modal{transform:scale(1)}
+.modal h3{font-size:17px;font-weight:800;color:#1a2232;margin-bottom:3px}
+.modal p{font-size:13px;color:#5e6d7e;margin-bottom:18px}
+#qrCanvas{display:flex;justify-content:center;margin-bottom:18px}
+#qrCanvas canvas,#qrCanvas img{border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.12)}
+.modal-acts{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.modal-x{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.06);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#5e6d7e;transition:.18s;-webkit-tap-highlight-color:transparent}
+.modal-x:hover{background:rgba(220,53,69,.12);color:#dc3545}
+.modal-x svg{width:15px;height:15px;fill:currentColor}
+
+.terms{font-size:12px;color:#8899aa;text-align:center;margin-top:12px}
 .terms a{color:#0a78c2}
 
-/* ===== FOOTER ===== */
-.site-footer{background:#1c2026;color:#aab1b9;padding:22px 0 14px;margin-top:auto;border-top:3px solid #0a78c2}
-.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:14px}
-.footer-grid h4{color:#fff;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
-.footer-grid a{display:block;color:#aab1b9;font-size:13px;padding:3px 0}
-.footer-grid a:hover{color:#fff}
-.footer-bottom{border-top:1px solid #2c333c;padding-top:12px;text-align:center;font-size:12px;color:#7d858f}
+.site-footer{background:#161b22;color:#8899aa;padding:24px 0 16px;margin-top:auto;border-top:3px solid #0a78c2}
+.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:16px}
+.footer-grid h4{color:#fff;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.footer-grid a{display:block;color:#8899aa;font-size:13px;padding:3px 0;transition:.18s}
+.footer-grid a:hover{color:#fff;text-decoration:none;padding-left:4px}
+.footer-bottom{border-top:1px solid #1e2832;padding-top:12px;text-align:center;font-size:12px;color:#6a7a88}
 .footer-bottom b{color:#fff}
 
-/* ===== TOAST ===== */
-#toasts{position:fixed;top:14px;right:14px;z-index:9999;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 28px)}
-.toast{background:#1c2026;color:#fff;border-left:4px solid #0a78c2;padding:11px 14px;border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,.25);font-size:13px;display:flex;align-items:center;gap:9px;animation:slideIn .3s ease;min-width:240px}
-.toast.success{border-left-color:#28a745}
+#toasts{position:fixed;top:16px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:8px;max-width:calc(100vw - 32px);pointer-events:none}
+.toast{background:rgba(20,25,32,.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;border-left:4px solid #0a78c2;padding:12px 16px;border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,.32);font-size:13px;display:flex;align-items:center;gap:10px;animation:toastIn .3s ease;min-width:240px;border:1px solid rgba(255,255,255,.07);border-left:4px solid #0a78c2;pointer-events:all}
+.toast.success{border-left-color:#22a745}
 .toast.error{border-left-color:#dc3545}
-.toast.info{border-left-color:#0a78c2}
-.toast svg{width:16px;height:16px;flex:none;fill:#fff}
-@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.toast svg{width:16px;height:16px;flex:none;fill:#0a78c2}
+.toast.success svg{fill:#22a745}
+.toast.error svg{fill:#dc3545}
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-track{background:#ececec}
-::-webkit-scrollbar-thumb{background:#b8c0c8;border-radius:5px}
-::-webkit-scrollbar-thumb:hover{background:#0a78c2}
-
-/* ===== LOADING ===== */
-.spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ===== PAGE FADE ===== */
+.spinner{width:15px;height:15px;border:2px solid rgba(255,255,255,.28);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite;display:inline-block;flex:none}
 .page{display:none}
-.page.active{display:block;animation:fade .35s ease}
+.page.active{display:block;animation:fadeUp .3s ease}
 
-/* ===== RESPONSIVE ===== */
-@media (max-width:820px){
-.info-grid{grid-template-columns:1fr;margin-top:-18px}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#e8eaed}
+::-webkit-scrollbar-thumb{background:#b8c2cc;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#0a78c2}
+:focus-visible{outline:2px solid #0a78c2;outline-offset:2px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes rip{to{transform:scale(4);opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+
+@media(max-width:820px){
+.info-grid{grid-template-columns:1fr;margin-top:-20px}
 .footer-grid{grid-template-columns:repeat(2,1fr)}
 .hero h1{font-size:23px}
 .hero p{font-size:13.5px}
 }
-@media (max-width:640px){
+@media(max-width:640px){
 .nav-toggle{display:inline-flex;align-items:center}
-.nav{display:none;width:100%;flex-direction:column;align-items:stretch;background:#23272e;border-radius:5px;padding:6px;margin-top:6px}
+.nav{display:none;width:100%;flex-direction:column;align-items:stretch;background:#1a1f28;border-radius:8px;padding:8px;margin-top:8px;border:1px solid rgba(255,255,255,.07)}
 .nav.open{display:flex}
-.nav a,.nav .auth{width:100%;text-align:center;border-radius:4px;margin:2px 0}
+.nav a{width:100%;text-align:center;border-radius:6px;margin:2px 0;padding:10px}
 .brand{font-size:18px}
 .tab{flex:1 1 33%;justify-content:center;padding:10px 6px;font-size:12px}
 .tab span{display:none}
 .footer-grid{grid-template-columns:1fr;text-align:center}
-.hero{padding:26px 0 30px}
+.hero{padding:28px 0 32px}
 .hero h1{font-size:20px}
-.card-body{padding:13px}
-.btn.lg{padding:11px 16px;font-size:13px}
-.unlock-wrap h2{font-size:19px}
+.card-body{padding:14px}
+.btn.lg{padding:12px 18px;font-size:13px}
+.unlock-title{font-size:20px}
 .link-actions{width:100%;justify-content:flex-end}
+.unlock-body{padding:24px 16px}
+.unlocked-top{flex-direction:column;align-items:flex-start}
+.modal{padding:24px 16px 20px}
 }
-@media (max-width:380px){
+@media(max-width:380px){
 .brand{font-size:16px}
-.brand-logo{width:26px;height:26px}
-.tab{font-size:11.5px;padding:9px 4px}
+.brand-logo{width:28px;height:28px}
+.tab{font-size:11.5px;padding:9px 3px}
 }
 </style>
 </head>
@@ -227,528 +300,945 @@ main{flex:1 0 auto;padding:6px 0 30px}
 <header class="site-header">
   <div class="container header-inner">
     <a href="#/" class="brand" aria-label="LinkSafe Home">
-      <span class="brand-logo"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg></span>
+      <span class="brand-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg></span>
       LinkSafe
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg></button>
-    <nav class="nav" id="nav">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </button>
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
       <a href="#/">Home</a>
       <a href="#/earn">Earn Money</a>
       <a href="#/faqs">FAQs</a>
       <a href="#/contact">Contact Us</a>
-      <a href="#/signup" class="auth outline">Sign Up</a>
-      <a href="#/login" class="auth">Log In</a>
     </nav>
   </div>
 </header>
 
-<!-- ===================== HOME ===================== -->
-<section class="page" id="page-home">
-<div class="hero">
+<!-- HOME PAGE -->
+<section class="page" id="page-home" role="main">
+  <div class="hero">
+    <div class="container">
+      <h1>Protect Your Links Easily</h1>
+      <p>Add your links, protect them and share with one simple URL.</p>
+    </div>
+  </div>
   <div class="container">
-    <h1>Protect &amp; Shorten Multiple URLs Into One Safe Link</h1>
-    <p>Paste your links, encrypt them with a single click and share one secure unlock URL. Free, fast, no signup required, works on any device.</p>
-  </div>
-</div>
-
-<div class="container">
-  <div class="info-grid">
-    <div class="info-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 14c-2.6-.5-5-2.7-6-5.4 1-1.6 3.6-2.6 6-2.6s5 1 6 2.6c-1 2.7-3.4 4.9-6 5.4Z"/></svg></div>
-      <div><h3>100% Secure</h3><p>Links are encoded and stored locally. Nothing leaves your browser.</p></div>
-    </div>
-    <div class="info-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2Zm0 4h2v-2H3v2Zm0-8h2V7H3v2Zm4 4h14v-2H7v2Zm0 4h14v-2H7v2Zm0-10v2h14V7H7Z"/></svg></div>
-      <div><h3>Multi Links</h3><p>Add unlimited URLs and protect them inside a single shareable link.</p></div>
-    </div>
-    <div class="info-card">
-      <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
-      <div><h3>Lightning Fast</h3><p>Pure client-side. No server, no API, instant generation everywhere.</p></div>
+    <div class="info-grid" role="list">
+      <div class="info-card" role="listitem">
+        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 9.3 8 10 4.6-.7 8-5 8-10V6l-8-4Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 14c-2.6-.5-5-2.7-6-5.4 1-1.6 3.6-2.6 6-2.6s5 1 6 2.6c-1 2.7-3.4 4.9-6 5.4Z"/></svg></div>
+        <div><h3>Secure Links</h3><p>Your links stay protected inside the browser.</p></div>
+      </div>
+      <div class="info-card" role="listitem">
+        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h2v-2H3v2Zm0 4h2v-2H3v2Zm0-8h2V7H3v2Zm4 4h14v-2H7v2Zm0 4h14v-2H7v2Zm0-10v2h14V7H7Z"/></svg></div>
+        <div><h3>Multi Links</h3><p>Combine multiple links into one protected URL.</p></div>
+      </div>
+      <div class="info-card" role="listitem">
+        <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+        <div><h3>Fast Performance</h3><p>Works quickly on all modern devices and browsers.</p></div>
+      </div>
     </div>
   </div>
-</div>
 
-<main>
-<div class="container">
-  <div id="alertSlot"></div>
+  <main>
+    <div class="container">
+      <div id="alertSlot" role="alert" aria-live="polite"></div>
 
-  <div class="card">
-    <div class="card-header">
-      <h2><svg viewBox="0 0 24 24"><path d="M3.9 12a4.1 4.1 0 0 1 4.1-4.1h3v-2H8a6.1 6.1 0 0 0 0 12.2h3v-2H8A4.1 4.1 0 0 1 3.9 12Zm4.6 1h7v-2h-7v2Zm7.5-7.1h-3v2h3a4.1 4.1 0 1 1 0 8.2h-3v2h3a6.1 6.1 0 0 0 0-12.2Z"/></svg> Protect Your Links</h2>
-      <span class="counter">Total: <b id="urlCount">0</b></span>
-    </div>
-    <div class="tabs" role="tablist">
-      <button class="tab active" data-tab="paste"><svg viewBox="0 0 24 24"><path d="M19 2h-4.2a3 3 0 0 0-5.6 0H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm7 18H5V4h2v3h10V4h2v16Z"/></svg><span>Paste Links</span></button>
-      <button class="tab" data-tab="file"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm4 18H6V4h7v5h5v11Z"/></svg><span>File Upload</span></button>
-      <button class="tab" data-tab="remote"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 9h-3a15.5 15.5 0 0 0-1.2-5.2A8 8 0 0 1 18.9 11ZM12 4c.9 0 2.3 2.1 2.8 7H9.2C9.7 6.1 11.1 4 12 4ZM4 12c0-.7.1-1.4.3-2H7c-.1 1.3-.1 2.7 0 4H4.3A8 8 0 0 1 4 12Zm1.1 4h2.6c.3 1.4.7 2.7 1.2 3.7A8 8 0 0 1 5.1 16ZM12 20c-.9 0-2.3-2.1-2.8-7h5.6c-.5 4.9-1.9 7-2.8 7Zm2.7-.3c.5-1 .9-2.3 1.2-3.7h2.6a8 8 0 0 1-3.8 3.7ZM17 14c.1-1.3.1-2.7 0-4h2.7a8 8 0 0 1 0 4H17ZM9.3 5.8C8.9 6.8 8.5 8.1 8.2 9.5H5.6A8 8 0 0 1 9.3 5.8Z"/></svg><span>Remote Upload</span></button>
-    </div>
+      <div class="card">
+        <div class="card-header">
+          <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a4.1 4.1 0 0 1 4.1-4.1h3v-2H8a6.1 6.1 0 0 0 0 12.2h3v-2H8A4.1 4.1 0 0 1 3.9 12Zm4.6 1h7v-2h-7v2Zm7.5-7.1h-3v2h3a4.1 4.1 0 1 1 0 8.2h-3v2h3a6.1 6.1 0 0 0 0-12.2Z"/></svg> Protect Your Links</h2>
+          <span class="counter">Total: <b id="urlCount">0</b></span>
+        </div>
 
-    <div class="tab-panel active" data-panel="paste">
-      <label class="lbl" for="urlsInput">Paste one URL per line</label>
-      <textarea id="urlsInput" class="textarea" placeholder="https://example.com/page-one&#10;https://example.com/page-two&#10;https://example.com/page-three" spellcheck="false"></textarea>
-      <div class="form-actions">
-        <span class="counter">Detected: <b id="detectCount">0</b> URLs</span>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button class="btn grey" id="clearBtn" type="button"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12ZM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z"/></svg>Clear</button>
-          <button class="btn lg" id="protectBtn" type="button"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg>Protect My Links</button>
+        <div class="tabs" role="tablist" aria-label="Input method">
+          <button class="tab active" data-tab="paste" role="tab" aria-selected="true" aria-controls="panel-paste">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 2h-4.2a3 3 0 0 0-5.6 0H5a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm-7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm7 18H5V4h2v3h10V4h2v16Z"/></svg>
+            <span>Paste Links</span>
+          </button>
+          <button class="tab" data-tab="remote" role="tab" aria-selected="false" aria-controls="panel-remote">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 9h-3a15.5 15.5 0 0 0-1.2-5.2A8 8 0 0 1 18.9 11ZM12 4c.9 0 2.3 2.1 2.8 7H9.2C9.7 6.1 11.1 4 12 4ZM4 12c0-.7.1-1.4.3-2H7c-.1 1.3-.1 2.7 0 4H4.3A8 8 0 0 1 4 12Zm1.1 4h2.6c.3 1.4.7 2.7 1.2 3.7A8 8 0 0 1 5.1 16ZM12 20c-.9 0-2.3-2.1-2.8-7h5.6c-.5 4.9-1.9 7-2.8 7Zm2.7-.3c.5-1 .9-2.3 1.2-3.7h2.6a8 8 0 0 1-3.8 3.7ZM17 14c.1-1.3.1-2.7 0-4h2.7a8 8 0 0 1 0 4H17ZM9.3 5.8C8.9 6.8 8.5 8.1 8.2 9.5H5.6A8 8 0 0 1 9.3 5.8Z"/></svg>
+            <span>Remote Upload</span>
+          </button>
+        </div>
+
+        <div class="tab-panel active" id="panel-paste" data-panel="paste" role="tabpanel">
+          <label class="lbl" for="urlsInput">Paste one URL per line</label>
+          <textarea id="urlsInput" class="textarea" placeholder="https://example.com/page-one&#10;https://example.com/page-two&#10;https://example.com/page-three" spellcheck="false" aria-label="URLs to protect, one per line"></textarea>
+
+          <div class="toggle-row">
+            <label class="toggle" for="pwToggle" title="Enable password protection">
+              <input type="checkbox" id="pwToggle">
+              <span class="toggle-track"></span>
+            </label>
+            <span class="toggle-label" id="pwToggleLabel">Password Protect</span>
+          </div>
+          <div class="pw-section" id="pwSection" style="display:none">
+            <label class="lbl" for="pwInput">Set a password</label>
+            <div class="input-wrap">
+              <input class="input" id="pwInput" type="password" placeholder="Enter a password for this link" autocomplete="new-password" aria-label="Password for link protection">
+              <button class="input-eye" id="pwEye" type="button" aria-label="Toggle password visibility" tabindex="-1">
+                <svg id="eyeIcon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5Zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+              </button>
+            </div>
+            <div class="toggle-hint">Recipients must enter this password to unlock the links.</div>
+          </div>
+
+          <div class="form-actions">
+            <span class="counter">Detected: <b id="detectCount">0</b> URLs</span>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn grey" id="clearBtn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12ZM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z"/></svg>
+                Clear
+              </button>
+              <button class="btn lg" id="protectBtn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg>
+                Protect My Links
+              </button>
+            </div>
+          </div>
+          <div id="resultSlot" aria-live="polite"></div>
+        </div>
+
+        <div class="tab-panel" id="panel-remote" data-panel="remote" role="tabpanel">
+          <label class="lbl" for="remoteInput">Remote .txt file URL</label>
+          <input id="remoteInput" class="input" type="url" placeholder="https://example.com/links.txt" spellcheck="false" aria-label="Remote text file URL containing links">
+          <div class="form-actions">
+            <span class="counter">Fetched: <b id="remoteCount">0</b></span>
+            <button class="btn" id="remoteBtn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2Zm7-18-7 7h4v6h6v-6h4l-7-7Z"/></svg>
+              Fetch URLs
+            </button>
+          </div>
         </div>
       </div>
-      <div id="resultSlot"></div>
-    </div>
 
-    <div class="tab-panel" data-panel="file">
-      <label class="lbl">Upload a .txt file containing your URLs</label>
-      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload file">
-        <svg viewBox="0 0 24 24"><path d="M19.4 10A8 8 0 0 0 4 12a6 6 0 0 0 2 11h13a5 5 0 0 0 .4-13ZM13 13v4h-2v-4H8l4-4 4 4h-3Z"/></svg>
-        <h4>Click or drop a .txt file here</h4>
-        <p>One URL per line. Max 1MB.</p>
-        <input type="file" id="fileInput" accept=".txt,text/plain" hidden>
+      <div class="card">
+        <div class="card-header">
+          <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z"/></svg> Recent Protected Links</h2>
+          <button class="btn grey sm" id="clearHistoryBtn" type="button">Clear All</button>
+        </div>
+        <div class="hist-search">
+          <input class="input" id="histSearch" type="search" placeholder="Search history..." aria-label="Search protected links history">
+        </div>
+        <div id="historySlot" style="min-height:60px"></div>
       </div>
-    </div>
 
-    <div class="tab-panel" data-panel="remote">
-      <label class="lbl" for="remoteInput">Remote .txt file URL</label>
-      <input id="remoteInput" class="input" type="url" placeholder="https://example.com/links.txt" spellcheck="false">
-      <div class="form-actions">
-        <span class="counter">Fetched: <b id="remoteCount">0</b></span>
-        <button class="btn" id="remoteBtn" type="button"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2Zm7-18-7 7h4v6h6v-6h4l-7-7Z"/></svg>Fetch URLs</button>
-      </div>
+      <p class="terms">By using LinkSafe you agree to our <a href="#/terms">Terms of Service</a> &amp; <a href="#/privacy">Privacy Policy</a>. Links are encoded locally in your browser only.</p>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header"><h2><svg viewBox="0 0 24 24"><path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z"/></svg> Recent Protected Links</h2>
-      <button class="btn grey" id="clearHistoryBtn" type="button" style="padding:6px 11px;font-size:12px">Clear History</button>
-    </div>
-    <div class="card-body" style="padding:0" id="historySlot"></div>
-  </div>
-
-  <p class="terms">By using LinkSafe you agree to our <a href="#/terms">Terms of Service</a> &amp; <a href="#/privacy">Privacy Policy</a>. Links are stored locally in your browser only.</p>
-</div>
-</main>
+  </main>
 </section>
 
-<!-- ===================== VIEW PROTECTED ===================== -->
+<!-- VIEW PAGE -->
 <section class="page" id="page-view">
-<main>
-<div class="container" style="padding-top:22px">
-  <div class="card" id="unlockCard">
-    <div class="card-header"><h2><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg> Protected Links</h2>
-      <span class="counter"><b id="protectedCount">0</b> Links Locked</span>
-    </div>
-    <div class="card-body">
-      <div class="unlock-wrap">
-        <div class="unlock-icon"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg></div>
-        <h2>Click Unlock To Reveal Links</h2>
-        <p>The owner has protected these links with LinkSafe. Press the unlock button below to reveal all destinations safely.</p>
-        <div class="countdown" id="countdown" style="display:none">Please wait <b id="countNum">5</b>s</div>
-        <div><button class="btn green lg" id="unlockBtn" type="button"><svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5h2a3 3 0 1 1 6 0v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Z"/></svg>Unlock Links</button></div>
+  <main>
+    <div class="container" style="padding-top:24px">
+      <div class="unlock-wrap-outer" id="unlockWrap">
+        <div class="glass-card">
+          <div class="card-header">
+            <h2><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg> Protected Links</h2>
+            <span class="counter"><b id="protectedCount">0</b> Links Locked</span>
+          </div>
+          <div class="unlock-body">
+            <div class="lock-ring-wrap">
+              <span class="lock-ring"></span>
+              <span class="lock-ring r2"></span>
+              <div class="lock-icon-circle" id="lockIcon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg>
+              </div>
+            </div>
+
+            <h2 class="unlock-title" id="unlockTitle">Click Unlock To Reveal Links</h2>
+            <p class="unlock-desc" id="unlockDesc">These links are protected. Click unlock to continue.</p>
+
+            <div class="unlock-progress" id="unlockProgress"><div class="unlock-progress-bar" id="unlockBar"></div></div>
+
+            <div id="pwUnlockSection" style="display:none">
+              <div class="pw-unlock-wrap">
+                <input class="pw-unlock-input" id="pwUnlockInput" type="password" placeholder="Enter password to unlock" autocomplete="current-password" aria-label="Password to unlock links">
+                <button class="pw-eye-btn" id="pwUnlockEye" type="button" aria-label="Toggle password visibility" tabindex="-1">
+                  <svg id="eyeUnlockIcon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5Zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+                </button>
+              </div>
+              <div class="pw-error" id="pwError">Incorrect password. Please try again.</div>
+            </div>
+
+            <div>
+              <button class="btn green lg" id="unlockBtn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a5 5 0 0 0-5 5h2a3 3 0 1 1 6 0v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Z"/></svg>
+                Unlock Links
+              </button>
+            </div>
+
+            <div class="unlock-stats" id="unlockStats">
+              <div class="unlock-stat"><div class="sv" id="statUnlocks">0</div><div class="sk">Unlocks</div></div>
+              <div class="unlock-stat"><div class="sv" id="statCopies">0</div><div class="sk">Copies</div></div>
+              <div class="unlock-stat"><div class="sv" id="statSaves">0</div><div class="sk">Saves</div></div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div id="unlockedSlot"></div>
     </div>
-  </div>
-
-  <div id="unlockedSlot"></div>
-</div>
-</main>
+  </main>
 </section>
 
-<!-- ===================== EARN ===================== -->
+<!-- EARN PAGE -->
 <section class="page" id="page-earn">
-<div class="hero"><div class="container"><h1>Earn Money With LinkSafe</h1><p>Share your protected links anywhere and start monetising your audience with our future creator program.</p></div></div>
-<main><div class="container" style="padding-top:18px">
-  <div class="card"><div class="card-body">
-    <h3 style="font-size:16px;margin-bottom:8px;color:#222">How it works</h3>
-    <p style="margin-bottom:10px">Sign up, protect your links, share them anywhere. When visitors unlock your links, you earn revenue per verified view.</p>
-    <ul style="padding-left:20px;line-height:1.9">
-      <li>High CPM rates worldwide</li>
-      <li>Weekly automatic payouts</li>
-      <li>Detailed real-time statistics</li>
-      <li>Referral 10% lifetime bonus</li>
-    </ul>
-    <div style="margin-top:14px"><a href="#/signup" class="btn">Join The Program</a></div>
-  </div></div>
-</div></main>
+  <div class="hero"><div class="container"><h1>Creator Program</h1><p>Share your protected links and monetise your audience with our future creator program.</p></div></div>
+  <main><div class="container" style="padding-top:18px">
+    <div class="card"><div class="card-body">
+      <h3 style="font-size:16px;margin-bottom:8px;color:#1a2232">How it works</h3>
+      <p style="margin-bottom:10px">Sign up, protect your links, share them anywhere. When visitors unlock your links you earn revenue per verified view.</p>
+      <ul style="padding-left:20px;line-height:2">
+        <li>High CPM rates worldwide</li>
+        <li>Weekly automatic payouts</li>
+        <li>Detailed real-time statistics</li>
+        <li>Referral 10% lifetime bonus</li>
+      </ul>
+      <div style="margin-top:16px"><a href="#/signup" class="btn">Join The Program</a></div>
+    </div></div>
+  </div></main>
 </section>
 
-<!-- ===================== FAQS ===================== -->
+<!-- FAQS PAGE -->
 <section class="page" id="page-faqs">
-<div class="hero"><div class="container"><h1>Frequently Asked Questions</h1><p>Everything you need to know about LinkSafe.</p></div></div>
-<main><div class="container" style="padding-top:18px">
-  <div class="card"><div class="card-body" id="faqList"></div></div>
-</div></main>
+  <div class="hero"><div class="container"><h1>Help Center</h1><p>Everything you need to know about LinkSafe.</p></div></div>
+  <main><div class="container" style="padding-top:18px">
+    <div class="card"><div class="card-body" id="faqList"></div></div>
+  </div></main>
 </section>
 
-<!-- ===================== CONTACT ===================== -->
+<!-- CONTACT PAGE -->
 <section class="page" id="page-contact">
-<div class="hero"><div class="container"><h1>Contact Us</h1><p>Reach out anytime. We typically reply within 24 hours.</p></div></div>
-<main><div class="container" style="padding-top:18px">
-  <div class="card"><div class="card-body">
-    <form id="contactForm" autocomplete="off">
+  <div class="hero"><div class="container"><h1>Contact Us</h1><p>Send us a message if you need help.</p></div></div>
+  <main><div class="container" style="padding-top:18px">
+    <div class="card"><div class="card-body">
       <label class="lbl" for="cName">Your Name</label>
-      <input id="cName" class="input" type="text" required style="margin-bottom:12px">
+      <input id="cName" class="input" type="text" style="margin-bottom:12px" required autocomplete="name">
       <label class="lbl" for="cMail">Email Address</label>
-      <input id="cMail" class="input" type="email" required style="margin-bottom:12px">
+      <input id="cMail" class="input" type="email" style="margin-bottom:12px" required autocomplete="email">
       <label class="lbl" for="cMsg">Message</label>
-      <textarea id="cMsg" class="textarea" required style="min-height:130px;font-family:inherit"></textarea>
-      <div style="margin-top:12px"><button class="btn" type="submit"><svg viewBox="0 0 24 24"><path d="M2 21 23 12 2 3v7l15 2-15 2v7Z"/></svg>Send Message</button></div>
-    </form>
-  </div></div>
-</div></main>
+      <textarea id="cMsg" class="textarea" style="min-height:130px;font-family:inherit" required></textarea>
+      <div style="margin-top:12px">
+        <button class="btn" id="contactSend" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21 23 12 2 3v7l15 2-15 2v7Z"/></svg>
+          Send Message
+        </button>
+      </div>
+    </div></div>
+  </div></main>
 </section>
 
-<!-- ===================== AUTH PAGES ===================== -->
-<section class="page" id="page-login">
-<div class="hero"><div class="container"><h1>Log In</h1><p>Welcome back. Access your protected links and dashboard.</p></div></div>
-<main><div class="container" style="padding-top:18px;max-width:520px">
-  <div class="card"><div class="card-body">
-    <form id="loginForm" autocomplete="off">
-      <label class="lbl">Email</label><input class="input" type="email" required style="margin-bottom:12px">
-      <label class="lbl">Password</label><input class="input" type="password" required style="margin-bottom:12px">
-      <button class="btn full" type="submit">Log In</button>
-    </form>
-    <p style="text-align:center;margin-top:12px;font-size:13px">No account? <a href="#/signup">Sign up</a></p>
-  </div></div>
-</div></main>
-</section>
-
-<section class="page" id="page-signup">
-<div class="hero"><div class="container"><h1>Sign Up</h1><p>Create your free LinkSafe account in seconds.</p></div></div>
-<main><div class="container" style="padding-top:18px;max-width:520px">
-  <div class="card"><div class="card-body">
-    <form id="signupForm" autocomplete="off">
-      <label class="lbl">Username</label><input class="input" type="text" required style="margin-bottom:12px">
-      <label class="lbl">Email</label><input class="input" type="email" required style="margin-bottom:12px">
-      <label class="lbl">Password</label><input class="input" type="password" minlength="6" required style="margin-bottom:12px">
-      <button class="btn green full" type="submit">Create Account</button>
-    </form>
-    <p style="text-align:center;margin-top:12px;font-size:13px">Already a member? <a href="#/login">Log in</a></p>
-  </div></div>
-</div></main>
-</section>
-
-<!-- ===================== TERMS / PRIVACY ===================== -->
+<!-- TERMS PAGE -->
 <section class="page" id="page-terms">
-<div class="hero"><div class="container"><h1>Terms of Service</h1></div></div>
-<main><div class="container" style="padding-top:18px"><div class="card"><div class="card-body" style="line-height:1.8">
-  <p>By using LinkSafe you agree not to protect or distribute illegal, harmful, copyrighted or malicious content. Service is provided as-is without warranty. We reserve the right to update these terms at any time.</p>
-</div></div></div></main>
-</section>
-<section class="page" id="page-privacy">
-<div class="hero"><div class="container"><h1>Privacy Policy</h1></div></div>
-<main><div class="container" style="padding-top:18px"><div class="card"><div class="card-body" style="line-height:1.8">
-  <p>LinkSafe runs entirely in your browser. We do not collect, transmit or store any of your data on remote servers. Protected links and history are saved in your local browser storage only.</p>
-</div></div></div></main>
+  <div class="hero"><div class="container"><h1>Terms of Service</h1></div></div>
+  <main><div class="container" style="padding-top:18px"><div class="card"><div class="card-body" style="line-height:1.8">
+    <p>By using LinkSafe you agree not to protect or distribute illegal, harmful, copyrighted or malicious content. Service is provided as-is without warranty. We reserve the right to update these terms at any time.</p>
+  </div></div></div></main>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
+<!-- PRIVACY PAGE -->
+<section class="page" id="page-privacy">
+  <div class="hero"><div class="container"><h1>Privacy Policy</h1></div></div>
+  <main><div class="container" style="padding-top:18px"><div class="card"><div class="card-body" style="line-height:1.8">
+    <p>LinkSafe runs entirely in your browser. We do not collect, transmit or store any of your data on remote servers. Protected links and history are saved in your local browser storage only.</p>
+  </div></div></div></main>
+</section>
+
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div><h4>LinkSafe</h4>
-        <a href="#/">Home</a><a href="#/earn">Earn Money</a><a href="#/faqs">FAQs</a><a href="#/contact">Contact</a>
+      <div>
+        <h4>LinkSafe</h4>
+        <a href="#/">Home</a>
+        <a href="#/earn">Earn Money</a>
+        <a href="#/faqs">FAQs</a>
+        <a href="#/contact">Contact</a>
       </div>
-      <div><h4>Account</h4>
-        <a href="#/login">Log In</a><a href="#/signup">Sign Up</a>
+      <div>
+        <h4>Tools</h4>
+        <a href="#/">page1</a>
+        <a href="#/">page2</a>
+        <a href="#/">page3</a>
       </div>
-      <div><h4>Legal</h4>
-        <a href="#/terms">Terms of Service</a><a href="#/privacy">Privacy Policy</a>
+      <div>
+        <h4>Legal</h4>
+        <a href="#/terms">Terms of Service</a>
+        <a href="#/privacy">Privacy Policy</a>
       </div>
     </div>
-    <div class="footer-bottom">© <span id="yr"></span> <b>LinkSafe</b> — Protect, Shorten &amp; Share Your Links Safely.</div>
+    <div class="footer-bottom">&copy; <span id="yr"></span> <b>LinkSafe</b> &mdash; Protect, Shorten &amp; Share Your Links Safely.</div>
   </div>
 </footer>
+
+<!-- QR MODAL -->
+<div class="modal-overlay" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrModalTitle">
+  <div class="modal">
+    <button class="modal-x" id="qrClose" aria-label="Close QR code modal">
+      <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/><path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <h3 id="qrModalTitle">QR Code</h3>
+    <p>Scan or download to share your protected link.</p>
+    <div id="qrCanvas"></div>
+    <div class="modal-acts">
+      <button class="btn sm" id="qrDownload" type="button">
+        <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2Zm7-18-7 7h4v6h6v-6h4l-7-7Z"/></svg>
+        Download PNG
+      </button>
+      <button class="btn ghost sm" id="qrClose2" type="button">Close</button>
+    </div>
+  </div>
+</div>
 
 <div id="toasts" aria-live="polite" aria-atomic="true"></div>
 
 <script>
 (function(){
 "use strict";
-var $=function(s,r){return (r||document).querySelector(s)};
-var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-var STORE_HIST="linksafe_history_v1";
 
-/* ============ ENCODING ============ */
-function obfuscate(s){var o="";for(var i=0;i<s.length;i++){o+=String.fromCharCode(s.charCodeAt(i)^((i%7)+3))}return o}
-function deobfuscate(s){return obfuscate(s)}
-function b64e(s){return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
-function b64d(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return decodeURIComponent(escape(atob(s)))}
-function encodeLinks(arr){
-  try{var json=JSON.stringify({v:1,t:Date.now(),links:arr});return b64e(obfuscate(json))}catch(e){return ""}
+var $=function(s,r){return(r||document).querySelector(s)};
+var $$=function(s,r){return Array.from((r||document).querySelectorAll(s))};
+
+var STORE_HIST="ls_hist_v2";
+var STORE_STATS="ls_stats_v1";
+var XOR_KEY="LinkSafe!Secure#Key@2024$Protect";
+
+/* ========== ENCODING UTILS ========== */
+function xorEncode(str,key){
+  var enc=new TextEncoder();
+  var sBytes=enc.encode(str);
+  var kBytes=enc.encode(key);
+  var out=new Uint8Array(sBytes.length);
+  for(var i=0;i<sBytes.length;i++)out[i]=sBytes[i]^kBytes[i%kBytes.length];
+  return out;
+}
+function xorDecode(bytes,key){
+  var enc=new TextEncoder();
+  var kBytes=enc.encode(key);
+  var out=new Uint8Array(bytes.length);
+  for(var i=0;i<bytes.length;i++)out[i]=bytes[i]^kBytes[i%kBytes.length];
+  return new TextDecoder().decode(out);
+}
+function toB64url(u8){
+  var bin="";
+  for(var i=0;i<u8.length;i++)bin+=String.fromCharCode(u8[i]);
+  return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+}
+function fromB64url(s){
+  s=s.replace(/-/g,"+").replace(/_/g,"/");
+  while(s.length%4)s+="=";
+  var bin=atob(s);
+  var u8=new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
+  return u8;
+}
+function stripUrls(urls){
+  return urls.map(function(u){
+    if(u.startsWith("https://"))return "h"+u.slice(8);
+    if(u.startsWith("http://"))return "H"+u.slice(7);
+    return "?"+u;
+  }).join("\x01");
+}
+function unStripUrls(joined){
+  return joined.split("\x01").filter(Boolean).map(function(u){
+    if(u[0]==="h")return "https://"+u.slice(1);
+    if(u[0]==="H")return "http://"+u.slice(1);
+    return u.slice(1);
+  });
+}
+
+/* ========== PASSWORD HASHING ========== */
+function hashPw(pw){
+  return crypto.subtle.digest("SHA-256",new TextEncoder().encode(pw+"LinkSafe2024Salt")).then(function(buf){
+    return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,"0")}).join("");
+  });
+}
+
+/* ========== ENCODE/DECODE LINKS ========== */
+function encodeLinks(urls,pw){
+  if(pw){
+    return hashPw(pw).then(function(hash){
+      var check=hash.slice(0,16);
+      var stripped=stripUrls(urls);
+      var xored=xorEncode(stripped,hash);
+      return "~p"+check+toB64url(xored);
+    });
+  }
+  var stripped=stripUrls(urls);
+  var xored=xorEncode(stripped,XOR_KEY);
+  return Promise.resolve("~n"+toB64url(xored));
 }
 function decodeLinks(token){
-  try{var json=deobfuscate(b64d(token));var d=JSON.parse(json);if(d&&Array.isArray(d.links))return d.links;return null}catch(e){return null}
+  if(token.startsWith("~n")){
+    try{
+      var bytes=fromB64url(token.slice(2));
+      var str=xorDecode(bytes,XOR_KEY);
+      return Promise.resolve({links:unStripUrls(str),passwordProtected:false});
+    }catch(e){return Promise.resolve(null);}
+  }
+  if(token.startsWith("~p")){
+    return Promise.resolve({links:null,passwordProtected:true,checkCode:token.slice(2,18),payload:token.slice(18)});
+  }
+  
+  try{
+    function legacyObf(s){var o="";for(var i=0;i<s.length;i++)o+=String.fromCharCode(s.charCodeAt(i)^((i%7)+3));return o;}
+    function legacyB64d(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return decodeURIComponent(escape(atob(s)));}
+    var dec=legacyObf(legacyB64d(token));
+    var links=dec.split("|").filter(function(u){return u.startsWith("http://")|| u.startsWith("https://")});
+    if(links.length>0)return Promise.resolve({links:links,passwordProtected:false,legacy:true});
+  }catch(e){}
+  return Promise.resolve(null);
+}
+function decodeWithPw(token,pw){
+  return hashPw(pw).then(function(hash){
+    var check=hash.slice(0,16);
+    var stored=token.slice(2,18);
+    if(check!==stored)return null;
+    var payload=token.slice(18);
+    try{
+      var bytes=fromB64url(payload);
+      var str=xorDecode(bytes,hash);
+      return unStripUrls(str);
+    }catch(e){return null;}
+  });
 }
 
-/* ============ VALIDATION ============ */
+/* ========== VALIDATION ========== */
 function isURL(s){
   if(!s||s.length>2048)return false;
   try{var u=new URL(s);return u.protocol==="http:"||u.protocol==="https:"}catch(e){return false}
 }
 function parseList(text){
-  var lines=(text||"").split(/\r?\n|,|\s+/);
+  var lines=(text||"").split(/[\r\n,]+/);
   var seen={},out=[];
   for(var i=0;i<lines.length;i++){
     var l=lines[i].trim();if(!l)continue;
     if(!/^https?:\/\//i.test(l))l="https://"+l;
     if(isURL(l)&&!seen[l]){seen[l]=1;out.push(l)}
   }
-  return out
+  return out;
+}
+function getDomain(url){try{return new URL(url).hostname;}catch(e){return url;}}
+
+/* ========== STATS ========== */
+function simpleHash(s){
+  var h=5381;
+  for(var i=0;i<Math.min(s.length,200);i++){h=((h<<5)+h)+s.charCodeAt(i);h|=0;}
+  return "ls_"+(h>>>0).toString(36);
+}
+function getStats(key){
+  try{return JSON.parse(localStorage.getItem(STORE_STATS+"_"+key)||'{"u":0,"c":0,"s":0}');}
+  catch(e){return{u:0,c:0,s:0};}
+}
+function incStat(key,field){
+  var st=getStats(key);
+  st[field]=(st[field]||0)+1;
+  try{localStorage.setItem(STORE_STATS+"_"+key,JSON.stringify(st));}catch(e){}
+  return st;
 }
 
-/* ============ TOAST ============ */
+/* ========== TOAST ========== */
+var SVG_OK='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7Z"/></svg>';
+var SVG_ERR='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>';
 function toast(msg,type){
   var t=document.createElement("div");
   t.className="toast "+(type||"info");
-  var ico='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7Z"/></svg>';
-  if(type==="error")ico='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>';
-  t.innerHTML=ico+"<span></span>";
+  t.innerHTML=(type==="error"?SVG_ERR:SVG_OK)+"<span></span>";
   t.lastChild.textContent=msg;
   $("#toasts").appendChild(t);
-  setTimeout(function(){t.style.opacity="0";t.style.transform="translateX(20px)";t.style.transition=".3s";setTimeout(function(){t.remove()},320)},2800)
+  setTimeout(function(){
+    t.style.opacity="0";t.style.transform="translateX(20px)";t.style.transition=".3s";
+    setTimeout(function(){t.remove();},320);
+  },2800);
 }
 
-/* ============ RIPPLE ============ */
+/* ========== RIPPLE ========== */
 document.addEventListener("click",function(e){
   var b=e.target.closest(".btn");if(!b||b.disabled)return;
   var r=b.getBoundingClientRect();
   var s=Math.max(r.width,r.height);
   var sp=document.createElement("span");
   sp.className="ripple";
-  sp.style.width=sp.style.height=s+"px";
-  sp.style.left=(e.clientX-r.left-s/2)+"px";
-  sp.style.top=(e.clientY-r.top-s/2)+"px";
+  sp.style.cssText="width:"+s+"px;height:"+s+"px;left:"+(e.clientX-r.left-s/2)+"px;top:"+(e.clientY-r.top-s/2)+"px";
   b.appendChild(sp);
-  setTimeout(function(){sp.remove()},560)
+  setTimeout(function(){sp.remove();},560);
 });
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(t).catch(function(){fbCopy(t);});
+  }else{fbCopy(t);}
+}
+function fbCopy(t){
+  var ta=document.createElement("textarea");
+  ta.value=t;ta.style.cssText="position:fixed;opacity:0;top:0;left:0";
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand("copy");}catch(e){}
+  ta.remove();
+}
+function esc(s){
+  return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});
+}
 
-/* ============ ROUTER ============ */
-var routes={"":"home","/":"home","/earn":"earn","/faqs":"faqs","/contact":"contact","/login":"login","/signup":"signup","/terms":"terms","/privacy":"privacy"};
+/* ========== ROUTER ========== */
+var ROUTES={
+  "":"home","/":"home","/earn":"earn",
+  "/faqs":"faqs","/contact":"contact",
+  "/terms":"terms","/privacy":"privacy"
+};
 function showPage(id){
-  $$(".page").forEach(function(p){p.classList.remove("active")});
+  $$(".page").forEach(function(p){p.classList.remove("active");});
   var el=$("#page-"+id);if(el)el.classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
-  $("#nav").classList.remove("open")
+  $("#nav").classList.remove("open");
+  var btn=$("#navToggle");if(btn)btn.setAttribute("aria-expanded","false");
 }
 function handleRoute(){
   var h=location.hash.replace(/^#/,"");
-  if(h.indexOf("/view/")===0){
-    var token=h.substring(6);
+  if(h&&h.length>20&&!ROUTES.hasOwnProperty(h)){
     showPage("view");
-    initView(token);
-    return
+    initView(h);
+    return;
   }
-  var page=routes[h];
-  if(!page){showPage("home");return}
-  showPage(page)
+  var p=ROUTES[h];
+  showPage(p||"home");
 }
 window.addEventListener("hashchange",handleRoute);
 
-/* ============ NAV TOGGLE ============ */
-$("#navToggle").addEventListener("click",function(){$("#nav").classList.toggle("open")});
+/* ========== NAV ========== */
+var navToggle=$("#navToggle"),nav=$("#nav");
+navToggle.addEventListener("click",function(){
+  var open=nav.classList.toggle("open");
+  navToggle.setAttribute("aria-expanded",open?"true":"false");
+});
 
-/* ============ HOME LOGIC ============ */
-var urlsInput=$("#urlsInput"),detectCount=$("#detectCount"),urlCount=$("#urlCount");
+/* ========== HOME: URL COUNTER ========== */
+var urlsInput=$("#urlsInput");
 function refreshDetect(){
-  var arr=parseList(urlsInput.value);
-  detectCount.textContent=arr.length;
-  urlCount.textContent=arr.length
+  var n=parseList(urlsInput.value).length;
+  $("#detectCount").textContent=n;
+  $("#urlCount").textContent=n;
 }
 urlsInput.addEventListener("input",refreshDetect);
 
-/* tabs */
+/* ========== HOME: PASSWORD TOGGLE ========== */
+var pwToggle=$("#pwToggle"),pwSection=$("#pwSection"),pwInput=$("#pwInput"),pwEye=$("#pwEye");
+pwToggle.addEventListener("change",function(){
+  pwSection.style.display=this.checked?"block":"none";
+  if(!this.checked)pwInput.value="";
+});
+pwEye.addEventListener("click",function(){
+  var isText=pwInput.type==="text";
+  pwInput.type=isText?"password":"text";
+  $("#eyeIcon").innerHTML=isText
+    ?'<path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5Zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>'
+    :'<path d="M2 2l20 20M7 7a10 10 0 0 0-6 5c1.7 4.4 6 7.5 11 7.5 2.1 0 4.1-.6 5.8-1.6M9.9 4.6A10 10 0 0 1 12 4.5c5 0 9.3 3.1 11 7.5a10.5 10.5 0 0 1-4.6 5.5M14.1 14.1A3 3 0 0 1 9.9 9.9"/>';
+});
+pwInput.addEventListener("keydown",function(e){if(e.key==="Enter")$("#protectBtn").click();});
+
+/* ========== HOME: TABS ========== */
 $$(".tab").forEach(function(tab){
   tab.addEventListener("click",function(){
-    $$(".tab").forEach(function(t){t.classList.remove("active")});
-    $$(".tab-panel").forEach(function(p){p.classList.remove("active")});
-    tab.classList.add("active");
+    $$(".tab").forEach(function(t){t.classList.remove("active");t.setAttribute("aria-selected","false");});
+    $$(".tab-panel").forEach(function(p){p.classList.remove("active");});
+    tab.classList.add("active");tab.setAttribute("aria-selected","true");
     var p=$('.tab-panel[data-panel="'+tab.dataset.tab+'"]');
-    if(p)p.classList.add("active")
-  })
+    if(p)p.classList.add("active");
+  });
 });
 
-/* clear */
+/* ========== HOME: CLEAR ========== */
 $("#clearBtn").addEventListener("click",function(){
   urlsInput.value="";refreshDetect();
   $("#resultSlot").innerHTML="";
   $("#alertSlot").innerHTML="";
-  toast("Cleared","info")
+  pwToggle.checked=false;pwSection.style.display="none";pwInput.value="";
+  toast("Cleared","info");
 });
 
-/* protect */
-$("#protectBtn").addEventListener("click",function(){
+/* ========== HOME: PROTECT ========== */
+var protectBtn=$("#protectBtn");
+protectBtn.addEventListener("click",function(){
   var btn=this;
   $("#alertSlot").innerHTML="";$("#resultSlot").innerHTML="";
-  var arr=parseList(urlsInput.value);
-  if(arr.length===0){
-    $("#alertSlot").innerHTML='<div class="alert error"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>Please enter at least one valid URL.</div>';
-    toast("No valid URLs found","error");return
+  var urls=parseList(urlsInput.value);
+  if(!urls.length){
+    $("#alertSlot").innerHTML='<div class="alert error">'+SVG_ERR+'Please enter at least one valid URL.</div>';
+    toast("No valid URLs found","error");return;
+  }
+  var pw=pwToggle.checked?pwInput.value.trim():"";
+  if(pwToggle.checked&&!pw){
+    toast("Enter a password or disable password protection","error");return;
   }
   btn.disabled=true;
   var orig=btn.innerHTML;
   btn.innerHTML='<span class="spinner"></span>Protecting...';
-  setTimeout(function(){
-    var token=encodeLinks(arr);
-    var url=location.origin+location.pathname+"#/view/"+token;
-    var html=''
-      +'<div class="alert success"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7Z"/></svg>Success! '+arr.length+' link'+(arr.length>1?"s":"")+' protected.</div>'
+  encodeLinks(urls,pw||null).then(function(token){
+    var url=location.origin+location.pathname+"#"+token;
+    var html='<div class="alert success">'+SVG_OK+'<span>'+urls.length+' link'+(urls.length>1?"s":"")+" protected"+(pw?" with password":"")+".</span></div>"
       +'<div class="result-box">'
       +'<label class="lbl">Your Protected Link</label>'
       +'<div class="result-row">'
       +'<input class="input" id="resOut" readonly value="">'
       +'<button class="btn ghost" id="copyRes" type="button"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>Copy</button>'
       +'<button class="btn green" id="openRes" type="button"><svg viewBox="0 0 24 24"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7Zm5 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>Open</button>'
+      +'<button class="btn orange" id="qrRes" type="button"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm10 1h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm-4 2h4v1h-4zm4 0h1v4h-1zm-2 2h2v2h-2z"/></svg>QR</button>'
       +'</div>'
-      +'<div class="result-meta"><span><b>'+arr.length+'</b> URL'+(arr.length>1?"s":"")+'</span><span>Encoded length: <b>'+token.length+'</b></span><span>Created: <b>'+new Date().toLocaleString()+'</b></span></div>'
+      +'<div class="result-meta"><span><b>'+urls.length+'</b> URL'+(urls.length>1?"s":"")+'</span>'+(pw?'<span style="color:#7a5c00;background:#fff8e6;border-radius:10px;padding:1px 8px;border:1px solid #f0d580;font-weight:700;font-size:11.5px">Password Protected</span>':'')+'<span>Length: <b>'+token.length+'</b> chars</span><span>Created: <b>'+new Date().toLocaleTimeString()+'</b></span></div>'
       +'</div>';
     $("#resultSlot").innerHTML=html;
     $("#resOut").value=url;
-    $("#copyRes").addEventListener("click",function(){copy(url);toast("Link copied","success")});
-    $("#openRes").addEventListener("click",function(){window.open(url,"_blank")});
-    saveHistory({url:url,count:arr.length,t:Date.now()});
+    copyText(url);toast("Link copied to clipboard","success");
+    $("#copyRes").addEventListener("click",function(){copyText(url);toast("Copied","success");});
+    $("#openRes").addEventListener("click",function(){window.open(url,"_blank","noopener");});
+    $("#qrRes").addEventListener("click",function(){showQR(url);});
+    saveHistory({url:url,count:urls.length,pw:!!pw,t:Date.now()});
     renderHistory();
     btn.disabled=false;btn.innerHTML=orig;
-    $("#resultSlot").scrollIntoView({behavior:"smooth",block:"center"})
-  },550)
+    $("#resultSlot").scrollIntoView({behavior:"smooth",block:"center"});
+  }).catch(function(){
+    btn.disabled=false;btn.innerHTML=orig;
+    toast("Encoding failed, please try again","error");
+  });
 });
 
-/* file upload */
-var dz=$("#dropzone"),fi=$("#fileInput");
-dz.addEventListener("click",function(){fi.click()});
-dz.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fi.click()}});
-["dragenter","dragover"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add("drag")})});
-["dragleave","drop"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove("drag")})});
-dz.addEventListener("drop",function(e){if(e.dataTransfer.files[0])readFile(e.dataTransfer.files[0])});
-fi.addEventListener("change",function(){if(fi.files[0])readFile(fi.files[0])});
-function readFile(f){
-  if(f.size>1048576){toast("File too large (max 1MB)","error");return}
-  var r=new FileReader();
-  r.onload=function(){
-    urlsInput.value=(urlsInput.value?urlsInput.value+"\n":"")+r.result;
-    refreshDetect();
-    $$(".tab")[0].click();
-    toast("File loaded","success")
-  };
-  r.readAsText(f)
-}
-
-/* remote (offline-safe simulation: parse if value looks like a list) */
+/* ========== REMOTE FETCH ========== */
 $("#remoteBtn").addEventListener("click",function(){
   var v=$("#remoteInput").value.trim();
-  if(!isURL(v)){toast("Enter a valid URL","error");return}
-  var btn=this,orig=btn.innerHTML;btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Fetching...';
-  fetch(v).then(function(r){return r.text()}).then(function(txt){
+  if(!isURL(v)){toast("Enter a valid URL","error");return;}
+  var btn=this,orig=btn.innerHTML;
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Fetching...';
+  fetch(v).then(function(r){return r.text();}).then(function(txt){
     var arr=parseList(txt);
     $("#remoteCount").textContent=arr.length;
-    if(!arr.length){toast("No URLs found in remote file","error");return}
+    if(!arr.length){toast("No URLs found in remote file","error");return;}
     urlsInput.value=(urlsInput.value?urlsInput.value+"\n":"")+arr.join("\n");
     refreshDetect();
     $$(".tab")[0].click();
-    toast("Fetched "+arr.length+" URLs","success")
-  }).catch(function(){toast("Fetch failed (CORS or network)","error")})
-  .then(function(){btn.disabled=false;btn.innerHTML=orig})
+    toast("Fetched "+arr.length+" URLs","success");
+  }).catch(function(){toast("Fetch failed (CORS or network error)","error");})
+  .then(function(){btn.disabled=false;btn.innerHTML=orig;});
 });
 
-/* history */
-function loadHistory(){try{return JSON.parse(localStorage.getItem(STORE_HIST)||"[]")}catch(e){return []}}
+/* ========== HISTORY ========== */
+function loadHistory(){
+  try{return JSON.parse(localStorage.getItem(STORE_HIST)||"[]");}catch(e){return[];}
+}
 function saveHistory(item){
-  var h=loadHistory();h.unshift(item);if(h.length>20)h=h.slice(0,20);
-  try{localStorage.setItem(STORE_HIST,JSON.stringify(h))}catch(e){}
+  var h=loadHistory();h.unshift(item);if(h.length>30)h=h.slice(0,30);
+  try{localStorage.setItem(STORE_HIST,JSON.stringify(h));}catch(e){}
 }
-function renderHistory(){
-  var h=loadHistory(),slot=$("#historySlot");
-  if(!h.length){slot.innerHTML='<div class="empty"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm0 16H5V5h14v14Zm-2-7H7v-2h10v2Z"/></svg>No protected links yet.</div>';return}
+function renderHistory(filter){
+  var h=loadHistory();
+  var slot=$("#historySlot");
+  if(filter){
+    var f=filter.toLowerCase();
+    h=h.filter(function(it){return it.url.toLowerCase().indexOf(f)>-1;});
+  }
+  if(!h.length){
+    slot.innerHTML='<div class="empty"><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm0 16H5V5h14v14Zm-2-7H7v-2h10v2Z"/></svg>'+(filter?"No results found.":"No protected links yet.")+'</div>';
+    return;
+  }
+  var all=loadHistory();
   slot.innerHTML=h.map(function(it,i){
-    return '<div class="history-item"><a href="'+esc(it.url)+'">'+esc(it.url)+'</a><span class="meta">'+it.count+' link'+(it.count>1?"s":"")+' • '+new Date(it.t).toLocaleString()+'</span><div class="acts"><button data-c="'+i+'">Copy</button><button data-d="'+i+'">Delete</button></div></div>'
+    var idx=all.indexOf(it);
+    return '<div class="history-item">'
+      +'<a href="'+esc(it.url)+'" title="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.url.length>70?it.url.slice(0,70)+"...":it.url)+'</a>'
+      +'<div class="meta">'
+        +'<span class="hist-badge">'+it.count+' link'+(it.count>1?"s":"")+'</span>'
+        +(it.pw?'<span class="hist-badge pw"><svg viewBox="0 0 24 24" style="width:10px;height:10px;fill:currentColor;display:inline"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"/></svg> PW</span>':"")
+        +'<span>'+new Date(it.t).toLocaleDateString()+'</span>'
+      +'</div>'
+      +'<div class="acts">'
+        +'<button data-c="'+idx+'" title="Copy link"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg></button>'
+        +'<button data-q="'+idx+'" title="QR Code"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm10 1h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm-4 2h4v1h-4zm4 0h1v4h-1zm-2 2h2v2h-2z"/></svg></button>'
+        +'<button data-d="'+idx+'" title="Delete"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12ZM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z"/></svg></button>'
+      +'</div>'
+    +'</div>';
   }).join("");
-  $$("#historySlot button[data-c]").forEach(function(b){b.addEventListener("click",function(){copy(h[+b.dataset.c].url);toast("Copied","success")})});
-  $$("#historySlot button[data-d]").forEach(function(b){b.addEventListener("click",function(){var n=loadHistory();n.splice(+b.dataset.d,1);localStorage.setItem(STORE_HIST,JSON.stringify(n));renderHistory();toast("Removed","info")})})
+  var allH=loadHistory();
+  $$("#historySlot button[data-c]").forEach(function(b){
+    b.addEventListener("click",function(){copyText(allH[+b.dataset.c].url);toast("Copied","success");});
+  });
+  $$("#historySlot button[data-q]").forEach(function(b){
+    b.addEventListener("click",function(){showQR(allH[+b.dataset.q].url);});
+  });
+  $$("#historySlot button[data-d]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var n=loadHistory();n.splice(+b.dataset.d,1);
+      try{localStorage.setItem(STORE_HIST,JSON.stringify(n));}catch(e){}
+      renderHistory($("#histSearch").value||undefined);
+      toast("Removed","info");
+    });
+  });
 }
-$("#clearHistoryBtn").addEventListener("click",function(){if(confirm("Clear all history?")){localStorage.removeItem(STORE_HIST);renderHistory();toast("History cleared","info")}});
+var histSearch=$("#histSearch");
+histSearch.addEventListener("input",function(){renderHistory(this.value||undefined);});
+$("#clearHistoryBtn").addEventListener("click",function(){
+  if(confirm("Clear all history?")){
+    try{localStorage.removeItem(STORE_HIST);}catch(e){}
+    renderHistory();toast("History cleared","info");
+  }
+});
 
-function copy(t){
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).catch(function(){fallback(t)})}else{fallback(t)}
-  function fallback(t){var ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy")}catch(e){}ta.remove()}
+/* ========== QR CODE ========== */
+var qrModal=$("#qrModal"),currentQrUrl="";
+function showQR(url){
+  currentQrUrl=url;
+  var canvas=$("#qrCanvas");
+  canvas.innerHTML="";
+  if(typeof QRCode==="undefined"){
+    canvas.innerHTML='<p style="color:#dc3545;font-size:13px">QR library not loaded. Check your connection.</p>';
+  }else{
+    new QRCode(canvas,{text:url,width:240,height:240,colorDark:"#1a2232",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
+  }
+  qrModal.classList.add("open");
+  document.body.style.overflow="hidden";
 }
-function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function closeQR(){
+  qrModal.classList.remove("open");
+  document.body.style.overflow="";
+}
+$("#qrClose").addEventListener("click",closeQR);
+$("#qrClose2").addEventListener("click",closeQR);
+qrModal.addEventListener("click",function(e){if(e.target===qrModal)closeQR();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&qrModal.classList.contains("open"))closeQR();});
+$("#qrDownload").addEventListener("click",function(){
+  var c=$("#qrCanvas canvas");
+  if(!c){toast("QR not available","error");return;}
+  var a=document.createElement("a");
+  a.download="linksafe-qr.png";
+  a.href=c.toDataURL("image/png");
+  a.click();
+  toast("QR downloaded","success");
+});
 
-/* ============ VIEW PAGE ============ */
+/* ========== VIEW PAGE ========== */
+var currentToken="";
 function initView(token){
-  var links=decodeLinks(token);
-  var card=$("#unlockCard"),slot=$("#unlockedSlot");
+  currentToken=token;
+  var slot=$("#unlockedSlot");
   slot.innerHTML="";
-  if(!links||!links.length){
-    card.querySelector(".card-body").innerHTML='<div class="alert error"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>Invalid or corrupted protected link.</div>';
-    $("#protectedCount").textContent="0";return
-  }
-  $("#protectedCount").textContent=links.length;
-  var unlockBtn=$("#unlockBtn"),cd=$("#countdown"),cn=$("#countNum");
-  unlockBtn.onclick=function(){
-    unlockBtn.disabled=true;
-    var n=3;cd.style.display="inline-block";cn.textContent=n;
-    var iv=setInterval(function(){
-      n--;cn.textContent=n;
-      if(n<=0){clearInterval(iv);reveal(links)}
-    },1000)
-  }
+  $("#unlockWrap").style.display="block";
+  $("#unlockBtn").disabled=false;
+  $("#unlockProgress").style.display="none";
+  $("#unlockBar").style.width="0%";
+  $("#pwUnlockSection").style.display="none";
+  $("#pwError").style.display="none";
+  if($("#pwUnlockInput"))$("#pwUnlockInput").value="";
+
+  decodeLinks(token).then(function(result){
+    if(!result){
+      $("#unlockWrap").innerHTML='<div class="glass-card"><div class="card-body"><div class="unlocked-alert" style="background:rgba(220,53,69,.15);color:#ff8090;border-color:rgba(220,53,69,.25)">'+SVG_ERR+' Invalid or corrupted protected link.</div></div></div>';
+      return;
+    }
+    if(result.passwordProtected){
+      $("#protectedCount").textContent="?";
+      $("#unlockTitle").textContent="Password Protected Links";
+      $("#unlockDesc").textContent="Enter the password to access the links.";
+      $("#pwUnlockSection").style.display="block";
+      var checkCode=result.checkCode;
+      $("#unlockBtn").onclick=function(){
+        var pw=$("#pwUnlockInput").value.trim();
+        if(!pw){
+          $("#pwUnlockInput").classList.add("shake");
+          setTimeout(function(){$("#pwUnlockInput").classList.remove("shake");},500);
+          toast("Enter the password","error");return;
+        }
+        var btn=this;
+        btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Verifying...';
+        decodeWithPw(token,pw).then(function(links){
+          if(!links){
+            btn.disabled=false;btn.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5h2a3 3 0 1 1 6 0v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Z"/></svg>Unlock Links';
+            $("#pwUnlockInput").classList.add("shake");
+            setTimeout(function(){$("#pwUnlockInput").classList.remove("shake");},500);
+            $("#pwError").style.display="block";
+            toast("Incorrect password","error");
+          }else{
+            startUnlock(links,simpleHash(token));
+          }
+        });
+      };
+    }else{
+      var count=result.links.length;
+      $("#protectedCount").textContent=count;
+      var skey=simpleHash(token);
+      var st=getStats(skey);
+      $("#statUnlocks").textContent=st.u||0;
+      $("#statCopies").textContent=st.c||0;
+      $("#statSaves").textContent=st.s||0;
+      var links=result.links;
+      $("#unlockBtn").onclick=function(){startUnlock(links,skey);};
+    }
+  });
 }
-function reveal(links){
-  var card=$("#unlockCard");
-  card.style.transition=".3s";card.style.opacity="0";card.style.transform="translateY(-10px)";
+
+function startUnlock(links,skey){
+  var btn=$("#unlockBtn");
+  btn.disabled=true;
+  var prog=$("#unlockProgress");
+  prog.style.display="block";
+  var bar=$("#unlockBar");
+  var w=0;
+  var iv=setInterval(function(){
+    w+=33;bar.style.width=Math.min(w,100)+"%";
+    if(w>=100){clearInterval(iv);revealLinks(links,skey);}
+  },70);
+  incStat(skey,"u");
+}
+
+function revealLinks(links,skey){
+  var wrap=$("#unlockWrap");
+  wrap.style.transition=".35s";
+  wrap.style.opacity="0";
+  wrap.style.transform="translateY(-12px)";
   setTimeout(function(){
-    card.style.display="none";
-    var html='<div class="alert success"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10l-7 7Z"/></svg>Unlocked successfully! '+links.length+' link'+(links.length>1?"s":"")+' available below.</div>'
-      +'<div class="card"><div class="card-header"><h2><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.7 1.7 1.4 1.4L14.4 4.4a3 3 0 1 1 4.2 4.2l-3 3a3 3 0 0 1-4.2 0L10 13Zm4-2a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.7-1.7-1.4-1.4L9.6 19.6a3 3 0 1 1-4.2-4.2l3-3a3 3 0 0 1 4.2 0L14 11Z"/></svg> Available Links</h2><span class="counter"><b>'+links.length+'</b> link'+(links.length>1?"s":"")+'</span></div><div class="card-body" id="linksBody"></div></div>';
-    var slot=$("#unlockedSlot");slot.innerHTML=html;
+    wrap.style.display="none";
+    var slot=$("#unlockedSlot");
+    var alertHtml='<div class="unlocked-alert">'+SVG_OK+' Access Granted! '+links.length+' link'+(links.length>1?"s":"")+" revealed.</div>";
+    var topHtml='<div class="unlocked-card">'
+      +'<div class="unlocked-top">'
+        +'<span class="unlocked-count"><b>'+links.length+'</b> Link'+(links.length>1?"s":"")+" Available"+'</span>'
+        +'<div class="unlocked-acts">'
+          +'<button class="btn green sm" id="openAllBtn" type="button"><svg viewBox="0 0 24 24"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7Zm5 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>Open All</button>'
+          +'<button class="btn sm" id="exportBtn" type="button"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2Zm7-18-7 7h4v6h6v-6h4l-7-7Z"/></svg>Export TXT</button>'
+        +'</div>'
+      +'</div>'
+      +'<div id="linksBody"></div>'
+    +'</div>';
+    slot.innerHTML=alertHtml+topHtml;
+    slot.style.animation="none";
+    slot.style.opacity="0";
+    slot.style.transform="translateY(10px)";
+    setTimeout(function(){
+      slot.style.transition=".4s";
+      slot.style.opacity="1";
+      slot.style.transform="none";
+    },30);
+
     var body=$("#linksBody");
     links.forEach(function(u,i){
-      var row=document.createElement("div");row.className="link-item";row.style.animationDelay=(i*60)+"ms";
-      row.innerHTML='<div class="link-num">'+(i+1)+'</div><div class="link-url"></div>'
+      var domain=getDomain(u);
+      var faviconUrl="https://www.google.com/s2/favicons?sz=32&domain_url="+encodeURIComponent(u);
+      var row=document.createElement("div");
+      row.className="unlocked-link-item";
+      row.style.animationDelay=(i*55)+"ms";
+      row.innerHTML=''
+        +'<div class="link-num">'+(i+1)+'</div>'
+        +'<div class="link-fav">'
+          +'<img src="'+esc(faviconUrl)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'
+        +'</div>'
+        +'<div class="link-info">'
+          +'<div class="link-domain">'+esc(domain)+'</div>'
+          +'<div class="link-url">'+esc(u)+'</div>'
+        +'</div>'
         +'<div class="link-actions">'
-        +'<button class="btn ghost" data-act="copy"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>Copy</button>'
-        +'<button class="btn green" data-act="open"><svg viewBox="0 0 24 24"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7Zm5 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>Open</button>'
-        +'<button class="btn grey" data-act="save"><svg viewBox="0 0 24 24"><path d="M17 3H5a2 2 0 0 0-2 2v14l4-4h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm4 4h-2v9H6v2h13a2 2 0 0 0 2-2V7Z"/></svg>Save</button>'
-        +'<button class="btn red" data-act="remove"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12ZM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z"/></svg>Remove</button>'
+          +'<button class="btn ghost sm" data-act="copy" type="button"><svg viewBox="0 0 24 24"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1Zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H8V7h11v14Z"/></svg>Copy</button>'
+          +'<button class="btn green sm" data-act="open" type="button"><svg viewBox="0 0 24 24"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7Zm5 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7Z"/></svg>Open</button>'
+          +'<button class="btn grey sm" data-act="save" type="button"><svg viewBox="0 0 24 24"><path d="M17 3H5a2 2 0 0 0-2 2v14l4-4h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/></svg>Save</button>'
         +'</div>';
-      row.querySelector(".link-url").textContent=u;
-      row.querySelector('[data-act="copy"]').addEventListener("click",function(){copy(u);toast("Copied","success")});
-      row.querySelector('[data-act="open"]').addEventListener("click",function(){window.open(u,"_blank","noopener")});
+      row.querySelector('[data-act="copy"]').addEventListener("click",function(){
+        copyText(u);
+        var st=incStat(skey,"c");
+        toast("Copied","success");
+      });
+      row.querySelector('[data-act="open"]').addEventListener("click",function(){
+        window.open(u,"_blank","noopener");
+      });
       row.querySelector('[data-act="save"]').addEventListener("click",function(){
-        var saved=JSON.parse(localStorage.getItem("linksafe_saved")||"[]");
-        if(saved.indexOf(u)===-1){saved.push(u);localStorage.setItem("linksafe_saved",JSON.stringify(saved));toast("Saved to bookmarks","success")}
-        else toast("Already saved","info")
+        var saved=[];
+        try{saved=JSON.parse(localStorage.getItem("ls_saved")||"[]");}catch(e){}
+        if(saved.indexOf(u)===-1){
+          saved.push(u);
+          try{localStorage.setItem("ls_saved",JSON.stringify(saved));}catch(e){}
+          incStat(skey,"s");
+          toast("Saved to bookmarks","success");
+        }else{toast("Already saved","info");}
       });
-      row.querySelector('[data-act="remove"]').addEventListener("click",function(){
-        row.style.transition=".25s";row.style.opacity="0";row.style.transform="translateX(20px)";
-        setTimeout(function(){row.remove();toast("Link removed","info")},260)
+      body.appendChild(row);
+    });
+
+    $("#openAllBtn").addEventListener("click",function(){
+      links.forEach(function(u,i){
+        setTimeout(function(){window.open(u,"_blank","noopener");},i*120);
       });
-      body.appendChild(row)
-    })
-  },300)
+      toast("Opening all links...","success");
+    });
+    $("#exportBtn").addEventListener("click",function(){
+      var txt="Protected Links - "+new Date().toLocaleString()+"\n\n"+links.map(function(u,i){return(i+1)+". "+u;}).join("\n");
+      var blob=new Blob([txt],{type:"text/plain"});
+      var a=document.createElement("a");
+      a.download="linksafe-links.txt";
+      a.href=URL.createObjectURL(blob);
+      a.click();
+      setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+      toast("Links exported","success");
+    });
+  },350);
 }
 
-/* ============ FAQ ============ */
+/* ========== PASSWORD UNLOCK EYE ========== */
+var pwUnlockEye=$("#pwUnlockEye"),pwUnlockInput=$("#pwUnlockInput");
+if(pwUnlockEye&&pwUnlockInput){
+  pwUnlockEye.addEventListener("click",function(){
+    var t=pwUnlockInput.type==="text";
+    pwUnlockInput.type=t?"password":"text";
+    $("#eyeUnlockIcon").innerHTML=t
+      ?'<path d="M12 4.5C7 4.5 2.7 7.6 1 12c1.7 4.4 6 7.5 11 7.5s9.3-3.1 11-7.5C21.3 7.6 17 4.5 12 4.5Zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>'
+      :'<path d="M2 2l20 20M7 7a10 10 0 0 0-6 5c1.7 4.4 6 7.5 11 7.5 2.1 0 4.1-.6 5.8-1.6M9.9 4.6A10 10 0 0 1 12 4.5c5 0 9.3 3.1 11 7.5a10.5 10.5 0 0 1-4.6 5.5M14.1 14.1A3 3 0 0 1 9.9 9.9"/>';
+  });
+  pwUnlockInput.addEventListener("keydown",function(e){if(e.key==="Enter")$("#unlockBtn").click();});
+}
+
+/* ========== FAQ ========== */
 var FAQ=[
-  {q:"What is LinkSafe?",a:"LinkSafe is a free multi-URL protector that bundles many links into one secure unlock URL."},
-  {q:"Is it free?",a:"Yes. Forever free. No signup, no limits."},
-  {q:"Where are my links stored?",a:"Encoded inside the URL itself plus a local history in your browser. Nothing is sent to any server."},
-  {q:"Can I share protected links anywhere?",a:"Yes. The protected URL works on any browser, any device."},
-  {q:"How is the link encoded?",a:"Base64 with custom XOR obfuscation, decoded only inside the unlock page."},
-  {q:"Does it work on Blogger?",a:"Yes. The whole app is one HTML file so it drops into Blogger or any static host."}
+  {q:"What is LinkSafe?",a:"LinkSafe is a free multi-URL protector that bundles many links into one secure unlock URL with optional password protection."},
+  {q:"Is it free?",a:"Yes, forever free. No signup required, no limits, no ads."},
+  {q:"Where are my links stored?",a:"Links are encoded directly inside the URL itself. Your browser history is stored locally only. Nothing is sent to any server."},
+  {q:"How does password protection work?",a:"Your password is hashed using SHA-256 (Web Crypto API) client-side. The hash is used to encrypt the links. The correct password must be entered to unlock. We never see or store your password."},
+  {q:"Can I share protected links anywhere?",a:"Yes. The protected URL works on any browser and device without any app or plugin."},
+  {q:"What does the QR Code button do?",a:"It generates a scannable QR code for your protected link so you can share it offline or in print."},
+  {q:"Does it work on Blogger?",a:"Yes. The whole application is a single HTML file with no dependencies (except an optional CDN for QR codes) and is fully compatible with Blogger."}
 ];
 $("#faqList").innerHTML=FAQ.map(function(f,i){
-  return '<details style="border-bottom:1px solid #eef0f3;padding:11px 4px"'+(i===0?' open':'')+'><summary style="cursor:pointer;font-weight:700;color:#222;font-size:14px">'+esc(f.q)+'</summary><p style="margin-top:6px;color:#5e6770;font-size:13.5px">'+esc(f.a)+'</p></details>'
+  return '<details style="border-bottom:1px solid #eef0f5;padding:12px 4px"'+(i===0?" open":"")+'><summary style="cursor:pointer;font-weight:700;color:#1a2232;font-size:14px;list-style:none;display:flex;align-items:center;justify-content:space-between"><span>'+esc(f.q)+'</span><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#0a78c2;transition:.2s;flex:none"><path d="m7 10 5 5 5-5z"/></svg></summary><p style="margin-top:8px;color:#5e6d7e;font-size:13.5px;line-height:1.7">'+esc(f.a)+'</p></details>';
 }).join("");
 
-/* contact + auth */
-$("#contactForm").addEventListener("submit",function(e){e.preventDefault();this.reset();toast("Message sent","success")});
-$("#loginForm").addEventListener("submit",function(e){e.preventDefault();toast("Demo login successful","success")});
-$("#signupForm").addEventListener("submit",function(e){e.preventDefault();toast("Account created","success")});
+/* ========== CONTACT ========== */
+$("#contactSend").addEventListener("click",function(){
 
-/* init */
+  var n=$("#cName").value.trim(),
+      m=$("#cMail").value.trim(),
+      msg=$("#cMsg").value.trim();
+
+  if(!n||!m||!msg){
+    toast("Please fill in all fields","error");
+    return;
+  }
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m)){
+    toast("Enter a valid email address","error");
+    return;
+  }
+
+  window.location.href =
+  `mailto:mhputech.site@gmail.com?subject=${encodeURIComponent("New Contact Message From "+n)}&body=${encodeURIComponent(
+`Name: ${n}
+
+Email: ${m}
+
+Message:
+${msg}`
+  )}`;
+
+});
+
+/* ========== INIT ========== */
 $("#yr").textContent=new Date().getFullYear();
 renderHistory();
 refreshDetect();
 handleRoute();
+
 })();
 </script>
 </body>
